@@ -49,7 +49,7 @@
 
   <meta name="description" content="这篇文章是我在开始工作前学习 Gulp 与 EJS 时的笔记，现在的公司虽然不是用 Gulp 也不是用 EJS，而是采用一个电商后台服务 Shopify 自创的模板语言（liquid），但因为同为模板语言，因此让我想起曾写过这篇跟 EJS 有关的笔记，所以就拿来发铁人赛啦～">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Gulp] 在 Gulp 专案中引入 EJS template">
+<meta property="og:title" content="[Gulp] 在 Gulp 项目中引入 EJS template">
 <meta property="og:url" content="http:&#x2F;&#x2F;lineargenius.github.io&#x2F;Gulp&#x2F;20200525&#x2F;2363080042&#x2F;index.html">
 <meta property="og:site_name" content="前端日志">
 <meta property="og:description" content="这篇文章是我在开始工作前学习 Gulp 与 EJS 时的笔记，现在的公司虽然不是用 Gulp 也不是用 EJS，而是采用一个电商后台服务 Shopify 自创的模板语言（liquid），但因为同为模板语言，因此让我想起曾写过这篇跟 EJS 有关的笔记，所以就拿来发铁人赛啦～">
@@ -74,7 +74,7 @@
   };
 </script>
 
-  <title>[Gulp] 在 Gulp 专案中引入 EJS template | 前端日志</title>
+  <title>[Gulp] 在 Gulp 项目中引入 EJS template | 前端日志</title>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154635603-1"></script>
     <script>
@@ -229,7 +229,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          [Gulp] 在 Gulp 专案中引入 EJS template
+          [Gulp] 在 Gulp 项目中引入 EJS template
         </h2>
 
         <div class="post-meta">
@@ -282,19 +282,19 @@
         <p>这篇文章是我在开始工作前学习 Gulp 与 EJS 时的笔记，现在的公司虽然不是用 Gulp 也不是用 EJS，而是采用一个电商后台服务 Shopify 自创的模板语言（liquid），但因为同为模板语言，因此让我想起曾写过这篇跟 EJS 有关的笔记，所以就拿来发铁人赛啦～</p>
 <a id="more"></a>
 
-<p>如何在 Gulp 专案中安装 EJS 可以参考<a href="https://hsiangfeng.github.io/gulp/20190613/2073498620/" target="_blank" rel="external nofollow noopener noreferrer">这是在讲 Gulp 不是饮料是任务自动化工具这件事之番外篇：加入 ejs 篇</a>。</p>
-<p>以下内容关于是如何在专案中撰写 EJS。</p>
+<p>如何在 Gulp 项目中安装 EJS 可以参考<a href="https://hsiangfeng.github.io/gulp/20190613/2073498620/" target="_blank" rel="external nofollow noopener noreferrer">这是在讲 Gulp 不是饮料是任务自动化工具这件事之番外篇：加入 ejs 篇</a>。</p>
+<p>以下内容关于是如何在项目中撰写 EJS。</p>
 <h2 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js"></a>gulpfile.js</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ejs block</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ejs</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src([<span class="string">'./src/templates/**.ejs'</span>, <span class="string">'!./src/templates/**/_*.ejs'</span>])</span><br><span class="line">    .pipe($.ejs(&#123;</span><br><span class="line">      msg: <span class="string">'Hello Gulp!'</span>,</span><br><span class="line">    &#125;))</span><br><span class="line">    .pipe($.rename(&#123; <span class="attr">extname</span>: <span class="string">'.html'</span> &#125;))</span><br><span class="line">    .pipe($.<span class="keyword">if</span>(options.env === <span class="string">'prod'</span>, $.htmlmin(&#123; <span class="attr">collapseWhitespace</span>: <span class="literal">true</span> &#125;)))</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'./public/'</span>))</span><br><span class="line">    .pipe(browserSync.stream());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// watch files</span></span><br><span class="line">gulp.task(<span class="string">'watch'</span>, gulp.parallel(<span class="string">'browser-sync'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="comment">// 改第一行</span></span><br><span class="line">  gulp.watch(<span class="string">'./src/templates/**/*.ejs'</span>, gulp.series(<span class="string">'ejs'</span>));</span><br><span class="line">  gulp.watch(<span class="string">'./src/sass/**/*.scss'</span>, gulp.series(<span class="string">'scss'</span>));</span><br><span class="line">  gulp.watch(<span class="string">'./src/js/**/*.js'</span>, gulp.series(<span class="string">'babel'</span>));</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
 
-<p>如果有需要载入其他套件的 js 档，需要再写一个段落来整合。</p>
+<p>如果有需要加载其他套件的 js 档，需要再写一个段落来集成。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">vendorsJs</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src([</span><br><span class="line">    <span class="string">'./node_modules/jquery/dist/**/jquery.min.js'</span>,</span><br><span class="line">    <span class="string">'./node_modules/popper.js/dist/umd/**/popper.min.js'</span>,</span><br><span class="line">    <span class="string">'./node_modules/bootstrap/dist/js/**/bootstrap.bundle.min.js'</span>,</span><br><span class="line">    <span class="string">'./node_modules/wowjs/dist/wow.min.js'</span>,</span><br><span class="line">  ])</span><br><span class="line">    .pipe($.concat(<span class="string">'vendors.js'</span>))</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'./public/javascript'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="专案资料夹结构"><a href="#专案资料夹结构" class="headerlink" title="专案资料夹结构"></a>专案资料夹结构</h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">src/</span><br><span class="line">  <span class="string">|-- templates/</span></span><br><span class="line">        <span class="string">|-- index/</span></span><br><span class="line">        <span class="string">|-- layout/</span></span><br><span class="line">        <span class="string">|-- index.ejs</span></span><br></pre></td></tr></table></figure>
+<h2 id="项目文件夹结构"><a href="#项目文件夹结构" class="headerlink" title="项目文件夹结构"></a>项目文件夹结构</h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">src/</span><br><span class="line">  <span class="string">|-- templates/</span></span><br><span class="line">        <span class="string">|-- index/</span></span><br><span class="line">        <span class="string">|-- layout/</span></span><br><span class="line">        <span class="string">|-- index.ejs</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>index 资料夹：各区块的 .ejs 档，每个档里面的内容都是用 HTML 标签撰写的，且每个档名开头都是 <code>_</code>，例如 <code>_footer.ejs</code>。</li>
-<li>layout 资料夹：放一些共用的内容，例如 <code>&lt;head&gt;</code> 中的资讯、所有要载入的 CDN <code>&lt;script&gt;</code> 等。</li>
-<li>index.ejs：把以上两个资料夹中所有 .ejs 排成一个完整的网页。</li>
+<li>index 文件夹：各区块的 .ejs 档，每个档里面的内容都是用 HTML 标签撰写的，且每个档名开头都是 <code>_</code>，例如 <code>_footer.ejs</code>。</li>
+<li>layout 文件夹：放一些共用的内容，例如 <code>&lt;head&gt;</code> 中的信息、所有要加载的 CDN <code>&lt;script&gt;</code> 等。</li>
+<li>index.ejs：把以上两个文件夹中所有 .ejs 排成一个完整的网页。</li>
 </ul>
 <h2 id="index-ejs"><a href="#index-ejs" class="headerlink" title="index.ejs"></a>index.ejs</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">include</span> ('<span class="attr">.</span>/<span class="attr">layout</span>/<span class="attr">_head.ejs</span>') %&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- header &amp; solvable --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">include</span> ('<span class="attr">.</span>/<span class="attr">layout</span>/<span class="attr">_header.ejs</span>') %&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- capable --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">include</span> ('<span class="attr">.</span>/<span class="attr">index</span>/<span class="attr">_capable.ejs</span>') %&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- formula --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">include</span> ('<span class="attr">.</span>/<span class="attr">index</span>/<span class="attr">_formula.ejs</span>') %&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- footer --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">include</span> ('<span class="attr">.</span>/<span class="attr">index</span>/<span class="attr">_footer.ejs</span>') %&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- script --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">include</span> ('<span class="attr">.</span>/<span class="attr">layout</span>/<span class="attr">_script.ejs</span>') %&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -392,7 +392,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#gulpfile-js"><span class="nav-number">1.</span> <span class="nav-text">gulpfile.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#专案资料夹结构"><span class="nav-number">2.</span> <span class="nav-text">专案资料夹结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#index-ejs"><span class="nav-number">3.</span> <span class="nav-text">index.ejs</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#gulpfile-js"><span class="nav-number">1.</span> <span class="nav-text">gulpfile.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目文件夹结构"><span class="nav-number">2.</span> <span class="nav-text">项目文件夹结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#index-ejs"><span class="nav-number">3.</span> <span class="nav-text">index.ejs</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -552,7 +552,7 @@
         config: {page: {
             url: "http://lineargenius.github.io/Gulp/20200525/2363080042/",
             identifier: "Gulp/20200525/2363080042/",
-            title: "[Gulp] 在 Gulp 专案中引入 EJS template"
+            title: "[Gulp] 在 Gulp 项目中引入 EJS template"
           }
         }
       });

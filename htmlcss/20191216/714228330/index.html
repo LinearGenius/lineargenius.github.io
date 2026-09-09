@@ -291,19 +291,19 @@
         <p>由于老师耳提面命，<code>float</code> 及 <code>clear</code> 是网页排版的基石之一，所以决定来汇整一下相关的资料，刚好某种程度上也可以承接上一篇的主题。</p>
 <a id="more"></a>
 
-<h2 id="float-属性的使用时机"><a href="#float-属性的使用时机" class="headerlink" title="float 属性的使用时机"></a>float 属性的使用时机</h2><p>使用诸如 <code>&lt;div&gt;</code> 之类的区块元素排版时，预设的排列方式都是由左至右、由上至下。但如果我们今天想要做的是多栏式排版，或是让多个区块元素并排时，就需要使用 <code>float</code> 属性。</p>
+<h2 id="float-属性的使用时机"><a href="#float-属性的使用时机" class="headerlink" title="float 属性的使用时机"></a>float 属性的使用时机</h2><p>使用诸如 <code>&lt;div&gt;</code> 之类的区块元素排版时，默认的排列方式都是由左至右、由上至下。但如果我们今天想要做的是多栏式排版，或是让多个区块元素并排时，就需要使用 <code>float</code> 属性。</p>
 <h2 id="float-属性的值"><a href="#float-属性的值" class="headerlink" title="float 属性的值"></a>float 属性的值</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">float</span>: 浮动方向 ;</span><br></pre></td></tr></table></figure>
-<p>浮动方向可以用的值有 <code>left</code>、<code>right</code>、<code>none</code>（预设值，也就是不浮动）以及 <code>inherit</code>（继承自父层的属性），最后这个 <code>inherit</code> 尽量不要使用，避免 IE 不支援的情况发生。</p>
+<p>浮动方向可以用的值有 <code>left</code>、<code>right</code>、<code>none</code>（默认值，也就是不浮动）以及 <code>inherit</code>（继承自父层的属性），最后这个 <code>inherit</code> 尽量不要使用，避免 IE 不支持的情况发生。</p>
 <h2 id="clear-属性的使用时机"><a href="#clear-属性的使用时机" class="headerlink" title="clear 属性的使用时机"></a>clear 属性的使用时机</h2><p>如果想控制浮动元素的排版，就一定要懂 <code>clear</code> 属性的操作方式。</p>
 <p>有时候，浮动元素在前，而后面的元素没有使用浮动时，后面的元素就会往上跑、叠在前一个元素的下方；有时候，父层内的元素使用浮动，会让父层包不住子元素。</p>
 <p>遇到这种情形时，就要使用 clear 属性来处理跑版问题。</p>
 <p><img src="https://upload.cc/i1/2019/12/17/YZure6.jpeg" alt="父层包不住子元素"></p>
 <h2 id="clear-属性的使用方法"><a href="#clear-属性的使用方法" class="headerlink" title="clear 属性的使用方法"></a>clear 属性的使用方法</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">clear</span>: 清除方向 ;</span><br></pre></td></tr></table></figure>
-<p><code>clear</code> 属性可以用的值有 <code>left</code>、<code>right</code>、<code>both</code>、<code>none</code> 以及 <code>inherit</code>（IE不支援）， 其中以 <code>both</code> 最常用。</p>
+<p><code>clear</code> 属性可以用的值有 <code>left</code>、<code>right</code>、<code>both</code>、<code>none</code> 以及 <code>inherit</code>（IE不支持）， 其中以 <code>both</code> 最常用。</p>
 <p><code>clear</code> 属性可以有 3 种使用方法：</p>
 <ol>
 <li>在浮动元素的后面多加一个 <code>&lt;div&gt;</code>（命名为 <code>.clearfix</code>），并在 <code>.clearfix</code> 使用 <code>clear: both</code> 语法。</li>
-<li>在要清除浮动内容的父层多加一个 <code>.clearfix</code> 并使用伪元素。★<br><img src="https://upload.cc/i1/2019/12/17/cZz5wI.jpeg" alt="after 伪元素：透过 content 在元素的后面生成了内容为一个点的区块元素"></li>
+<li>在要清除浮动内容的父层多加一个 <code>.clearfix</code> 并使用伪元素。★<br><img src="https://upload.cc/i1/2019/12/17/cZz5wI.jpeg" alt="after 伪元素：通过 content 在元素的后面生成了内容为一个点的区块元素"></li>
 <li>在浮动元素后面的区块元素加上 <code>clear: both</code>。</li>
 </ol>
 <blockquote>

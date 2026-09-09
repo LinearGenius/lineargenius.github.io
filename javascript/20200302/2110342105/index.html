@@ -47,12 +47,12 @@
   };
 </script>
 
-  <meta name="description" content="本篇笔记来自 2020.2.26 六角学院线上研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师为大家复习了非同步行为与 Queue 的概念，并接续介绍了使非同步行为依序进行的四种方法。">
+  <meta name="description" content="本篇笔记来自 2020.2.26 六角学院在线研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师为大家复习了异步行为与 Queue 的概念，并接续介绍了使异步行为依序进行的四种方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[JS] 讲座笔记：JS Promise 实战教学">
 <meta property="og:url" content="http:&#x2F;&#x2F;lineargenius.github.io&#x2F;javascript&#x2F;20200302&#x2F;2110342105&#x2F;index.html">
 <meta property="og:site_name" content="前端日志">
-<meta property="og:description" content="本篇笔记来自 2020.2.26 六角学院线上研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师为大家复习了非同步行为与 Queue 的概念，并接续介绍了使非同步行为依序进行的四种方法。">
+<meta property="og:description" content="本篇笔记来自 2020.2.26 六角学院在线研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师为大家复习了异步行为与 Queue 的概念，并接续介绍了使异步行为依序进行的四种方法。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;flYXHnz.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;a8Pnnxr.png">
@@ -295,51 +295,51 @@
     <div class="post-body" itemprop="articleBody">
 
 
-        <p>本篇笔记来自 2020.2.26 六角学院线上研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师为大家复习了非同步行为与 Queue 的概念，并接续介绍了使非同步行为依序进行的四种方法。</p>
+        <p>本篇笔记来自 2020.2.26 六角学院在线研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师为大家复习了异步行为与 Queue 的概念，并接续介绍了使异步行为依序进行的四种方法。</p>
 <a id="more"></a>
 
-<p>当我们有 3 个 <code>setTimeout()</code> 时，我们可以使它们按照顺序执行；但是当我们有 3 个 AJAX 时，由于变因太多、无法确定各自回传的时间，因此不一定能照顺序执行。</p>
-<p>要解决非同步无法依序执行的问题，第一个方法是使用 callback function。</p>
-<h2 id="让非同步依序执行-解法一：callback"><a href="#让非同步依序执行-解法一：callback" class="headerlink" title="让非同步依序执行 解法一：callback"></a>让非同步依序执行 解法一：callback</h2><p>三个 <code>setTimeout()</code> 个别用 function 包起来，且各个 function 都带入一个 callback 参数。</p>
+<p>当我们有 3 个 <code>setTimeout()</code> 时，我们可以使它们按照顺序执行；但是当我们有 3 个 AJAX 时，由于变因太多、无法确定各自返回的时间，因此不一定能照顺序执行。</p>
+<p>要解决异步无法依序执行的问题，第一个方法是使用 callback function。</p>
+<h2 id="让异步依序执行-解法一：callback"><a href="#让异步依序执行-解法一：callback" class="headerlink" title="让异步依序执行 解法一：callback"></a>让异步依序执行 解法一：callback</h2><p>三个 <code>setTimeout()</code> 个别用 function 包起来，且各个 function 都带入一个 callback 参数。</p>
 <p><img src="https://i.imgur.com/flYXHnz.png" alt></p>
-<p>呼叫 function A 时，同时定义 callback 的任务内容，如此一来就可以先印出 <code>&#39;A&#39;</code> 再印出 <code>&#39;OK&#39;</code>。</p>
+<p>调用 function A 时，同时定义 callback 的任务内容，如此一来就可以先印出 <code>&#39;A&#39;</code> 再印出 <code>&#39;OK&#39;</code>。</p>
 <p><img src="https://i.imgur.com/a8Pnnxr.png" alt></p>
 <p>运用这个原理，就可以把 function B 当作 function A 的 callback，把 function C 当作 function B 的 callback。</p>
 <p><img src="https://i.imgur.com/rUBofui.png" alt></p>
-<p>但是这种做法一旦遇到<strong>太多函式要依序执行时</strong>，就会变成 <em>callback hell</em>，将会很难去分辨程式码。</p>
-<h2 id="让非同步依序执行-解法二：Generator"><a href="#让非同步依序执行-解法二：Generator" class="headerlink" title="让非同步依序执行 解法二：Generator"></a>让非同步依序执行 解法二：Generator</h2><ul>
-<li>在 function 后面加一个 <code>*</code>，执行时会得到一个 <code>generator</code> 物件。</li>
-<li>在 for 回圈中使用 <code>yield</code> 关键字：代表<strong>暂停</strong>，先跳出 function，等之后在 function 外面用 <code>函式名称.next()</code> 呼叫时，才会再回到 function 内部继续执行。</li>
-<li><code>generator</code> 物件会带出 <code>done</code> 特性</li>
-<li><code>arguments</code> : 类阵列物件，可取得所有传入 function 的参数</li>
-<li>递回：在函式里呼叫函式本身</li>
+<p>但是这种做法一旦遇到<strong>太多函数要依序执行时</strong>，就会变成 <em>callback hell</em>，将会很难去分辨代码。</p>
+<h2 id="让异步依序执行-解法二：Generator"><a href="#让异步依序执行-解法二：Generator" class="headerlink" title="让异步依序执行 解法二：Generator"></a>让异步依序执行 解法二：Generator</h2><ul>
+<li>在 function 后面加一个 <code>*</code>，执行时会得到一个 <code>generator</code> 对象。</li>
+<li>在 for 循环中使用 <code>yield</code> 关键字：代表<strong>暂停</strong>，先跳出 function，等之后在 function 外面用 <code>函数名称.next()</code> 调用时，才会再回到 function 内部继续执行。</li>
+<li><code>generator</code> 对象会带出 <code>done</code> 特性</li>
+<li><code>arguments</code> : 类数组对象，可取得所有传入 function 的参数</li>
+<li>递回：在函数里调用函数本身</li>
 </ul>
 <p><img src="https://i.imgur.com/tIwffhZ.png" alt></p>
-<p><code>for</code> 回圈跑到最后一次时，<code>done</code> 的值为 <code>true</code>：</p>
+<p><code>for</code> 循环跑到最后一次时，<code>done</code> 的值为 <code>true</code>：</p>
 <p><img src="https://i.imgur.com/PPGVq6s.png" alt></p>
-<p>在 <code>recursion()</code> 中使用 <code>.next()</code> 呼叫函式与递回，让 function A, function B, function C 依序执行：</p>
+<p>在 <code>recursion()</code> 中使用 <code>.next()</code> 调用函数与递回，让 function A, function B, function C 依序执行：</p>
 <p><img src="https://i.imgur.com/AXlstmC.png" alt></p>
-<p>小结：最后一行，在 <code>generator()</code> 带入多个函式作为参数，就能依序执行并避免 callback hell。</p>
-<h2 id="让非同步依序执行-解法三：Promise"><a href="#让非同步依序执行-解法三：Promise" class="headerlink" title="让非同步依序执行 解法三：Promise"></a>让非同步依序执行 解法三：Promise</h2><ul>
-<li>一个封装 <code>Promise</code> 的函式</li>
-<li><code>Promise</code> 的 callback function 要带入两个参数：<code>resolve</code> (成功时呼叫)，以及 <code>reject</code> (失败时呼叫)。</li>
+<p>小结：最后一行，在 <code>generator()</code> 带入多个函数作为参数，就能依序执行并避免 callback hell。</p>
+<h2 id="让异步依序执行-解法三：Promise"><a href="#让异步依序执行-解法三：Promise" class="headerlink" title="让异步依序执行 解法三：Promise"></a>让异步依序执行 解法三：Promise</h2><ul>
+<li>一个封装 <code>Promise</code> 的函数</li>
+<li><code>Promise</code> 的 callback function 要带入两个参数：<code>resolve</code> (成功时调用)，以及 <code>reject</code> (失败时调用)。</li>
 </ul>
 <p><img src="https://i.imgur.com/7m78XIL.png" alt></p>
-<p>非同步成功时，就会执行 <code>resolve</code>；<code>resolve</code> 执行后，就会执行 <code>.then()</code> 的内容；反过来说，<code>.then()</code> 的执行仰赖 <code>resolve</code> 是否执行。</p>
+<p>异步成功时，就会执行 <code>resolve</code>；<code>resolve</code> 执行后，就会执行 <code>.then()</code> 的内容；反过来说，<code>.then()</code> 的执行仰赖 <code>resolve</code> 是否执行。</p>
 <p><img src="https://i.imgur.com/guI0D2w.png" alt></p>
-<p>非同步失败时，<code>Promise</code> 会执行 <code>reject</code>，<code>reject</code> 必须准备对应的函式，这个函式是针对单一的 <code>Promise</code>，在失败时执行的方案。</p>
-<p>在非同步失败时执行对应的行为也能用 <code>catch</code> 达成，<code>catch</code> 的意思是，只要其中一个 <code>Promise</code> 没成功执行，就跳到 <code>catch</code>。</p>
+<p>异步失败时，<code>Promise</code> 会执行 <code>reject</code>，<code>reject</code> 必须准备对应的函数，这个函数是针对单一的 <code>Promise</code>，在失败时执行的方案。</p>
+<p>在异步失败时执行对应的行为也能用 <code>catch</code> 达成，<code>catch</code> 的意思是，只要其中一个 <code>Promise</code> 没成功执行，就跳到 <code>catch</code>。</p>
 <p><img src="https://i.imgur.com/tkBRQMP.png" alt></p>
-<h2 id="让非同步依序执行-解法四：async…await"><a href="#让非同步依序执行-解法四：async…await" class="headerlink" title="让非同步依序执行 解法四：async…await"></a>让非同步依序执行 解法四：async…await</h2><ul>
+<h2 id="让异步依序执行-解法四：async…await"><a href="#让异步依序执行-解法四：async…await" class="headerlink" title="让异步依序执行 解法四：async…await"></a>让异步依序执行 解法四：async…await</h2><ul>
 <li>ES7 语法，要搭配 <code>Promise</code> 使用</li>
-<li><code>async</code> + function：宣告这个函式是非同步</li>
-<li><code>await</code> + <code>Promise</code>：依序执行函式</li>
+<li><code>async</code> + function：声明这个函数是异步</li>
+<li><code>await</code> + <code>Promise</code>：依序执行函数</li>
 <li>条件：<code>async</code> 跟 <code>await</code> 一定要搭配使用，不能只用 <code>await</code> 却不用 <code>async</code>。</li>
 </ul>
 <p><img src="https://i.imgur.com/0nEubbT.png" alt></p>
-<p><code>reject</code> 时与 <code>try...catch</code> 搭配使用，<code>reject()</code> 括号内的内容会传到 <code>catch(e)</code> 的 <code>e</code> 参数，也可以直接在 <code>reject()</code> 括号内放入 <code>Error</code> 物件（JS 原生错误物件）。</p>
+<p><code>reject</code> 时与 <code>try...catch</code> 搭配使用，<code>reject()</code> 括号内的内容会传到 <code>catch(e)</code> 的 <code>e</code> 参数，也可以直接在 <code>reject()</code> 括号内放入 <code>Error</code> 对象（JS 原生错误对象）。</p>
 <p><img src="https://i.imgur.com/6yejkHH.png" alt></p>
-<p>三个函式非同步失败时想要不同的错误讯息：</p>
+<p>三个函数异步失败时想要不同的错误信息：</p>
 <p><img src="https://i.imgur.com/Yi3LpB1.png" alt></p>
 <p>实务上使用 <code>XMLHttpRequest</code> 时的写法：</p>
 <p><img src="https://i.imgur.com/IBlkZKh.png" alt></p>
@@ -366,8 +366,8 @@
 
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/javascript/20200224/3747532111/" rel="prev" title="[JS] 讲座笔记：AJAX 非同步 / Event Queue 详解">
-      <i class="fa fa-chevron-left"></i> [JS] 讲座笔记：AJAX 非同步 / Event Queue 详解
+    <a href="/javascript/20200224/3747532111/" rel="prev" title="[JS] 讲座笔记：AJAX 异步 / Event Queue 详解">
+      <i class="fa fa-chevron-left"></i> [JS] 讲座笔记：AJAX 异步 / Event Queue 详解
     </a></div>
       <div class="post-nav-item">
     <a href="/Gulp/20200310/2050018576/" rel="next" title="[Gulp] 安装 PostCSS 的地雷">
@@ -442,7 +442,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#让非同步依序执行-解法一：callback"><span class="nav-number">1.</span> <span class="nav-text">让非同步依序执行 解法一：callback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让非同步依序执行-解法二：Generator"><span class="nav-number">2.</span> <span class="nav-text">让非同步依序执行 解法二：Generator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让非同步依序执行-解法三：Promise"><span class="nav-number">3.</span> <span class="nav-text">让非同步依序执行 解法三：Promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让非同步依序执行-解法四：async…await"><span class="nav-number">4.</span> <span class="nav-text">让非同步依序执行 解法四：async…await</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#让异步依序执行-解法一：callback"><span class="nav-number">1.</span> <span class="nav-text">让异步依序执行 解法一：callback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让异步依序执行-解法二：Generator"><span class="nav-number">2.</span> <span class="nav-text">让异步依序执行 解法二：Generator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让异步依序执行-解法三：Promise"><span class="nav-number">3.</span> <span class="nav-text">让异步依序执行 解法三：Promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让异步依序执行-解法四：async…await"><span class="nav-number">4.</span> <span class="nav-text">让异步依序执行 解法四：async…await</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -47,12 +47,12 @@
   };
 </script>
 
-  <meta name="description" content="最近在学怎么使用 Gulp 来管理专案，于是按照 Ray 的教学文慢慢跟著写 gulpfile，不过在安装 PostCSS 时有踩到一个文章中没提到的地雷，解决的过程一波二折，于是让我决定纪录一下拆地雷的经过。">
+  <meta name="description" content="最近在学怎么使用 Gulp 来管理项目，于是按照 Ray 的教学文慢慢跟着写 gulpfile，不过在安装 PostCSS 时有踩到一个文章中没提到的地雷，解决的过程一波二折，于是让我决定记录一下拆地雷的经过。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Gulp] 安装 PostCSS 的地雷">
 <meta property="og:url" content="http:&#x2F;&#x2F;lineargenius.github.io&#x2F;Gulp&#x2F;20200310&#x2F;2050018576&#x2F;index.html">
 <meta property="og:site_name" content="前端日志">
-<meta property="og:description" content="最近在学怎么使用 Gulp 来管理专案，于是按照 Ray 的教学文慢慢跟著写 gulpfile，不过在安装 PostCSS 时有踩到一个文章中没提到的地雷，解决的过程一波二折，于是让我决定纪录一下拆地雷的经过。">
+<meta property="og:description" content="最近在学怎么使用 Gulp 来管理项目，于是按照 Ray 的教学文慢慢跟着写 gulpfile，不过在安装 PostCSS 时有踩到一个文章中没提到的地雷，解决的过程一波二折，于是让我决定记录一下拆地雷的经过。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;94aMhVj.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;oJEVrYs.png">
@@ -282,34 +282,34 @@
     <div class="post-body" itemprop="articleBody">
 
 
-        <p>最近在学怎么使用 Gulp 来管理专案，于是按照 Ray 的教学文慢慢跟著写 gulpfile，不过在安装 PostCSS 时有踩到一个文章中没提到的地雷，解决的过程一波二折，于是让我决定纪录一下拆地雷的经过。</p>
+        <p>最近在学怎么使用 Gulp 来管理项目，于是按照 Ray 的教学文慢慢跟着写 gulpfile，不过在安装 PostCSS 时有踩到一个文章中没提到的地雷，解决的过程一波二折，于是让我决定记录一下拆地雷的经过。</p>
 <a id="more"></a>
 
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在 Ray 的教学文：<a href="https://hsiangfeng.github.io/gulp/20190610/4048666562/" target="_blank" rel="external nofollow noopener noreferrer">这是在讲 Gulp 不是饮料是任务自动化工具这件事：安装 PostCSS 篇</a>中，有提到要安装 <code>gulp-cssnano</code>，并且将它引入 gulpfile 中。</p>
-<p>我照做之后，执行 <code>gulp scss</code>，此时出现一个错误讯息：</p>
-<p><img src="https://i.imgur.com/94aMhVj.png" alt="错误讯息1"></p>
+<p>我照做之后，执行 <code>gulp scss</code>，此时出现一个错误信息：</p>
+<p><img src="https://i.imgur.com/94aMhVj.png" alt="错误信息1"></p>
 <blockquote>
 <p>Error in plugin “gulp-postcss”<br>Message: [object Object] is not a PostCSS plugin</p>
 </blockquote>
 <h2 id="尝试解决"><a href="#尝试解决" class="headerlink" title="尝试解决"></a>尝试解决</h2><p>由于在 Ray 的教学文章中没有提到会发生这个错误，所以我就自行估狗了一些 StackOverflow 的文章，试了好几篇解答后，终于找到了一个能成功解决问题的回答！</p>
 <p>就是这一篇：<a href="https://stackoverflow.com/questions/48506482/gulpfile-autoprefixer-must-change-to-postcss" target="_blank" rel="external nofollow noopener noreferrer">gulpfile autoprefixer must change to postcss</a></p>
-<p>我研究了回答者提供的程式码，发现他引入 <code>gulp-cssnano</code> 的方式有点不一样。Ray 的文章以及 <code>gulp-cssnano</code> 本身的<a href="https://www.npmjs.com/package/gulp-cssnano" target="_blank" rel="external nofollow noopener noreferrer">文件</a>都说要这样引入：</p>
+<p>我研究了回答者提供的代码，发现他引入 <code>gulp-cssnano</code> 的方式有点不一样。Ray 的文章以及 <code>gulp-cssnano</code> 本身的<a href="https://www.npmjs.com/package/gulp-cssnano" target="_blank" rel="external nofollow noopener noreferrer">文件</a>都说要这样引入：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cssnano = <span class="built_in">require</span>(<span class="string">'gulp-cssnano'</span>);</span><br></pre></td></tr></table></figure>
 
-<p>但是不知道为何，在 <code>require()</code> 内写 <code>gulp-cssnano</code> 似乎找不到档案。而如果是改成在括号内写 <code>cssnano</code>，重新运行 <code>gulp scss</code>，错误讯息就消失了！</p>
+<p>但是不知道为何，在 <code>require()</code> 内写 <code>gulp-cssnano</code> 似乎找不到文件。而如果是改成在括号内写 <code>cssnano</code>，重新运行 <code>gulp scss</code>，错误信息就消失了！</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cssnano = <span class="built_in">require</span>(<span class="string">'cssnano'</span>);</span><br></pre></td></tr></table></figure>
 
-<h2 id="压缩-CSS-时又报错"><a href="#压缩-CSS-时又报错" class="headerlink" title="压缩 CSS 时又报错"></a>压缩 CSS 时又报错</h2><p>改了 require 之后，我接著处理 CSS 的压缩以及判断开发环境与正视环境，结果在输入 <code>gulp scss --env prod</code> 时又跳出错误：</p>
-<p><img src="https://i.imgur.com/oJEVrYs.png" alt="错误讯息2"></p>
+<h2 id="压缩-CSS-时又报错"><a href="#压缩-CSS-时又报错" class="headerlink" title="压缩 CSS 时又报错"></a>压缩 CSS 时又报错</h2><p>改了 require 之后，我接着处理 CSS 的压缩以及判断开发环境与正视环境，结果在输入 <code>gulp scss --env prod</code> 时又跳出错误：</p>
+<p><img src="https://i.imgur.com/oJEVrYs.png" alt="错误信息2"></p>
 <blockquote>
 <p>TypeError: dest.on is not a function</p>
 </blockquote>
-<p>这一次我只好找上原作者 Ray，麻烦他帮我看看是怎么回事。原来，require 内一定要写 <code>gulp-cssnano</code>，因为原始 <code>cssnano</code> 并没有 gulp 相关功能。如果 require 里面写 <code>gulp-cssnano</code> 却没有正确载入档案，可以重新安装一次 <code>gulp-cssnano</code>，可能是安装时没装好。</p>
+<p>这一次我只好找上原作者 Ray，麻烦他帮我看看是怎么回事。原来，require 内一定要写 <code>gulp-cssnano</code>，因为原始 <code>cssnano</code> 并没有 gulp 相关功能。如果 require 里面写 <code>gulp-cssnano</code> 却没有正确加载文件，可以重新安装一次 <code>gulp-cssnano</code>，可能是安装时没装好。</p>
 <p>于是我重新安装 <code>gulp-cssnano</code> 并且又改回原本写的 require：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cssnano = <span class="built_in">require</span>(<span class="string">'gulp-cssnano'</span>);</span><br></pre></td></tr></table></figure>
 
 <p>之后就顺利运行了～</p>
-<h2 id="Special-Thanks"><a href="#Special-Thanks" class="headerlink" title="Special Thanks"></a>Special Thanks</h2><p>感谢 Ray 拨空看我的原始码，协助我抓虫成功 🐛</p>
+<h2 id="Special-Thanks"><a href="#Special-Thanks" class="headerlink" title="Special Thanks"></a>Special Thanks</h2><p>感谢 Ray 拨空看我的源代码，协助我抓虫成功 🐛</p>
 
     </div>
 

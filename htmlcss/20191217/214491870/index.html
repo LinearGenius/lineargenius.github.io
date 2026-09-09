@@ -294,11 +294,11 @@
 <a id="more"></a>
 
 <h2 id="轴线观念"><a href="#轴线观念" class="headerlink" title="轴线观念"></a>轴线观念</h2><p>以前学到的 float 只能水平排列，现在学到的 flex 能够同时做到水平跟垂直排列，也因此衍生出不同对齐方式，所以使用了 flex 的元素也就有了「轴线」这个东西。</p>
-<p>在<strong>预设</strong>的情况下，水平方向的轴线称为<strong>主轴线</strong>，垂直方向的轴线称为<strong>交错轴</strong>，两种轴线都有<strong>起点</strong>跟<strong>终点</strong>，物件会从主轴线起点（左到右）开始排列。<br><img src="https://upload.cc/i1/2019/12/17/ir0BpN.png" alt></p>
-<p>必须注意的是，当物件排列的方向改变时（上到下），主轴线跟交错轴的方向就会交换，垂直的轴线变成主轴线、水平的轴线变成交错轴。<br><img src="https://upload.cc/i1/2019/12/17/puywS6.png" alt="."></p>
+<p>在<strong>默认</strong>的情况下，水平方向的轴线称为<strong>主轴线</strong>，垂直方向的轴线称为<strong>交错轴</strong>，两种轴线都有<strong>起点</strong>跟<strong>终点</strong>，对象会从主轴线起点（左到右）开始排列。<br><img src="https://upload.cc/i1/2019/12/17/ir0BpN.png" alt></p>
+<p>必须注意的是，当对象排列的方向改变时（上到下），主轴线跟交错轴的方向就会交换，垂直的轴线变成主轴线、水平的轴线变成交错轴。<br><img src="https://upload.cc/i1/2019/12/17/puywS6.png" alt="."></p>
 <h2 id="一览-flex-相关属性"><a href="#一览-flex-相关属性" class="headerlink" title="一览 flex 相关属性"></a>一览 flex 相关属性</h2><p>可以用<strong>外层属性</strong>或<strong>内层属性</strong>来分类，也可以用<strong>是否为对齐方法</strong>来分类。<br>粗体为特别重要的属性。</p>
 <h3 id="外层属性"><a href="#外层属性" class="headerlink" title="外层属性"></a>外层属性</h3><ul>
-<li>display - 必备属性，宣告 flex 排版</li>
+<li>display - 必备属性，声明 flex 排版</li>
 <li>flex-flow<ul>
 <li><strong>flex-direction</strong> - 决定 flex 轴线</li>
 <li>flex-wrap - 决定换行的属性</li>
@@ -315,35 +315,35 @@
 </ul>
 </li>
 <li>order - 排序</li>
-<li><strong>align-self</strong> - 单一物件的交错轴对齐</li>
+<li><strong>align-self</strong> - 单一对象的交错轴对齐</li>
 </ul>
 <h3 id="对齐方法"><a href="#对齐方法" class="headerlink" title="对齐方法"></a>对齐方法</h3><h4 id="flex-direction-属性"><a href="#flex-direction-属性" class="headerlink" title="flex-direction 属性"></a><code>flex-direction</code> 属性</h4><p>决定主轴线方向，共有四个值。</p>
 <ul>
-<li>row：预设值，物件将沿著主轴线由左到右排列</li>
-<li>row-reverse：反转主轴线，物件将沿著主轴线由右到左排列</li>
-<li>column：将主轴线由水平改为垂直，物件将由上至下排列</li>
-<li>column-reverse：将主轴线由水平改为垂直，物件将由下至上排列</li>
+<li>row：默认值，对象将沿着主轴线由左到右排列</li>
+<li>row-reverse：反转主轴线，对象将沿着主轴线由右到左排列</li>
+<li>column：将主轴线由水平改为垂直，对象将由上至下排列</li>
+<li>column-reverse：将主轴线由水平改为垂直，对象将由下至上排列</li>
 </ul>
-<h4 id="justify-content-属性"><a href="#justify-content-属性" class="headerlink" title="justify-content 属性"></a><code>justify-content</code> 属性</h4><p>依据主轴线决定内层物件之间的间隔方式。共有五个值。</p>
+<h4 id="justify-content-属性"><a href="#justify-content-属性" class="headerlink" title="justify-content 属性"></a><code>justify-content</code> 属性</h4><p>依据主轴线决定内层对象之间的间隔方式。共有五个值。</p>
 <ul>
-<li>flex-start：所有内层物件对齐主轴线起点</li>
-<li>flex-end：所有内层物件对齐主轴线终点</li>
-<li>center：所有内层物件置中在主轴线上</li>
-<li>space-between：内层物件头尾在主轴线起讫点，其余物件等距对齐</li>
-<li>space-around：所有内层物件之间等距对齐</li>
+<li>flex-start：所有内层对象对齐主轴线起点</li>
+<li>flex-end：所有内层对象对齐主轴线终点</li>
+<li>center：所有内层对象置中在主轴在线</li>
+<li>space-between：内层对象头尾在主轴线起讫点，其余对象等距对齐</li>
+<li>space-around：所有内层对象之间等距对齐</li>
 </ul>
 <p><img src="https://upload.cc/i1/2019/12/17/S2noQc.png" alt></p>
-<h4 id="align-items-属性"><a href="#align-items-属性" class="headerlink" title="align-items 属性"></a>align-items 属性</h4><p>依据交错轴决定内层物件的垂直对齐方式。共有五个值。</p>
+<h4 id="align-items-属性"><a href="#align-items-属性" class="headerlink" title="align-items 属性"></a>align-items 属性</h4><p>依据交错轴决定内层对象的垂直对齐方式。共有五个值。</p>
 <ul>
-<li>flex-start：所有内层物件对齐交错轴起点</li>
-<li>flex-end：所有内层物件对齐交错轴终点</li>
-<li>center：所有内层物件在交错轴上置中</li>
+<li>flex-start：所有内层对象对齐交错轴起点</li>
+<li>flex-end：所有内层对象对齐交错轴终点</li>
+<li>center：所有内层对象在交错轴上置中</li>
 <li>baseline：跟文字行高有关，用文字的基准线作排列（很少用）</li>
-<li>stretch：所有内层物件拉高，由交错轴起点拉到终点</li>
+<li>stretch：所有内层对象拉高，由交错轴起点拉到终点</li>
 </ul>
 <p><img src="https://upload.cc/i1/2019/12/17/7n3Gbm.png" alt></p>
-<h4 id="align-self-属性"><a href="#align-self-属性" class="headerlink" title="align-self 属性"></a>align-self 属性</h4><p>个别的内层元件本身的垂直对齐方式，此属性的值跟 <code>align-items</code> 一模一样。</p>
-<h3 id="对齐以外的其他属性"><a href="#对齐以外的其他属性" class="headerlink" title="对齐以外的其他属性"></a>对齐以外的其他属性</h3><h4 id="flex-wrap-属性（外层）"><a href="#flex-wrap-属性（外层）" class="headerlink" title="flex-wrap 属性（外层）"></a>flex-wrap 属性（外层）</h4><p>决定物件超出范围时要不要换行。</p>
+<h4 id="align-self-属性"><a href="#align-self-属性" class="headerlink" title="align-self 属性"></a>align-self 属性</h4><p>个别的内层组件本身的垂直对齐方式，此属性的值跟 <code>align-items</code> 一模一样。</p>
+<h3 id="对齐以外的其他属性"><a href="#对齐以外的其他属性" class="headerlink" title="对齐以外的其他属性"></a>对齐以外的其他属性</h3><h4 id="flex-wrap-属性（外层）"><a href="#flex-wrap-属性（外层）" class="headerlink" title="flex-wrap 属性（外层）"></a>flex-wrap 属性（外层）</h4><p>决定对象超出范围时要不要换行。</p>
 <p class="codepen" data-height="265" data-theme-id="default" data-default-tab="html,result" data-user="gretema" data-slug-hash="yLBqRaQ" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="bs flex flex-wrap">
   <span>See the Pen <a href="https://codepen.io/gretema/pen/yLBqRaQ" target="_blank" rel="external nofollow noopener noreferrer">
   bs flex flex-wrap</a> by 马维君 (<a href="https://codepen.io/gretema" target="_blank" rel="external nofollow noopener noreferrer">@gretema</a>)
@@ -352,7 +352,7 @@
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 <p>范例中，原本 <code>.col-*</code> 会被 <code>.row</code> 包裹，但因为 Bootstrap 已经帮 <code>.row</code> 内建 <code>flex-wrap</code> 换行了，所以改用 <code>.d-flex</code> 包裹 <code>.col-*</code>。</p>
-<h4 id="align-content（外层）"><a href="#align-content（外层）" class="headerlink" title="align-content（外层）"></a>align-content（外层）</h4><p>只有在换行（<code>flex-wrap</code>）的情况下可使用，用在有高度的外层容器上，会使内层物件在父元素内垂直对齐。</p>
+<h4 id="align-content（外层）"><a href="#align-content（外层）" class="headerlink" title="align-content（外层）"></a>align-content（外层）</h4><p>只有在换行（<code>flex-wrap</code>）的情况下可使用，用在有高度的外层容器上，会使内层对象在父元素内垂直对齐。</p>
 <p class="codepen" data-height="265" data-theme-id="default" data-default-tab="html,result" data-user="gretema" data-slug-hash="mdbjzqw" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="bs flex align-content">
   <span>See the Pen <a href="https://codepen.io/gretema/pen/mdbjzqw" target="_blank" rel="external nofollow noopener noreferrer">
   bs flex align-content</a> by 马维君 (<a href="https://codepen.io/gretema" target="_blank" rel="external nofollow noopener noreferrer">@gretema</a>)

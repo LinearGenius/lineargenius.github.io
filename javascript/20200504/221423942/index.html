@@ -344,22 +344,22 @@
                   <p>一直以为有发过这篇，结果竟然没有！<br>学习 JavaScript 这么久了，笔记中当然不能少了 ES6 常用语法啰～</p>
                   <a id="more"></a>
 
-                  <h2 id="变数宣告"><a href="#变数宣告" class="headerlink" title="变数宣告"></a>变数宣告</h2>
+                  <h2 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h2>
                   <h3 id="var-与-let-的区别"><a href="#var-与-let-的区别" class="headerlink"
                       title="var 与 let 的区别"></a><code>var</code> 与 <code>let</code> 的区别</h3>
                   <ol>
-                    <li>是否会提升<br>当我们分别用 <code>var</code> 跟 <code>let</code> 并在宣告变数之前调用变数时，<code>var</code> 会显示
-                      <code>undefined</code>，代表记忆体有预先准备空间；<code>let</code> 则会显示 <code>not defined</code>，代表记忆体没有预先准备空间。
+                    <li>是否会提升<br>当我们分别用 <code>var</code> 跟 <code>let</code> 并在声明变量之前调用变量时，<code>var</code> 会显示
+                      <code>undefined</code>，代表内存有预先准备空间；<code>let</code> 则会显示 <code>not defined</code>，代表内存没有预先准备空间。
                     </li>
                     <li>作用域不同<br><code>var</code> 是以 function 做分隔，<code>let</code> 是以 block ( <code>{}</code> ) 做分隔。
                     </li>
                   </ol>
                   <h3 id="const"><a href="#const" class="headerlink" title="const"></a><code>const</code></h3>
-                  <p>代表常数，唯读，不可再次赋值。但是如果用 <code>const</code>
-                    宣告一个物件，可以在之后修改或新增该物件内部的<strong>特性</strong>，因为物件是传址（参考）而不是传值，所以可以这样做。其他特色与 <code>let</code> 一样。</p>
-                  <h3 id="回圈内的-setTimeout"><a href="#回圈内的-setTimeout" class="headerlink"
-                      title="回圈内的 setTimeout()"></a>回圈内的 <code>setTimeout()</code></h3>
-                  <p>假如我们希望用 <code>setTimeout</code> 配合回圈输出 1~10，而且每次输出都延迟 10 毫秒：</p>
+                  <p>代表常量，唯读，不可再次赋值。但是如果用 <code>const</code>
+                    声明一个对象，可以在之后修改或添加该对象内部的<strong>特性</strong>，因为对象是传址（参考）而不是传值，所以可以这样做。其他特色与 <code>let</code> 一样。</p>
+                  <h3 id="循环内的-setTimeout"><a href="#循环内的-setTimeout" class="headerlink"
+                      title="循环内的 setTimeout()"></a>循环内的 <code>setTimeout()</code></h3>
+                  <p>假如我们希望用 <code>setTimeout</code> 配合循环输出 1~10，而且每次输出都延迟 10 毫秒：</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -373,16 +373,16 @@
                     </table>
                   </figure>
 
-                  <p>此时回圈的计数器 <code>i</code> 是用 <code>var</code> 来宣告，则 <code>setTimeout</code> 得到的数字不会是 1~10，而是得到最后的数字
+                  <p>此时循环的计数器 <code>i</code> 是用 <code>var</code> 来声明，则 <code>setTimeout</code> 得到的数字不会是 1~10，而是得到最后的数字
                     10，为什么会这样呢？</p>
-                  <p>因为 JS 非同步的特点，所以 <code>for</code> 回圈并不会等到 <code>setTimeout()</code> 结束后才继续，而是一口气跑完 1~10；又因为
+                  <p>因为 JS 异步的特点，所以 <code>for</code> 循环并不会等到 <code>setTimeout()</code> 结束后才继续，而是一口气跑完 1~10；又因为
                     <code>var</code> 的作用域是以 function 做切分，<code>setTimeout()</code> 的 <code>i</code> 会从外层去取值，此时的
-                    <code>i</code> 已经是跑完 <code>for</code> 回圈的 10 了。</p>
-                  <p>解决方法是改用 <code>let</code> 宣告计数器，这样 <code>setTimeout</code> 得到的就会是当下回圈跑的数字。</p>
-                  <h4 id="另一种解法：立即函式-IIFE"><a href="#另一种解法：立即函式-IIFE" class="headerlink"
-                      title="另一种解法：立即函式 (IIFE)"></a>另一种解法：立即函式 (IIFE)</h4>
-                  <p>除了改用 <code>let</code> 宣告以外，也可以用<strong>立即函式</strong>包住 <code>setTimeout</code>，并将回圈的 <code>i</code>
-                    作为参数传入立即函式中，保留当下的 <code>i</code> 一笔笔输出数字。</p>
+                    <code>i</code> 已经是跑完 <code>for</code> 循环的 10 了。</p>
+                  <p>解决方法是改用 <code>let</code> 声明计数器，这样 <code>setTimeout</code> 得到的就会是当下循环跑的数字。</p>
+                  <h4 id="另一种解法：立即函数-IIFE"><a href="#另一种解法：立即函数-IIFE" class="headerlink"
+                      title="另一种解法：立即函数 (IIFE)"></a>另一种解法：立即函数 (IIFE)</h4>
+                  <p>除了改用 <code>let</code> 声明以外，也可以用<strong>立即函数</strong>包住 <code>setTimeout</code>，并将循环的 <code>i</code>
+                    作为参数传入立即函数中，保留当下的 <code>i</code> 一笔笔输出数字。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -390,7 +390,7 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="comment">// 立即函式语法</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 做某事</span></span><br><span class="line">&#125;)();</span><br></pre>
+                          <pre><span class="line"><span class="comment">// 立即函数语法</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 做某事</span></span><br><span class="line">&#125;)();</span><br></pre>
                         </td>
                       </tr>
                     </table>
@@ -403,16 +403,16 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="comment">// 用立即函式包住 setTimeout()</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)&#123;  </span><br><span class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'这执行第'</span>+ x +<span class="string">'次'</span>);</span><br><span class="line">    &#125;,<span class="number">10</span>);</span><br><span class="line">  &#125;)(i);  </span><br><span class="line">&#125;</span><br></pre>
+                          <pre><span class="line"><span class="comment">// 用立即函数包住 setTimeout()</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)&#123;  </span><br><span class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'这执行第'</span>+ x +<span class="string">'次'</span>);</span><br><span class="line">    &#125;,<span class="number">10</span>);</span><br><span class="line">  &#125;)(i);  </span><br><span class="line">&#125;</span><br></pre>
                         </td>
                       </tr>
                     </table>
                   </figure>
 
                   <h2 id="展开符号-…"><a href="#展开符号-…" class="headerlink" title="展开符号 …"></a>展开符号 <code>…</code></h2>
-                  <p>展开符号能够把阵列与类阵列里的内容给取出来。以下说明展开符号的几个用途。</p>
-                  <h3 id="合并数个阵列"><a href="#合并数个阵列" class="headerlink" title="合并数个阵列"></a>合并数个阵列</h3>
-                  <p>在一个新宣告的阵列中，把展开符号 <code>...</code> 加在要合并的阵列前方，这种合并的方式与使用 <code>concat()</code> 的效果是一样的。</p>
+                  <p>展开符号能够把数组与类数组里的内容给取出来。以下说明展开符号的几个用途。</p>
+                  <h3 id="合并数个数组"><a href="#合并数个数组" class="headerlink" title="合并数个数组"></a>合并数个数组</h3>
+                  <p>在一个新声明的数组中，把展开符号 <code>...</code> 加在要合并的数组前方，这种合并的方式与使用 <code>concat()</code> 的效果是一样的。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -426,9 +426,9 @@
                     </table>
                   </figure>
 
-                  <h3 id="复制阵列（浅复制）"><a href="#复制阵列（浅复制）" class="headerlink" title="复制阵列（浅复制）"></a>复制阵列（浅复制）</h3>
-                  <p>阵列与物件一样，都是传址（传参考），所以如果将 B 阵列指向 A阵列，A、B 阵列会被视为同一个实体。如此一来，当我们想要修改 B 阵列时，就会连 A 阵列的内容也修改到。这叫做深复制。</p>
-                  <p>如果只想修改 B 阵列的话，就可以用展开符号来复制 A 阵列，再进行操作。只传值的复制方式，就是浅复制。</p>
+                  <h3 id="复制数组（浅复制）"><a href="#复制数组（浅复制）" class="headerlink" title="复制数组（浅复制）"></a>复制数组（浅复制）</h3>
+                  <p>数组与对象一样，都是传址（传参考），所以如果将 B 数组指向 A数组，A、B 数组会被视为同一个实体。如此一来，当我们想要修改 B 数组时，就会连 A 数组的内容也修改到。这叫做深复制。</p>
+                  <p>如果只想修改 B 数组的话，就可以用展开符号来复制 A 数组，再进行操作。只传值的复制方式，就是浅复制。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -436,16 +436,16 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="keyword">let</span> groupA = [<span class="string">'小明'</span>, <span class="string">'杰伦'</span>, <span class="string">'阿姨'</span>];</span><br><span class="line"><span class="keyword">let</span> groupB = [...groupA] <span class="comment">// 新阵列</span></span><br><span class="line">groupB.push(<span class="string">'阿明'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(groupA); <span class="comment">// 不会有阿明</span></span><br></pre>
+                          <pre><span class="line"><span class="keyword">let</span> groupA = [<span class="string">'小明'</span>, <span class="string">'杰伦'</span>, <span class="string">'阿姨'</span>];</span><br><span class="line"><span class="keyword">let</span> groupB = [...groupA] <span class="comment">// 新数组</span></span><br><span class="line">groupB.push(<span class="string">'阿明'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(groupA); <span class="comment">// 不会有阿明</span></span><br></pre>
                         </td>
                       </tr>
                     </table>
                   </figure>
 
-                  <h3 id="类阵列"><a href="#类阵列" class="headerlink" title="类阵列"></a>类阵列</h3>
-                  <p>有些东西外观很像阵列，也具有一些阵列的特性，但却不是真正的阵列，称为类阵列，例如用 <code>querySelectorAll()</code> 取出来的
-                    <code>NodeList</code> 会以类阵列的形式呈现所有被选取的节点，但它却不是真正的阵列。</p>
-                  <p>在新的空阵列中，透过展开符号可以复制类阵列中的内容，借此将类阵列<strong>转为真正的阵列</strong>。</p>
+                  <h3 id="类数组"><a href="#类数组" class="headerlink" title="类数组"></a>类数组</h3>
+                  <p>有些东西外观很像数组，也具有一些数组的特性，但却不是真正的数组，称为类数组，例如用 <code>querySelectorAll()</code> 取出来的
+                    <code>NodeList</code> 会以类数组的形式呈现所有被选取的节点，但它却不是真正的数组。</p>
+                  <p>在新的空数组中，通过展开符号可以复制类数组中的内容，借此将类数组<strong>转为真正的数组</strong>。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -453,13 +453,13 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="keyword">let</span> doms = <span class="built_in">document</span>.querySelectorAll(<span class="string">'li'</span>); <span class="comment">// doms 为类阵列</span></span><br><span class="line"><span class="keyword">let</span> newDoms = [...doms]; <span class="comment">// newDoms 为阵列</span></span><br></pre>
+                          <pre><span class="line"><span class="keyword">let</span> doms = <span class="built_in">document</span>.querySelectorAll(<span class="string">'li'</span>); <span class="comment">// doms 为类数组</span></span><br><span class="line"><span class="keyword">let</span> newDoms = [...doms]; <span class="comment">// newDoms 为数组</span></span><br></pre>
                         </td>
                       </tr>
                     </table>
                   </figure>
 
-                  <p>另一个类阵列的例子是函式内建的 <code>arguments</code> 物件，<code>arguments</code> 会包含所有传入函式的参数。</p>
+                  <p>另一个类数组的例子是函数内建的 <code>arguments</code> 对象，<code>arguments</code> 会包含所有传入函数的参数。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -467,7 +467,7 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="keyword">var</span> originCash = <span class="number">1000</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateEasyCard</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// let arg = arguments;</span></span><br><span class="line">  <span class="keyword">let</span> arg = [...arguments]; <span class="comment">// 转成真正的阵列</span></span><br><span class="line">  <span class="keyword">let</span> sum = arg.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">accumulator, currentValue</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> accumulator + currentValue;</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'我有 '</span> + sum + <span class="string">' 元'</span>);</span><br><span class="line"> &#125;</span><br><span class="line">updateEasyCard(<span class="number">0</span>); <span class="comment">// 我有 1000 元</span></span><br><span class="line">updateEasyCard(<span class="number">10</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">50</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">500</span>); <span class="comment">// 我有 718 元</span></span><br></pre>
+                          <pre><span class="line"><span class="keyword">var</span> originCash = <span class="number">1000</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateEasyCard</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// let arg = arguments;</span></span><br><span class="line">  <span class="keyword">let</span> arg = [...arguments]; <span class="comment">// 转成真正的数组</span></span><br><span class="line">  <span class="keyword">let</span> sum = arg.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">accumulator, currentValue</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> accumulator + currentValue;</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'我有 '</span> + sum + <span class="string">' 元'</span>);</span><br><span class="line"> &#125;</span><br><span class="line">updateEasyCard(<span class="number">0</span>); <span class="comment">// 我有 1000 元</span></span><br><span class="line">updateEasyCard(<span class="number">10</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">50</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">500</span>); <span class="comment">// 我有 718 元</span></span><br></pre>
                         </td>
                       </tr>
                     </table>
@@ -475,9 +475,9 @@
 
                   <h3 id="其余参数"><a href="#其余参数" class="headerlink" title="其余参数"></a>其余参数</h3>
                   <p>
-                    如果不确定之后要传入函式的参数数量，可以在函式的<strong>唯一一个</strong>或<strong>最后一个</strong>参数前面加上展开符号（该参数就会变成其余参数），就能把多传入的参数值以<strong>阵列</strong>的形式，容纳在其余参数中。
+                    如果不确定之后要传入函数的参数数量，可以在函数的<strong>唯一一个</strong>或<strong>最后一个</strong>参数前面加上展开符号（该参数就会变成其余参数），就能把多传入的参数值以<strong>数组</strong>的形式，容纳在其余参数中。
                   </p>
-                  <p>注意，函式里只能有一个其余参数，而且一定要放在最右边。</p>
+                  <p>注意，函数里只能有一个其余参数，而且一定要放在最右边。</p>
                   <p>参照：<a
                       href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/rest_parameters"
                       target="_blank" rel="external nofollow noopener noreferrer">其余参数 - JavaScript | MDN</a></p>
@@ -495,10 +495,10 @@
                   </figure>
 
                   <h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2>
-                  <p>解构赋值语法可以将阵列或物件中的资料取出成独立变数。<br>基本上就是把等号右边的值，套用到等号左边。</p>
-                  <h3 id="阵列解构赋值"><a href="#阵列解构赋值" class="headerlink" title="阵列解构赋值"></a>阵列解构赋值</h3>
+                  <p>解构赋值语法可以将数组或对象中的资料取出成独立变量。<br>基本上就是把等号右边的值，套用到等号左边。</p>
+                  <h3 id="数组解构赋值"><a href="#数组解构赋值" class="headerlink" title="数组解构赋值"></a>数组解构赋值</h3>
                   <h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4>
-                  <p>在之前，我们如果要修改阵列内的元素，都只能用 <code>=</code> 一个一个直接赋值。</p>
+                  <p>在之前，我们如果要修改数组内的元素，都只能用 <code>=</code> 一个一个直接赋值。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -512,7 +512,7 @@
                     </table>
                   </figure>
 
-                  <p>而现在可以用解构的方式，一次对阵列内所有元素赋值。</p>
+                  <p>而现在可以用解构的方式，一次对数组内所有元素赋值。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -520,15 +520,15 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="keyword">let</span> family = [<span class="string">'小明'</span>, <span class="string">'杰伦'</span>, <span class="string">'阿姨'</span>, <span class="string">'老妈'</span>, <span class="string">'老爸'</span>];</span><br><span class="line"><span class="keyword">let</span> [ming, jay, aunt, mom, dad] = family;</span><br><span class="line"><span class="comment">// 左边是新变数，右边是要赋予的值</span></span><br><span class="line"><span class="built_in">console</span>.log(ming, jay, aunt, mom, dad);</span><br><span class="line"><span class="comment">// "小明" "杰伦" "阿姨" "老妈" "老爸"</span></span><br></pre>
+                          <pre><span class="line"><span class="keyword">let</span> family = [<span class="string">'小明'</span>, <span class="string">'杰伦'</span>, <span class="string">'阿姨'</span>, <span class="string">'老妈'</span>, <span class="string">'老爸'</span>];</span><br><span class="line"><span class="keyword">let</span> [ming, jay, aunt, mom, dad] = family;</span><br><span class="line"><span class="comment">// 左边是新变量，右边是要赋予的值</span></span><br><span class="line"><span class="built_in">console</span>.log(ming, jay, aunt, mom, dad);</span><br><span class="line"><span class="comment">// "小明" "杰伦" "阿姨" "老妈" "老爸"</span></span><br></pre>
                         </td>
                       </tr>
                     </table>
                   </figure>
 
-                  <h4 id="当输入的变数少于所给的值"><a href="#当输入的变数少于所给的值" class="headerlink" title="当输入的变数少于所给的值"></a>当输入的变数少于所给的值
+                  <h4 id="当输入的变量少于所给的值"><a href="#当输入的变量少于所给的值" class="headerlink" title="当输入的变量少于所给的值"></a>当输入的变量少于所给的值
                   </h4>
-                  <p>如果缺少的变数是阵列最后的值，那就会因为没有被赋予变数而查不出来。</p>
+                  <p>如果缺少的变量是数组最后的值，那就会因为没有被赋予变量而查不出来。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -542,7 +542,7 @@
                     </table>
                   </figure>
 
-                  <p>如果缺少的变数是在阵列中间的话，缺少的变数要<strong>留空</strong>，此时其他变数依然可以按照对应的阵列元素赋值。</p>
+                  <p>如果缺少的变量是在数组中间的话，缺少的变量要<strong>留空</strong>，此时其他变量依然可以按照对应的数组元素赋值。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -556,9 +556,9 @@
                     </table>
                   </figure>
 
-                  <h4 id="当输入的变数多于所给的值"><a href="#当输入的变数多于所给的值" class="headerlink" title="当输入的变数多于所给的值"></a>当输入的变数多于所给的值
+                  <h4 id="当输入的变量多于所给的值"><a href="#当输入的变量多于所给的值" class="headerlink" title="当输入的变量多于所给的值"></a>当输入的变量多于所给的值
                   </h4>
-                  <p>如果变数的数量多于赋予的值时，多出来的那个变数会被赋予 <code>undefined</code> 的值。</p>
+                  <p>如果变量的数量多于赋予的值时，多出来的那个变量会被赋予 <code>undefined</code> 的值。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -572,8 +572,8 @@
                     </table>
                   </figure>
 
-                  <h4 id="变数交换"><a href="#变数交换" class="headerlink" title="变数交换"></a>变数交换</h4>
-                  <p>使用解构赋值可以即时交换两个变数的值，不需要透过宣告第三个变数来达成。</p>
+                  <h4 id="变量交换"><a href="#变量交换" class="headerlink" title="变量交换"></a>变量交换</h4>
+                  <p>使用解构赋值可以即时交换两个变量的值，不需要通过声明第三个变量来达成。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -581,14 +581,14 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="keyword">let</span> fruit = <span class="string">'banana'</span>;</span><br><span class="line"><span class="keyword">let</span> veg = <span class="string">'tomato'</span>;</span><br><span class="line">[fruit, veg] = [veg, fruit]; <span class="comment">// 左边是新的变数名，右边是交换后的值</span></span><br><span class="line"><span class="built_in">console</span>.log(fruit, veg);</span><br><span class="line"><span class="comment">// "tomato" "banana"</span></span><br></pre>
+                          <pre><span class="line"><span class="keyword">let</span> fruit = <span class="string">'banana'</span>;</span><br><span class="line"><span class="keyword">let</span> veg = <span class="string">'tomato'</span>;</span><br><span class="line">[fruit, veg] = [veg, fruit]; <span class="comment">// 左边是新的变量名，右边是交换后的值</span></span><br><span class="line"><span class="built_in">console</span>.log(fruit, veg);</span><br><span class="line"><span class="comment">// "tomato" "banana"</span></span><br></pre>
                         </td>
                       </tr>
                     </table>
                   </figure>
 
-                  <h4 id="把字串的字取出并个别宣告变数"><a href="#把字串的字取出并个别宣告变数" class="headerlink"
-                      title="把字串的字取出并个别宣告变数"></a>把字串的字取出并个别宣告变数</h4>
+                  <h4 id="把字符串的字取出并个别声明变量"><a href="#把字符串的字取出并个别声明变量" class="headerlink"
+                      title="把字符串的字取出并个别声明变量"></a>把字符串的字取出并个别声明变量</h4>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -602,7 +602,7 @@
                     </table>
                   </figure>
 
-                  <h4 id="预设值"><a href="#预设值" class="headerlink" title="预设值"></a>预设值</h4>
+                  <h4 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h4>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -610,20 +610,20 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="keyword">let</span> [g = <span class="string">'Grete'</span>, s = <span class="string">'Steffi'</span>] = [<span class="string">'葛蕾特'</span>];</span><br><span class="line"><span class="comment">// g 会被重新赋值，s 会用预设</span></span><br><span class="line"><span class="built_in">console</span>.log(g,s);</span><br><span class="line"><span class="comment">// "葛蕾特" "Steffi"</span></span><br></pre>
+                          <pre><span class="line"><span class="keyword">let</span> [g = <span class="string">'Grete'</span>, s = <span class="string">'Steffi'</span>] = [<span class="string">'葛蕾特'</span>];</span><br><span class="line"><span class="comment">// g 会被重新赋值，s 会用默认</span></span><br><span class="line"><span class="built_in">console</span>.log(g,s);</span><br><span class="line"><span class="comment">// "葛蕾特" "Steffi"</span></span><br></pre>
                         </td>
                       </tr>
                     </table>
                   </figure>
 
-                  <h3 id="物件解构赋值"><a href="#物件解构赋值" class="headerlink" title="物件解构赋值"></a>物件解构赋值</h3>
-                  <p>阵列的解构赋值强调的是<strong>顺序</strong>，而物件的解构赋值强调的则是<strong>属性名称</strong>，属性名称必须相互对应才能够取得到值。</p>
-                  <p>在物件解构赋值中，冒号前是用来对应物件的属性名称，冒号后才是真正建立的变数名称和被赋值的对象。</p>
+                  <h3 id="对象解构赋值"><a href="#对象解构赋值" class="headerlink" title="对象解构赋值"></a>对象解构赋值</h3>
+                  <p>数组的解构赋值强调的是<strong>顺序</strong>，而对象的解构赋值强调的则是<strong>属性名称</strong>，属性名称必须相互对应才能够取得到值。</p>
+                  <p>在对象解构赋值中，冒号前是用来对应对象的属性名称，冒号后才是真正创建的变量名称和被赋值的对象。</p>
                   <p>参照：<a href="https://pjchender.blogspot.com/2017/01/es6-object-destructuring.html" target="_blank"
-                      rel="external nofollow noopener noreferrer">[笔记] JavaScript ES6 中的物件解构赋值（object destructuring）</a>
+                      rel="external nofollow noopener noreferrer">[笔记] JavaScript ES6 中的对象解构赋值（object destructuring）</a>
                   </p>
                   <h4 id="基本用法-1"><a href="#基本用法-1" class="headerlink" title="基本用法"></a>基本用法</h4>
-                  <p>从物件中取出一个特性的值，并赋予这个值一个新的变数名称。</p>
+                  <p>从对象中取出一个特性的值，并赋予这个值一个新的变量名称。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -631,13 +631,13 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name: <span class="string">'Grete'</span>,</span><br><span class="line">  age: <span class="number">25</span>,</span><br><span class="line">  city: <span class="string">'Taichung'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">city</span>: address&#125; = person;</span><br><span class="line"><span class="comment">// 冒号左边是物件特性，冒号右边是新赋予的变数名称</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(address);</span><br><span class="line"><span class="comment">// "Taichung"</span></span><br></pre>
+                          <pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name: <span class="string">'Grete'</span>,</span><br><span class="line">  age: <span class="number">25</span>,</span><br><span class="line">  city: <span class="string">'Taichung'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">city</span>: address&#125; = person;</span><br><span class="line"><span class="comment">// 冒号左边是对象特性，冒号右边是新赋予的变量名称</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(address);</span><br><span class="line"><span class="comment">// "Taichung"</span></span><br></pre>
                         </td>
                       </tr>
                     </table>
                   </figure>
 
-                  <p><code>person.city</code> 的值依然是 <code>&#39;Taichung&#39;</code>，而透过解构赋值另外宣告的变数 <code>address</code>
+                  <p><code>person.city</code> 的值依然是 <code>&#39;Taichung&#39;</code>，而通过解构赋值另外声明的变量 <code>address</code>
                     的值也是 <code>&#39;Taichung&#39;</code>。</p>
                   <h4 id="延伸问题"><a href="#延伸问题" class="headerlink" title="延伸问题"></a>延伸问题</h4>
                   <figure class="highlight js">
@@ -647,7 +647,7 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="keyword">let</span> &#123; <span class="attr">name</span>: germanName, <span class="attr">fruits</span>: [, apple] &#125; = &#123; <span class="attr">name</span>: <span class="string">'Grete'</span>, <span class="attr">fruits</span>: [<span class="string">'香蕉'</span>, <span class="string">'苹果'</span>, <span class="string">'芭乐'</span>] &#125;</span><br><span class="line"><span class="comment">// 右边的属性对应左边的属性，右边的值对应左边的新变数名称</span></span><br><span class="line"><span class="built_in">console</span>.log(germanName, apple);</span><br><span class="line"><span class="comment">// "Grete" "苹果"</span></span><br></pre>
+                          <pre><span class="line"><span class="keyword">let</span> &#123; <span class="attr">name</span>: germanName, <span class="attr">fruits</span>: [, apple] &#125; = &#123; <span class="attr">name</span>: <span class="string">'Grete'</span>, <span class="attr">fruits</span>: [<span class="string">'香蕉'</span>, <span class="string">'苹果'</span>, <span class="string">'芭乐'</span>] &#125;</span><br><span class="line"><span class="comment">// 右边的属性对应左边的属性，右边的值对应左边的新变量名称</span></span><br><span class="line"><span class="built_in">console</span>.log(germanName, apple);</span><br><span class="line"><span class="comment">// "Grete" "苹果"</span></span><br></pre>
                         </td>
                       </tr>
                     </table>
@@ -655,7 +655,7 @@
 
                   <p>左边 <code>fruits</code> 特性要解构赋值的对象是右边 <code>fruits</code> 的第二个值，所以在 <code>apple</code> 前面用逗点空了一个位置。
                   </p>
-                  <h4 id="预设值-1"><a href="#预设值-1" class="headerlink" title="预设值"></a>预设值</h4>
+                  <h4 id="默认值-1"><a href="#默认值-1" class="headerlink" title="默认值"></a>默认值</h4>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -669,11 +669,11 @@
                     </table>
                   </figure>
 
-                  <p>第一个范例中，左边预设 <code>apple</code> 等于 ‘苹果’，因为右边没有传新的值，所以会保持 <code>apple</code>
+                  <p>第一个范例中，左边默认 <code>apple</code> 等于 ‘苹果’，因为右边没有传新的值，所以会保持 <code>apple</code>
                     为苹果。<br>第二个范例中，右边传了新的值，所以 <code>apple</code> 的值就变成凤梨了。</p>
                   <h2 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h2>
-                  <h3 id="物件缩写"><a href="#物件缩写" class="headerlink" title="物件缩写"></a>物件缩写</h3>
-                  <p>将一个字串与一个物件，在另一个新物件里合并。<br>新物件里的特性名称如果跟来源变数一致时，就可以使用缩写。</p>
+                  <h3 id="对象缩写"><a href="#对象缩写" class="headerlink" title="对象缩写"></a>对象缩写</h3>
+                  <p>将一个字符串与一个对象，在另一个新对象里合并。<br>新对象里的特性名称如果跟来源变量一致时，就可以使用缩写。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -695,13 +695,13 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"><span class="comment">// 将套件从 './App' 路径载入，并使用 App 这个变数名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router, <span class="comment">// 原始写法为 router: router</span></span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;</span><br><span class="line">&#125;);</span><br></pre>
+                          <pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"><span class="comment">// 将套件从 './App' 路径加载，并使用 App 这个变量名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router, <span class="comment">// 原始写法为 router: router</span></span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;</span><br><span class="line">&#125;);</span><br></pre>
                         </td>
                       </tr>
                     </table>
                   </figure>
 
-                  <h3 id="物件方法缩写"><a href="#物件方法缩写" class="headerlink" title="物件方法缩写"></a>物件方法缩写</h3>
+                  <h3 id="对象方法缩写"><a href="#对象方法缩写" class="headerlink" title="对象方法缩写"></a>对象方法缩写</h3>
                   <h4 id="原始写法："><a href="#原始写法：" class="headerlink" title="原始写法："></a>原始写法：</h4>
                   <figure class="highlight js">
                     <table>
@@ -731,10 +731,10 @@
                     </table>
                   </figure>
 
-                  <p>注意：物件方法缩写与箭头函式的结果是不一致的。</p>
+                  <p>注意：对象方法缩写与箭头函数的结果是不一致的。</p>
                   <h3 id="缩写搭配展开与解构赋值"><a href="#缩写搭配展开与解构赋值" class="headerlink" title="缩写搭配展开与解构赋值"></a>缩写搭配展开与解构赋值
                   </h3>
-                  <p>任务：将一个物件赋值到新的变数，并新增一个特性到新物件中，而且不能更改到原物件（=避免参考）。</p>
+                  <p>任务：将一个对象赋值到新的变量，并添加一个特性到新对象中，而且不能更改到原对象（=避免参考）。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -742,15 +742,15 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="keyword">const</span> GinyuTeam = &#123;</span><br><span class="line">   Ginyu: &#123;</span><br><span class="line">     name: <span class="string">'基纽'</span></span><br><span class="line">   &#125;,</span><br><span class="line">   Jeice: &#123;</span><br><span class="line">     name: <span class="string">'吉斯'</span></span><br><span class="line">   &#125;,</span><br><span class="line">   burter: &#123; </span><br><span class="line">     name: <span class="string">'巴特'</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newTeam = &#123;...GinyuTeam&#125;;</span><br><span class="line"><span class="comment">// 将原物件的特性一个个取出（展开），并赋值到新的变数</span></span><br><span class="line"></span><br><span class="line">newTeam.ming = <span class="string">"小明"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(newTeam, GinyuTeam);</span><br><span class="line"><span class="comment">// newTeam 有小明，GinyuTeam 维持原样</span></span><br></pre>
+                          <pre><span class="line"><span class="keyword">const</span> GinyuTeam = &#123;</span><br><span class="line">   Ginyu: &#123;</span><br><span class="line">     name: <span class="string">'基纽'</span></span><br><span class="line">   &#125;,</span><br><span class="line">   Jeice: &#123;</span><br><span class="line">     name: <span class="string">'吉斯'</span></span><br><span class="line">   &#125;,</span><br><span class="line">   burter: &#123; </span><br><span class="line">     name: <span class="string">'巴特'</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> newTeam = &#123;...GinyuTeam&#125;;</span><br><span class="line"><span class="comment">// 将原对象的特性一个个取出（展开），并赋值到新的变量</span></span><br><span class="line"></span><br><span class="line">newTeam.ming = <span class="string">"小明"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(newTeam, GinyuTeam);</span><br><span class="line"><span class="comment">// newTeam 有小明，GinyuTeam 维持原样</span></span><br></pre>
                         </td>
                       </tr>
                     </table>
                   </figure>
 
-                  <h2 id="箭头函式"><a href="#箭头函式" class="headerlink" title="箭头函式"></a>箭头函式</h2>
+                  <h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2>
                   <h3 id="基本写法"><a href="#基本写法" class="headerlink" title="基本写法"></a>基本写法</h3>
-                  <p>传统函式长这样：</p>
+                  <p>传统函数长这样：</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -764,7 +764,7 @@
                     </table>
                   </figure>
 
-                  <p>改写成箭头函式长这样：</p>
+                  <p>改写成箭头函数长这样：</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -780,22 +780,22 @@
 
                   <h3 id="如何改写"><a href="#如何改写" class="headerlink" title="如何改写"></a>如何改写</h3>
                   <p>把参数往前提，把关键字 <code>function</code>
-                    删掉，改成箭头。<br>只有一个参数时可以不用小括号包起来，如果没带入参数就还是需要小括号。<br>如果只有单行程式码而且只是要回传一个值的情况下，可以省略大括号及
-                    <code>return</code>。<br>箭头函式没有 <code>arguments</code> 物件，所以如果要传入多个参数值时，可以在箭头函式的小括号内使用其余参数。</p>
-                  <h3 id="与传统函式最不同的地方：this-绑定差异"><a href="#与传统函式最不同的地方：this-绑定差异" class="headerlink"
-                      title="与传统函式最不同的地方：this 绑定差异"></a>与传统函式最不同的地方：this 绑定差异</h3>
+                    删掉，改成箭头。<br>只有一个参数时可以不用小括号包起来，如果没带入参数就还是需要小括号。<br>如果只有单行代码而且只是要返回一个值的情况下，可以省略大括号及
+                    <code>return</code>。<br>箭头函数没有 <code>arguments</code> 对象，所以如果要传入多个参数值时，可以在箭头函数的小括号内使用其余参数。</p>
+                  <h3 id="与传统函数最不同的地方：this-绑定差异"><a href="#与传统函数最不同的地方：this-绑定差异" class="headerlink"
+                      title="与传统函数最不同的地方：this 绑定差异"></a>与传统函数最不同的地方：this 绑定差异</h3>
                   <ul>
-                    <li>传统函式：<code>this</code> 取决于函式呼叫的方式</li>
-                    <li>箭头函式：<code>this</code> 取决于被定义时所在的物件，「箭头函式没有自己的 <code>this</code>」，因此它都是采用其同层级的 <code>this</code>
+                    <li>传统函数：<code>this</code> 取决于函数调用的方式</li>
+                    <li>箭头函数：<code>this</code> 取决于被定义时所在的对象，「箭头函数没有自己的 <code>this</code>」，因此它都是采用其同层级的 <code>this</code>
                       来作用。</li>
                   </ul>
-                  <p>写 Vue <code>methods</code> 时最好使用<strong>传统函式搭配缩写</strong>，因为使用箭头函式的话，<code>this</code> 指向的可能不是 Vue
+                  <p>写 Vue <code>methods</code> 时最好使用<strong>传统函数搭配缩写</strong>，因为使用箭头函数的话，<code>this</code> 指向的可能不是 Vue
                     实例。</p>
                   <p>参照：<a href="https://pjchender.blogspot.com/2017/01/es6-arrow-function.html" target="_blank"
                       rel="external nofollow noopener noreferrer">[笔记] JavaScript ES6 中的箭头函数（arrow function）及对 this
                       的影响</a></p>
                   <h3 id="善用方式"><a href="#善用方式" class="headerlink" title="善用方式"></a>善用方式</h3>
-                  <p>在进入箭头函式之前，先把要指向的物件（<code>this</code>）用变数储存起来。</p>
+                  <p>在进入箭头函数之前，先把要指向的对象（<code>this</code>）用变量储存起来。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -809,8 +809,8 @@
                     </table>
                   </figure>
 
-                  <h2 id="字串模板"><a href="#字串模板" class="headerlink" title="字串模板"></a>字串模板</h2>
-                  <p>各位在用 <code>innerHTML</code> 组字串时会不会感到很痛苦呢？我承认我会，因为各种标签名、文字、加号、单双引号，全部乱糟糟地都写在一起，真 D 会让人眼花啊！</p>
+                  <h2 id="字符串模板"><a href="#字符串模板" class="headerlink" title="字符串模板"></a>字符串模板</h2>
+                  <p>各位在用 <code>innerHTML</code> 组字符串时会不会感到很痛苦呢？我承认我会，因为各种标签名、文字、加号、单双引号，全部乱糟糟地都写在一起，真 D 会让人眼花啊！</p>
                   <p>还好，在ES6有新的写法，可以让我们好过一点。</p>
                   <h3 id="基本用法-2"><a href="#基本用法-2" class="headerlink" title="基本用法"></a>基本用法</h3>
                   <p>假设我们要在一个 <code>&lt;ul&gt;&lt;li&gt;</code> 里放入图片：</p>
@@ -868,10 +868,10 @@
                     </table>
                   </figure>
 
-                  <p>新写法中这个长得像重音符号的东西叫做「反引号」，<code>${}</code> 里面可放入 JS 程式码跟变数，支援 ES6 写法。</p>
-                  <p>组字串不需要使用加号，而选取变数的方法则是把变数名称包在大括号内，前面再加个 <code>$</code> 符号，这样就可以了。</p>
-                  <h3 id="搭配阵列方法使用"><a href="#搭配阵列方法使用" class="headerlink" title="搭配阵列方法使用"></a>搭配阵列方法使用</h3>
-                  <p>假设我们要根据一个阵列里的资料，一笔笔输出为 <code>&lt;ul&gt; &lt;li&gt;</code> 列表：</p>
+                  <p>新写法中这个长得像重音符号的东西叫做「反引号」，<code>${}</code> 里面可放入 JS 代码跟变量，支持 ES6 写法。</p>
+                  <p>组字符串不需要使用加号，而选取变量的方法则是把变量名称包在大括号内，前面再加个 <code>$</code> 符号，这样就可以了。</p>
+                  <h3 id="搭配数组方法使用"><a href="#搭配数组方法使用" class="headerlink" title="搭配数组方法使用"></a>搭配数组方法使用</h3>
+                  <p>假设我们要根据一个数组里的资料，一笔笔输出为 <code>&lt;ul&gt; &lt;li&gt;</code> 列表：</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -879,33 +879,33 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="comment">// 阵列</span></span><br><span class="line"><span class="keyword">const</span> people = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'小明'</span>,</span><br><span class="line">    friends: <span class="number">2</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'阿姨'</span>,</span><br><span class="line">    friends: <span class="number">999</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'杰伦'</span>,</span><br><span class="line">    friends: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newUl = <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;ul&gt; <span class="subst">$&#123;people.map(person =&gt;</span></span></span><br><span class="line"><span class="string"><span class="subst">    <span class="string">`&lt;li&gt;我叫做 <span class="subst">$&#123;person.name&#125;</span>&lt;/li&gt;`</span>)</span></span></span><br><span class="line"><span class="string"><span class="subst">    .join(<span class="string">''</span>)&#125;</span></span></span><br><span class="line"><span class="string">  &lt;/ul&gt;`</span></span><br></pre>
+                          <pre><span class="line"><span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">const</span> people = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'小明'</span>,</span><br><span class="line">    friends: <span class="number">2</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'阿姨'</span>,</span><br><span class="line">    friends: <span class="number">999</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'杰伦'</span>,</span><br><span class="line">    friends: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newUl = <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;ul&gt; <span class="subst">$&#123;people.map(person =&gt;</span></span></span><br><span class="line"><span class="string"><span class="subst">    <span class="string">`&lt;li&gt;我叫做 <span class="subst">$&#123;person.name&#125;</span>&lt;/li&gt;`</span>)</span></span></span><br><span class="line"><span class="string"><span class="subst">    .join(<span class="string">''</span>)&#125;</span></span></span><br><span class="line"><span class="string">  &lt;/ul&gt;`</span></span><br></pre>
                         </td>
                       </tr>
                     </table>
                   </figure>
 
                   <ul>
-                    <li><code>map()</code> 会把阵列里所有元素传进 callback 函式内运算，并且把运算后的元素以阵列的形式回传。</li>
-                    <li><code>join()</code> 会把阵列里所有元素以指定的字符连接在一起，这个例子是让元素间不要有任何字符、逗号。</li>
+                    <li><code>map()</code> 会把数组里所有元素传进 callback 函数内运算，并且把运算后的元素以数组的形式返回。</li>
+                    <li><code>join()</code> 会把数组里所有元素以指定的字符连接在一起，这个例子是让元素间不要有任何字符、逗号。</li>
                   </ul>
-                  <h2 id="常用阵列方法"><a href="#常用阵列方法" class="headerlink" title="常用阵列方法"></a>常用阵列方法</h2>
+                  <h2 id="常用数组方法"><a href="#常用数组方法" class="headerlink" title="常用数组方法"></a>常用数组方法</h2>
                   <h3 id="forEach-与-map"><a href="#forEach-与-map" class="headerlink"
                       title="forEach() 与 map()"></a><code>forEach()</code> 与 <code>map()</code></h3>
-                  <p>两者很像，但 <code>forEach()</code> 不会回传值，而 <code>map()</code> 会回传一个新的阵列。<br><code>map()</code> 的
-                    callback 函式里需要使用 <code>return</code> 来回传运算后的结果，且也需要一个变数来接收 <code>map()</code> 执行后的新阵列。</p>
+                  <p>两者很像，但 <code>forEach()</code> 不会返回值，而 <code>map()</code> 会返回一个新的数组。<br><code>map()</code> 的
+                    callback 函数里需要使用 <code>return</code> 来返回运算后的结果，且也需要一个变量来接收 <code>map()</code> 执行后的新数组。</p>
                   <h3 id="filter"><a href="#filter" class="headerlink" title="filter()"></a><code>filter()</code></h3>
-                  <p><code>filter()</code> 与 <code>find()</code>：<code>filter()</code> 回传的是一个新阵列且里面包含所有符合条件的元素，而
-                    <code>find()</code> 只会回传第一个符合条件的元素值。因此，<code>find()</code> 较适合用于搜寻一个特定的值。</p>
+                  <p><code>filter()</code> 与 <code>find()</code>：<code>filter()</code> 返回的是一个新数组且里面包含所有符合条件的元素，而
+                    <code>find()</code> 只会返回第一个符合条件的元素值。因此，<code>find()</code> 较适合用于搜寻一个特定的值。</p>
                   <h3 id="every"><a href="#every" class="headerlink" title="every()"></a><code>every()</code></h3>
-                  <p><strong>所有</strong>元素都符合条件才会回传 <code>true</code>。</p>
+                  <p><strong>所有</strong>元素都符合条件才会返回 <code>true</code>。</p>
                   <h3 id="some"><a href="#some" class="headerlink" title="some()"></a><code>some()</code></h3>
-                  <p><strong>部分</strong>元素有符合条件就会回传 <code>true</code>。</p>
+                  <p><strong>部分</strong>元素有符合条件就会返回 <code>true</code>。</p>
                   <h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce()"></a><code>reduce()</code></h3>
                   <p>用于累加或比较值的大小。</p>
                   <h4 id="累加"><a href="#累加" class="headerlink" title="累加"></a>累加</h4>
-                  <p><code>reduce()</code> 第一个参数是一个 callback 函式，第二个参数是累加的起始值。</p>
-                  <p>callback 函式的参数中，第一个参数为「前一个元素的值」，如果没有前一个元素，就使用 <code>reduce()</code> 的第二个参数。</p>
+                  <p><code>reduce()</code> 第一个参数是一个 callback 函数，第二个参数是累加的起始值。</p>
+                  <p>callback 函数的参数中，第一个参数为「前一个元素的值」，如果没有前一个元素，就使用 <code>reduce()</code> 的第二个参数。</p>
                   <h4 id="比较值的大小"><a href="#比较值的大小" class="headerlink" title="比较值的大小"></a>比较值的大小</h4>
                   <p>配合使用 <code>Math.max()</code>。</p>
 
@@ -999,18 +999,18 @@
             <div class="post-toc-wrap sidebar-panel">
               <div class="post-toc motion-element">
                 <ol class="nav">
-                  <li class="nav-item nav-level-2"><a class="nav-link" href="#变数宣告"><span class="nav-number">1.</span>
-                      <span class="nav-text">变数宣告</span></a>
+                  <li class="nav-item nav-level-2"><a class="nav-link" href="#变量声明"><span class="nav-number">1.</span>
+                      <span class="nav-text">变量声明</span></a>
                     <ol class="nav-child">
                       <li class="nav-item nav-level-3"><a class="nav-link" href="#var-与-let-的区别"><span
                             class="nav-number">1.1.</span> <span class="nav-text">var 与 let 的区别</span></a></li>
                       <li class="nav-item nav-level-3"><a class="nav-link" href="#const"><span
                             class="nav-number">1.2.</span> <span class="nav-text">const</span></a></li>
-                      <li class="nav-item nav-level-3"><a class="nav-link" href="#回圈内的-setTimeout"><span
-                            class="nav-number">1.3.</span> <span class="nav-text">回圈内的 setTimeout()</span></a>
+                      <li class="nav-item nav-level-3"><a class="nav-link" href="#循环内的-setTimeout"><span
+                            class="nav-number">1.3.</span> <span class="nav-text">循环内的 setTimeout()</span></a>
                         <ol class="nav-child">
-                          <li class="nav-item nav-level-4"><a class="nav-link" href="#另一种解法：立即函式-IIFE"><span
-                                class="nav-number">1.3.1.</span> <span class="nav-text">另一种解法：立即函式 (IIFE)</span></a>
+                          <li class="nav-item nav-level-4"><a class="nav-link" href="#另一种解法：立即函数-IIFE"><span
+                                class="nav-number">1.3.1.</span> <span class="nav-text">另一种解法：立即函数 (IIFE)</span></a>
                           </li>
                         </ol>
                       </li>
@@ -1019,12 +1019,12 @@
                   <li class="nav-item nav-level-2"><a class="nav-link" href="#展开符号-…"><span class="nav-number">2.</span>
                       <span class="nav-text">展开符号 …</span></a>
                     <ol class="nav-child">
-                      <li class="nav-item nav-level-3"><a class="nav-link" href="#合并数个阵列"><span
-                            class="nav-number">2.1.</span> <span class="nav-text">合并数个阵列</span></a></li>
-                      <li class="nav-item nav-level-3"><a class="nav-link" href="#复制阵列（浅复制）"><span
-                            class="nav-number">2.2.</span> <span class="nav-text">复制阵列（浅复制）</span></a></li>
-                      <li class="nav-item nav-level-3"><a class="nav-link" href="#类阵列"><span
-                            class="nav-number">2.3.</span> <span class="nav-text">类阵列</span></a></li>
+                      <li class="nav-item nav-level-3"><a class="nav-link" href="#合并数个数组"><span
+                            class="nav-number">2.1.</span> <span class="nav-text">合并数个数组</span></a></li>
+                      <li class="nav-item nav-level-3"><a class="nav-link" href="#复制数组（浅复制）"><span
+                            class="nav-number">2.2.</span> <span class="nav-text">复制数组（浅复制）</span></a></li>
+                      <li class="nav-item nav-level-3"><a class="nav-link" href="#类数组"><span
+                            class="nav-number">2.3.</span> <span class="nav-text">类数组</span></a></li>
                       <li class="nav-item nav-level-3"><a class="nav-link" href="#其余参数"><span
                             class="nav-number">2.4.</span> <span class="nav-text">其余参数</span></a></li>
                     </ol>
@@ -1032,32 +1032,32 @@
                   <li class="nav-item nav-level-2"><a class="nav-link" href="#解构赋值"><span class="nav-number">3.</span>
                       <span class="nav-text">解构赋值</span></a>
                     <ol class="nav-child">
-                      <li class="nav-item nav-level-3"><a class="nav-link" href="#阵列解构赋值"><span
-                            class="nav-number">3.1.</span> <span class="nav-text">阵列解构赋值</span></a>
+                      <li class="nav-item nav-level-3"><a class="nav-link" href="#数组解构赋值"><span
+                            class="nav-number">3.1.</span> <span class="nav-text">数组解构赋值</span></a>
                         <ol class="nav-child">
                           <li class="nav-item nav-level-4"><a class="nav-link" href="#基本用法"><span
                                 class="nav-number">3.1.1.</span> <span class="nav-text">基本用法</span></a></li>
-                          <li class="nav-item nav-level-4"><a class="nav-link" href="#当输入的变数少于所给的值"><span
-                                class="nav-number">3.1.2.</span> <span class="nav-text">当输入的变数少于所给的值</span></a></li>
-                          <li class="nav-item nav-level-4"><a class="nav-link" href="#当输入的变数多于所给的值"><span
-                                class="nav-number">3.1.3.</span> <span class="nav-text">当输入的变数多于所给的值</span></a></li>
-                          <li class="nav-item nav-level-4"><a class="nav-link" href="#变数交换"><span
-                                class="nav-number">3.1.4.</span> <span class="nav-text">变数交换</span></a></li>
-                          <li class="nav-item nav-level-4"><a class="nav-link" href="#把字串的字取出并个别宣告变数"><span
-                                class="nav-number">3.1.5.</span> <span class="nav-text">把字串的字取出并个别宣告变数</span></a></li>
-                          <li class="nav-item nav-level-4"><a class="nav-link" href="#预设值"><span
-                                class="nav-number">3.1.6.</span> <span class="nav-text">预设值</span></a></li>
+                          <li class="nav-item nav-level-4"><a class="nav-link" href="#当输入的变量少于所给的值"><span
+                                class="nav-number">3.1.2.</span> <span class="nav-text">当输入的变量少于所给的值</span></a></li>
+                          <li class="nav-item nav-level-4"><a class="nav-link" href="#当输入的变量多于所给的值"><span
+                                class="nav-number">3.1.3.</span> <span class="nav-text">当输入的变量多于所给的值</span></a></li>
+                          <li class="nav-item nav-level-4"><a class="nav-link" href="#变量交换"><span
+                                class="nav-number">3.1.4.</span> <span class="nav-text">变量交换</span></a></li>
+                          <li class="nav-item nav-level-4"><a class="nav-link" href="#把字符串的字取出并个别声明变量"><span
+                                class="nav-number">3.1.5.</span> <span class="nav-text">把字符串的字取出并个别声明变量</span></a></li>
+                          <li class="nav-item nav-level-4"><a class="nav-link" href="#默认值"><span
+                                class="nav-number">3.1.6.</span> <span class="nav-text">默认值</span></a></li>
                         </ol>
                       </li>
-                      <li class="nav-item nav-level-3"><a class="nav-link" href="#物件解构赋值"><span
-                            class="nav-number">3.2.</span> <span class="nav-text">物件解构赋值</span></a>
+                      <li class="nav-item nav-level-3"><a class="nav-link" href="#对象解构赋值"><span
+                            class="nav-number">3.2.</span> <span class="nav-text">对象解构赋值</span></a>
                         <ol class="nav-child">
                           <li class="nav-item nav-level-4"><a class="nav-link" href="#基本用法-1"><span
                                 class="nav-number">3.2.1.</span> <span class="nav-text">基本用法</span></a></li>
                           <li class="nav-item nav-level-4"><a class="nav-link" href="#延伸问题"><span
                                 class="nav-number">3.2.2.</span> <span class="nav-text">延伸问题</span></a></li>
-                          <li class="nav-item nav-level-4"><a class="nav-link" href="#预设值-1"><span
-                                class="nav-number">3.2.3.</span> <span class="nav-text">预设值</span></a></li>
+                          <li class="nav-item nav-level-4"><a class="nav-link" href="#默认值-1"><span
+                                class="nav-number">3.2.3.</span> <span class="nav-text">默认值</span></a></li>
                         </ol>
                       </li>
                     </ol>
@@ -1065,10 +1065,10 @@
                   <li class="nav-item nav-level-2"><a class="nav-link" href="#缩写"><span class="nav-number">4.</span>
                       <span class="nav-text">缩写</span></a>
                     <ol class="nav-child">
-                      <li class="nav-item nav-level-3"><a class="nav-link" href="#物件缩写"><span
-                            class="nav-number">4.1.</span> <span class="nav-text">物件缩写</span></a></li>
-                      <li class="nav-item nav-level-3"><a class="nav-link" href="#物件方法缩写"><span
-                            class="nav-number">4.2.</span> <span class="nav-text">物件方法缩写</span></a>
+                      <li class="nav-item nav-level-3"><a class="nav-link" href="#对象缩写"><span
+                            class="nav-number">4.1.</span> <span class="nav-text">对象缩写</span></a></li>
+                      <li class="nav-item nav-level-3"><a class="nav-link" href="#对象方法缩写"><span
+                            class="nav-number">4.2.</span> <span class="nav-text">对象方法缩写</span></a>
                         <ol class="nav-child">
                           <li class="nav-item nav-level-4"><a class="nav-link" href="#原始写法："><span
                                 class="nav-number">4.2.1.</span> <span class="nav-text">原始写法：</span></a></li>
@@ -1080,30 +1080,30 @@
                             class="nav-number">4.3.</span> <span class="nav-text">缩写搭配展开与解构赋值</span></a></li>
                     </ol>
                   </li>
-                  <li class="nav-item nav-level-2"><a class="nav-link" href="#箭头函式"><span class="nav-number">5.</span>
-                      <span class="nav-text">箭头函式</span></a>
+                  <li class="nav-item nav-level-2"><a class="nav-link" href="#箭头函数"><span class="nav-number">5.</span>
+                      <span class="nav-text">箭头函数</span></a>
                     <ol class="nav-child">
                       <li class="nav-item nav-level-3"><a class="nav-link" href="#基本写法"><span
                             class="nav-number">5.1.</span> <span class="nav-text">基本写法</span></a></li>
                       <li class="nav-item nav-level-3"><a class="nav-link" href="#如何改写"><span
                             class="nav-number">5.2.</span> <span class="nav-text">如何改写</span></a></li>
-                      <li class="nav-item nav-level-3"><a class="nav-link" href="#与传统函式最不同的地方：this-绑定差异"><span
-                            class="nav-number">5.3.</span> <span class="nav-text">与传统函式最不同的地方：this 绑定差异</span></a></li>
+                      <li class="nav-item nav-level-3"><a class="nav-link" href="#与传统函数最不同的地方：this-绑定差异"><span
+                            class="nav-number">5.3.</span> <span class="nav-text">与传统函数最不同的地方：this 绑定差异</span></a></li>
                       <li class="nav-item nav-level-3"><a class="nav-link" href="#善用方式"><span
                             class="nav-number">5.4.</span> <span class="nav-text">善用方式</span></a></li>
                     </ol>
                   </li>
-                  <li class="nav-item nav-level-2"><a class="nav-link" href="#字串模板"><span class="nav-number">6.</span>
-                      <span class="nav-text">字串模板</span></a>
+                  <li class="nav-item nav-level-2"><a class="nav-link" href="#字符串模板"><span class="nav-number">6.</span>
+                      <span class="nav-text">字符串模板</span></a>
                     <ol class="nav-child">
                       <li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法-2"><span
                             class="nav-number">6.1.</span> <span class="nav-text">基本用法</span></a></li>
-                      <li class="nav-item nav-level-3"><a class="nav-link" href="#搭配阵列方法使用"><span
-                            class="nav-number">6.2.</span> <span class="nav-text">搭配阵列方法使用</span></a></li>
+                      <li class="nav-item nav-level-3"><a class="nav-link" href="#搭配数组方法使用"><span
+                            class="nav-number">6.2.</span> <span class="nav-text">搭配数组方法使用</span></a></li>
                     </ol>
                   </li>
-                  <li class="nav-item nav-level-2"><a class="nav-link" href="#常用阵列方法"><span class="nav-number">7.</span>
-                      <span class="nav-text">常用阵列方法</span></a>
+                  <li class="nav-item nav-level-2"><a class="nav-link" href="#常用数组方法"><span class="nav-number">7.</span>
+                      <span class="nav-text">常用数组方法</span></a>
                     <ol class="nav-child">
                       <li class="nav-item nav-level-3"><a class="nav-link" href="#forEach-与-map"><span
                             class="nav-number">7.1.</span> <span class="nav-text">forEach() 与 map()</span></a></li>

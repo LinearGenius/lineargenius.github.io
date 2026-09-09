@@ -47,12 +47,12 @@
   };
 </script>
 
-  <meta name="description" content="昨天在六角学院社团看到有人发问排版问题，因为是我第一次试著替别人 debug 因此特别想记录下来，顺便当作我使用部落格纪录前端学习之路的滥觞。">
+  <meta name="description" content="昨天在六角学院社团看到有人发问排版问题，因为是我第一次试着替别人 debug 因此特别想记录下来，顺便当作我使用博客记录前端学习之路的滥觞。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[CSS] 没有清除浮动，还是没搞清楚元素特性？">
 <meta property="og:url" content="http:&#x2F;&#x2F;lineargenius.github.io&#x2F;htmlcss&#x2F;20191216&#x2F;3595727743&#x2F;index.html">
 <meta property="og:site_name" content="前端日志">
-<meta property="og:description" content="昨天在六角学院社团看到有人发问排版问题，因为是我第一次试著替别人 debug 因此特别想记录下来，顺便当作我使用部落格纪录前端学习之路的滥觞。">
+<meta property="og:description" content="昨天在六角学院社团看到有人发问排版问题，因为是我第一次试着替别人 debug 因此特别想记录下来，顺便当作我使用博客记录前端学习之路的滥觞。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https:&#x2F;&#x2F;upload.cc&#x2F;i1&#x2F;2019&#x2F;12&#x2F;17&#x2F;LlC0gj.jpeg">
 <meta property="og:image" content="https:&#x2F;&#x2F;upload.cc&#x2F;i1&#x2F;2019&#x2F;12&#x2F;17&#x2F;WDRnSZ.jpeg">
@@ -289,7 +289,7 @@
     <div class="post-body" itemprop="articleBody">
 
 
-        <p>昨天在六角学院社团看到有人发问排版问题，因为是我第一次试著替别人 debug 因此特别想记录下来，顺便当作我使用部落格纪录前端学习之路的滥觞。</p>
+        <p>昨天在六角学院社团看到有人发问排版问题，因为是我第一次试着替别人 debug 因此特别想记录下来，顺便当作我使用博客记录前端学习之路的滥觞。</p>
 <a id="more"></a>
 
 <hr>
@@ -302,7 +302,7 @@
 <blockquote>
 <p>「因为第一张 textarea 没有下 <code>display:block</code>，所以按钮就跟它并排了；而第三张的 input text 都有下 <code>display:block</code>，所以按钮就不会并排。」</p>
 </blockquote>
-<p><code>&lt;input&gt;</code> 跟 <code>&lt;img&gt;</code>，<code>display</code> 预设都是 <code>inline-block</code>，也就是说如果不指定为 <code>block</code>，排完它的宽度后，如果还有空间，底下非 <code>block</code> 的元素或浮动元素就会跑上来。<code>inline</code> 跟 <code>inline-block</code> 的差别在于，前者不能指定宽高，而后者可以。</p>
+<p><code>&lt;input&gt;</code> 跟 <code>&lt;img&gt;</code>，<code>display</code> 默认都是 <code>inline-block</code>，也就是说如果不指定为 <code>block</code>，排完它的宽度后，如果还有空间，底下非 <code>block</code> 的元素或浮动元素就会跑上来。<code>inline</code> 跟 <code>inline-block</code> 的差别在于，前者不能指定宽高，而后者可以。</p>
 <p>第一个图会跑版的原因是因为 <code>&lt;textarea&gt;</code> 没有下 <code>display:block</code>，所以 <code>float</code> 的按钮便与他并排了。<br>并排之后整个 <code>&lt;form&gt;</code> 加上左边的 <code>&lt;h6&gt;</code> 的宽度后，整体超过了 <code>.faqform</code>，所以才会掉下来。</p>
 <p>第二个图里，<code>&lt;textarea&gt;</code> 下面多加了一块 <code>&lt;div&gt;</code>，这个 <code>&lt;div&gt;</code> 的属性是 <code>block</code> ，所以不是因为加了 <code>clearfix</code>，如果把那个 <code>class</code> 去掉，只留下 <code>&lt;div&gt;</code>，也会有同样效果。如此，接下来的按钮便不会前面的原素并排，整个 <code>&lt;form&gt;</code> 加上左边 <code>&lt;h6&gt;</code> 的宽度后也还在 <code>.faqform</code> 的极限内，版型就正常了。</p>
 <p>第三个图版型正常的原因，也是因为前面的元素加了 <code>block</code>，而且整个 <code>.form</code> 加上左边 <code>&lt;h4&gt;</code> 的宽度后还在 <code>.faqform</code> 的极限内。</p>
