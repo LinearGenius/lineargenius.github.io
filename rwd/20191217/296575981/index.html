@@ -47,18 +47,18 @@
   };
 </script>
 
-  <meta name="description" content="乳蹄，本篇筆記非常簡潔扼要地列出 3 點 RWD 要注意的問題。">
+  <meta name="description" content="乳蹄，本篇笔记非常简洁扼要地列出 3 点 RWD 要注意的问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[RWD] 響應式網頁 - 實作常見問題與錯誤">
+<meta property="og:title" content="[RWD] 响应式网页 - 实作常见问题与错误">
 <meta property="og:url" content="http:&#x2F;&#x2F;lineargenius.github.io&#x2F;rwd&#x2F;20191217&#x2F;296575981&#x2F;index.html">
 <meta property="og:site_name" content="前端日志">
-<meta property="og:description" content="乳蹄，本篇筆記非常簡潔扼要地列出 3 點 RWD 要注意的問題。">
+<meta property="og:description" content="乳蹄，本篇笔记非常简洁扼要地列出 3 点 RWD 要注意的问题。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2019-12-17T06:16:17.000Z">
 <meta property="article:modified_time" content="2019-12-21T06:47:26.745Z">
 <meta property="article:author" content="Wyatt">
 <meta property="article:tag" content="CSS">
-<meta property="article:tag" content="響應式網頁設計">
+<meta property="article:tag" content="响应式网页设计">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://lineargenius.github.io/rwd/20191217/296575981/">
@@ -73,7 +73,7 @@
   };
 </script>
 
-  <title>[RWD] 響應式網頁 - 實作常見問題與錯誤 | 前端日志</title>
+  <title>[RWD] 响应式网页 - 实作常见问题与错误 | 前端日志</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154635603-1"></script>
     <script>
@@ -133,7 +133,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切換導航欄">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -147,7 +147,7 @@
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -227,7 +227,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          [RWD] 響應式網頁 - 實作常見問題與錯誤
+          [RWD] 响应式网页 - 实作常见问题与错误
         </h2>
 
         <div class="post-meta">
@@ -235,22 +235,22 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">發表於</span>
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="創建時間：2019-12-17 14:16:17" itemprop="dateCreated datePublished" datetime="2019-12-17T14:16:17+08:00">2019-12-17</time>
+              <time title="创建时间：2019-12-17 14:16:17" itemprop="dateCreated datePublished" datetime="2019-12-17T14:16:17+08:00">2019-12-17</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2019-12-21 14:47:26" itemprop="dateModified" datetime="2019-12-21T14:47:26+08:00">2019-12-21</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-21 14:47:26" itemprop="dateModified" datetime="2019-12-21T14:47:26+08:00">2019-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分類於</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/rwd/" itemprop="url" rel="index">
                     <span itemprop="name">RWD</span>
@@ -283,14 +283,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>乳蹄，本篇筆記非常簡潔扼要地列出 3 點 RWD 要注意的問題。</p>
+        <p>乳蹄，本篇笔记非常简洁扼要地列出 3 点 RWD 要注意的问题。</p>
 <a id="more"></a>
 
-<h2 id="確認-media-query-斷點"><a href="#確認-media-query-斷點" class="headerlink" title="確認 media query 斷點"></a>確認 media query 斷點</h2><p>先抓熱門的螢幕解析度，例如平板 (768px) 及 iPhone 5 橫式 (569px)，在這兩個解析度之間會有一個斷層，可能在寬度 6xx px 時版面會變得比較難看，此時就為這一段斷層加條件：</p>
+<h2 id="确认-media-query-断点"><a href="#确认-media-query-断点" class="headerlink" title="确认 media query 断点"></a>确认 media query 断点</h2><p>先抓热门的萤幕解析度，例如平板 (768px) 及 iPhone 5 横式 (569px)，在这两个解析度之间会有一个断层，可能在宽度 6xx px 时版面会变得比较难看，此时就为这一段断层加条件：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@media(max-width: 767px) and (min-width: 569px)&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="media-query-到底要寫在一起還是分開寫"><a href="#media-query-到底要寫在一起還是分開寫" class="headerlink" title="media query 到底要寫在一起還是分開寫"></a>media query 到底要寫在一起還是分開寫</h2><p>同一個 <code>&lt;div&gt;</code> 就寫在一起，包含該 <code>&lt;div&gt;</code> 的子元素。</p>
-<h2 id="不要習慣性寫死高度"><a href="#不要習慣性寫死高度" class="headerlink" title="不要習慣性寫死高度"></a>不要習慣性寫死高度</h2><p>在 PC 版上是可以寫固定高度的，因為版面不會隨螢幕大小而變化。但是要記得在 media query 中多加一行 <code>height: auto</code>，讓內容自適應延伸。</p>
+<h2 id="media-query-到底要写在一起还是分开写"><a href="#media-query-到底要写在一起还是分开写" class="headerlink" title="media query 到底要写在一起还是分开写"></a>media query 到底要写在一起还是分开写</h2><p>同一个 <code>&lt;div&gt;</code> 就写在一起，包含该 <code>&lt;div&gt;</code> 的子元素。</p>
+<h2 id="不要习惯性写死高度"><a href="#不要习惯性写死高度" class="headerlink" title="不要习惯性写死高度"></a>不要习惯性写死高度</h2><p>在 PC 版上是可以写固定高度的，因为版面不会随萤幕大小而变化。但是要记得在 media query 中多加一行 <code>height: auto</code>，让内容自适应延伸。</p>
 
     </div>
 
@@ -301,7 +301,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/CSS/" rel="tag"># CSS</a>
-              <a href="/tags/%E9%9F%BF%E6%87%89%E5%BC%8F%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88/" rel="tag"># 響應式網頁設計</a>
+              <a href="/tags/%E9%9F%BF%E6%87%89%E5%BC%8F%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88/" rel="tag"># 响应式网页设计</a>
           </div>
 
         
@@ -310,12 +310,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/rwd/20191216/822299504/" rel="prev" title="[RWD] 響應式網頁 - 固定式選單及 off-canvas 選單">
-      <i class="fa fa-chevron-left"></i> [RWD] 響應式網頁 - 固定式選單及 off-canvas 選單
+    <a href="/rwd/20191216/822299504/" rel="prev" title="[RWD] 响应式网页 - 固定式选单及 off-canvas 选单">
+      <i class="fa fa-chevron-left"></i> [RWD] 响应式网页 - 固定式选单及 off-canvas 选单
     </a></div>
       <div class="post-nav-item">
-    <a href="/SASS/20191217/1546590558/" rel="next" title="[SASS] SASS 基礎概念 1">
-      [SASS] SASS 基礎概念 1 <i class="fa fa-chevron-right"></i>
+    <a href="/SASS/20191217/1546590558/" rel="next" title="[SASS] SASS 基础概念 1">
+      [SASS] SASS 基础概念 1 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -386,7 +386,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#確認-media-query-斷點"><span class="nav-number">1.</span> <span class="nav-text">確認 media query 斷點</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#media-query-到底要寫在一起還是分開寫"><span class="nav-number">2.</span> <span class="nav-text">media query 到底要寫在一起還是分開寫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不要習慣性寫死高度"><span class="nav-number">3.</span> <span class="nav-text">不要習慣性寫死高度</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#确认-media-query-断点"><span class="nav-number">1.</span> <span class="nav-text">确认 media query 断点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#media-query-到底要写在一起还是分开写"><span class="nav-number">2.</span> <span class="nav-text">media query 到底要写在一起还是分开写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不要习惯性写死高度"><span class="nav-number">3.</span> <span class="nav-text">不要习惯性写死高度</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -409,7 +409,7 @@
             <a href="/categories/">
           
         <span class="site-state-item-count">12</span>
-        <span class="site-state-item-name">分類</span></a>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
@@ -546,7 +546,7 @@
         config: {page: {
             url: "http://lineargenius.github.io/rwd/20191217/296575981/",
             identifier: "rwd/20191217/296575981/",
-            title: "[RWD] 響應式網頁 - 實作常見問題與錯誤"
+            title: "[RWD] 响应式网页 - 实作常见问题与错误"
           }
         }
       });

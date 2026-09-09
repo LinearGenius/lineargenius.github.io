@@ -47,12 +47,12 @@
   };
 </script>
 
-  <meta name="description" content="在進入公司以前，我都是用 git merge 來合併分支；直到進入公司後，團隊都是用 git rebase 來合併，一開始很不習慣，到最近我才漸漸習慣這種合併方式，因此想把 rebase 指令適用的場景記錄下來，跟大家分享。">
+  <meta name="description" content="在进入公司以前，我都是用 git merge 来合并分支；直到进入公司后，团队都是用 git rebase 来合并，一开始很不习惯，到最近我才渐渐习惯这种合并方式，因此想把 rebase 指令适用的场景记录下来，跟大家分享。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在工作中學 Git：rebase 指令">
+<meta property="og:title" content="在工作中学 Git：rebase 指令">
 <meta property="og:url" content="http:&#x2F;&#x2F;lineargenius.github.io&#x2F;Git&#x2F;20200608&#x2F;1285084183&#x2F;index.html">
 <meta property="og:site_name" content="前端日志">
-<meta property="og:description" content="在進入公司以前，我都是用 git merge 來合併分支；直到進入公司後，團隊都是用 git rebase 來合併，一開始很不習慣，到最近我才漸漸習慣這種合併方式，因此想把 rebase 指令適用的場景記錄下來，跟大家分享。">
+<meta property="og:description" content="在进入公司以前，我都是用 git merge 来合并分支；直到进入公司后，团队都是用 git rebase 来合并，一开始很不习惯，到最近我才渐渐习惯这种合并方式，因此想把 rebase 指令适用的场景记录下来，跟大家分享。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;2guwwkO.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;UH4vBmc.png">
@@ -78,7 +78,7 @@
   };
 </script>
 
-  <title>在工作中學 Git：rebase 指令 | 前端日志</title>
+  <title>在工作中学 Git：rebase 指令 | 前端日志</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154635603-1"></script>
     <script>
@@ -138,7 +138,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切換導航欄">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -152,7 +152,7 @@
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -232,7 +232,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          在工作中學 Git：rebase 指令
+          在工作中学 Git：rebase 指令
         </h2>
 
         <div class="post-meta">
@@ -240,16 +240,16 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">發表於</span>
+              <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="創建時間：2020-06-08 23:06:58 / 修改時間：23:13:58" itemprop="dateCreated datePublished" datetime="2020-06-08T23:06:58+08:00">2020-06-08</time>
+              <time title="创建时间：2020-06-08 23:06:58 / 修改时间：23:13:58" itemprop="dateCreated datePublished" datetime="2020-06-08T23:06:58+08:00">2020-06-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分類於</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Git/" itemprop="url" rel="index">
                     <span itemprop="name">Git</span>
@@ -282,32 +282,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在進入公司以前，我都是用 <code>git merge</code> 來合併分支；直到進入公司後，團隊都是用 <code>git rebase</code> 來合併，一開始很不習慣，到最近我才漸漸習慣這種合併方式，因此想把 <code>rebase</code> 指令適用的場景記錄下來，跟大家分享。</p>
+        <p>在进入公司以前，我都是用 <code>git merge</code> 来合并分支；直到进入公司后，团队都是用 <code>git rebase</code> 来合并，一开始很不习惯，到最近我才渐渐习惯这种合并方式，因此想把 <code>rebase</code> 指令适用的场景记录下来，跟大家分享。</p>
 <a id="more"></a>
 
-<h2 id="什麼是-rebase"><a href="#什麼是-rebase" class="headerlink" title="什麼是 rebase"></a>什麼是 rebase</h2><p><code>rebase</code> 是 <code>merge</code> 以外的另一種合併方式，它會取出一連串的 commit，「複製」它們，然後把它們接在別的地方。</p>
-<p>跟 <code>merge</code> 的差別在於： <code>merge</code> 會產生額外的 commit 來合併兩個分支；而 <code>rebase</code> 則不會有額外的 commit，如果用線圖來表示的話，可以看到用 <code>rebase</code> 來合併分支時，線圖將會呈現一條直線。</p>
-<p>這樣一來，我們的 repo 將會有更好看的 commit 紀錄。</p>
-<p>這是用 <code>merge</code> 指令來合併的線圖：</p>
+<h2 id="什么是-rebase"><a href="#什么是-rebase" class="headerlink" title="什么是 rebase"></a>什么是 rebase</h2><p><code>rebase</code> 是 <code>merge</code> 以外的另一种合并方式，它会取出一连串的 commit，「复制」它们，然后把它们接在别的地方。</p>
+<p>跟 <code>merge</code> 的差别在于： <code>merge</code> 会产生额外的 commit 来合并两个分支；而 <code>rebase</code> 则不会有额外的 commit，如果用线图来表示的话，可以看到用 <code>rebase</code> 来合并分支时，线图将会呈现一条直线。</p>
+<p>这样一来，我们的 repo 将会有更好看的 commit 纪录。</p>
+<p>这是用 <code>merge</code> 指令来合并的线图：</p>
 <p><img src="https://i.imgur.com/2guwwkO.png" alt="Source: Learn Git Branching"></p>
-<p>這是使用 <code>rebase</code> 指令合併過後的線圖：</p>
+<p>这是使用 <code>rebase</code> 指令合并过后的线图：</p>
 <p><img src="https://i.imgur.com/UH4vBmc.png" alt="Source: Learn Git Branching"></p>
-<h2 id="使用目的"><a href="#使用目的" class="headerlink" title="使用目的"></a>使用目的</h2><p>我在工作上使用 rebase 的目的是，為了在遠端合併時不發生衝突，需要事先讓本地端的 feature branch 的前段長得跟 develop branch 一樣，而在後段多出自己新增的 commit。</p>
-<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><p><code>git rebase 要合併的分支</code></p>
-<h2 id="使用情境"><a href="#使用情境" class="headerlink" title="使用情境"></a>使用情境</h2><p><code>feature/add-addon-categories</code> 分支是從 <code>develop</code> 分支分出來的，在該分支做了一些開發後，準備要推到遠端、發 PR 給團隊成員 code review。在這之前，需要先 <code>rebase</code> 上游分支（<code>develop</code>），確保在遠端合併到 <code>develop</code> 時不會發生衝突。</p>
-<p>此時，就可以在 <code>feature/add-addon-categories</code> 中下這個指令：<code>git rebase develop</code></p>
-<h2 id="衝突"><a href="#衝突" class="headerlink" title="衝突"></a>衝突</h2><p><code>rebase</code> 的過程中跟 <code>merge</code> 一樣可能會遇到衝突，解衝突時一個 commit 要解一次，衝突解完後要依循以下步驟：<br><code>git add .</code> ⇒ <code>git rebase --continue</code> ⇒ 下一個衝突 ⇒ 重複。</p>
-<p>至於遇到衝突可以怎麼解，我就留到之後再分享啦～<del>不然我已經快沒梗了</del></p>
-<h2 id="狀況題"><a href="#狀況題" class="headerlink" title="狀況題"></a>狀況題</h2><h3 id="rebase-完-push-失敗，git-提示先-pull"><a href="#rebase-完-push-失敗，git-提示先-pull" class="headerlink" title="rebase 完 push 失敗，git 提示先 pull"></a>rebase 完 push 失敗，git 提示先 pull</h3><p>如果你的分支曾經推到遠端過，然後中間又 <code>rebase</code> 其他分支，那之後再 <code>push</code> 時，Git 就會叫你 <code>pull</code> 遠端下來再推一次。</p>
-<p>這是因為 Git 此時判定本地端的內容比遠端的內容還舊，所以才會出現這種提示，然而，<strong>此時不能 <code>pull</code></strong>，不然程式碼又會變成舊的！</p>
-<p>所以這時候的解法就是要用 <code>git push --force-with-lease</code> ，硬推上去更新遠端內容。</p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
-<li><a href="https://backlog.com/git-tutorial/tw/stepup/stepup2_8.html" target="_blank" rel="external nofollow noopener noreferrer">使用 rebase 合併【教學1 使用分支】 | 連猴子都能懂的Git入門指南 | 貝格樂（Backlog）</a></li>
-<li><a href="https://gitbook.tw/chapters/branch/merge-with-rebase.html" target="_blank" rel="external nofollow noopener noreferrer">另一種合併方式（使用 rebase） - 為你自己學 Git | 高見龍</a></li>
+<h2 id="使用目的"><a href="#使用目的" class="headerlink" title="使用目的"></a>使用目的</h2><p>我在工作上使用 rebase 的目的是，为了在远端合并时不发生冲突，需要事先让本地端的 feature branch 的前段长得跟 develop branch 一样，而在后段多出自己新增的 commit。</p>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><p><code>git rebase 要合并的分支</code></p>
+<h2 id="使用情境"><a href="#使用情境" class="headerlink" title="使用情境"></a>使用情境</h2><p><code>feature/add-addon-categories</code> 分支是从 <code>develop</code> 分支分出来的，在该分支做了一些开发后，准备要推到远端、发 PR 给团队成员 code review。在这之前，需要先 <code>rebase</code> 上游分支（<code>develop</code>），确保在远端合并到 <code>develop</code> 时不会发生冲突。</p>
+<p>此时，就可以在 <code>feature/add-addon-categories</code> 中下这个指令：<code>git rebase develop</code></p>
+<h2 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h2><p><code>rebase</code> 的过程中跟 <code>merge</code> 一样可能会遇到冲突，解冲突时一个 commit 要解一次，冲突解完后要依循以下步骤：<br><code>git add .</code> ⇒ <code>git rebase --continue</code> ⇒ 下一个冲突 ⇒ 重复。</p>
+<p>至于遇到冲突可以怎么解，我就留到之后再分享啦～<del>不然我已经快没梗了</del></p>
+<h2 id="状况题"><a href="#状况题" class="headerlink" title="状况题"></a>状况题</h2><h3 id="rebase-完-push-失败，git-提示先-pull"><a href="#rebase-完-push-失败，git-提示先-pull" class="headerlink" title="rebase 完 push 失败，git 提示先 pull"></a>rebase 完 push 失败，git 提示先 pull</h3><p>如果你的分支曾经推到远端过，然后中间又 <code>rebase</code> 其他分支，那之后再 <code>push</code> 时，Git 就会叫你 <code>pull</code> 远端下来再推一次。</p>
+<p>这是因为 Git 此时判定本地端的内容比远端的内容还旧，所以才会出现这种提示，然而，<strong>此时不能 <code>pull</code></strong>，不然程式码又会变成旧的！</p>
+<p>所以这时候的解法就是要用 <code>git push --force-with-lease</code> ，硬推上去更新远端内容。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://backlog.com/git-tutorial/tw/stepup/stepup2_8.html" target="_blank" rel="external nofollow noopener noreferrer">使用 rebase 合并【教学1 使用分支】 | 连猴子都能懂的Git入门指南 | 贝格乐（Backlog）</a></li>
+<li><a href="https://gitbook.tw/chapters/branch/merge-with-rebase.html" target="_blank" rel="external nofollow noopener noreferrer">另一种合并方式（使用 rebase） - 为你自己学 Git | 高见龙</a></li>
 <li><a href="https://learngitbranching.js.org/?locale=zh_TW" target="_blank" rel="external nofollow noopener noreferrer">Learn Git Branching</a></li>
 </ul>
 <hr>
-<p>都已經講到 <code>rebase</code> 了，感覺就應該要繼續講 <code>rebase -i</code>（互動式 rebase），不過就讓我挪到下禮拜再寫吧！<del>因為真的快沒題材了</del></p>
+<p>都已经讲到 <code>rebase</code> 了，感觉就应该要继续讲 <code>rebase -i</code>（互动式 rebase），不过就让我挪到下礼拜再写吧！<del>因为真的快没题材了</del></p>
 
     </div>
 
@@ -329,12 +329,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/javascript/20200601/270454248/" rel="prev" title="[JS] 講座筆記：JavaScript 設計模式——關注點分離">
-      <i class="fa fa-chevron-left"></i> [JS] 講座筆記：JavaScript 設計模式——關注點分離
+    <a href="/javascript/20200601/270454248/" rel="prev" title="[JS] 讲座笔记：JavaScript 设计模式——关注点分离">
+      <i class="fa fa-chevron-left"></i> [JS] 讲座笔记：JavaScript 设计模式——关注点分离
     </a></div>
       <div class="post-nav-item">
-    <a href="/Git/20200621/438927621/" rel="next" title="在工作中學 Git：rebase -i 指令">
-      在工作中學 Git：rebase -i 指令 <i class="fa fa-chevron-right"></i>
+    <a href="/Git/20200621/438927621/" rel="next" title="在工作中学 Git：rebase -i 指令">
+      在工作中学 Git：rebase -i 指令 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -405,7 +405,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什麼是-rebase"><span class="nav-number">1.</span> <span class="nav-text">什麼是 rebase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用目的"><span class="nav-number">2.</span> <span class="nav-text">使用目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令"><span class="nav-number">3.</span> <span class="nav-text">指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用情境"><span class="nav-number">4.</span> <span class="nav-text">使用情境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#衝突"><span class="nav-number">5.</span> <span class="nav-text">衝突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#狀況題"><span class="nav-number">6.</span> <span class="nav-text">狀況題</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rebase-完-push-失敗，git-提示先-pull"><span class="nav-number">6.1.</span> <span class="nav-text">rebase 完 push 失敗，git 提示先 pull</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考資料"><span class="nav-number">7.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-rebase"><span class="nav-number">1.</span> <span class="nav-text">什么是 rebase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用目的"><span class="nav-number">2.</span> <span class="nav-text">使用目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令"><span class="nav-number">3.</span> <span class="nav-text">指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用情境"><span class="nav-number">4.</span> <span class="nav-text">使用情境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冲突"><span class="nav-number">5.</span> <span class="nav-text">冲突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状况题"><span class="nav-number">6.</span> <span class="nav-text">状况题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rebase-完-push-失败，git-提示先-pull"><span class="nav-number">6.1.</span> <span class="nav-text">rebase 完 push 失败，git 提示先 pull</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -428,7 +428,7 @@
             <a href="/categories/">
           
         <span class="site-state-item-count">12</span>
-        <span class="site-state-item-name">分類</span></a>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
@@ -565,7 +565,7 @@
         config: {page: {
             url: "http://lineargenius.github.io/Git/20200608/1285084183/",
             identifier: "Git/20200608/1285084183/",
-            title: "在工作中學 Git：rebase 指令"
+            title: "在工作中学 Git：rebase 指令"
           }
         }
       });

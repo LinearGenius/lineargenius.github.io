@@ -47,12 +47,12 @@
   };
 </script>
 
-  <meta name="description" content="這篇筆記來自於 2020.1.9 六角學院的線上研討會，講者為蘇泰安老師，老師不只講解了如何善用函數來幫助程式碼更簡潔，也介紹了一些以函數為編寫基礎的語言（例如 Elixir），不過由於我對 Javascript 以外的語言並不了解，所以這篇筆記並不會著墨於其他語言。">
+  <meta name="description" content="这篇笔记来自于 2020.1.9 六角学院的线上研讨会，讲者为苏泰安老师，老师不只讲解了如何善用函数来帮助程式码更简洁，也介绍了一些以函数为编写基础的语言（例如 Elixir），不过由于我对 Javascript 以外的语言并不了解，所以这篇笔记并不会著墨于其他语言。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[JS] 講座筆記：函數式程式設計">
+<meta property="og:title" content="[JS] 讲座笔记：函数式程式设计">
 <meta property="og:url" content="http:&#x2F;&#x2F;lineargenius.github.io&#x2F;javascript&#x2F;20200119&#x2F;2279697082&#x2F;index.html">
 <meta property="og:site_name" content="前端日志">
-<meta property="og:description" content="這篇筆記來自於 2020.1.9 六角學院的線上研討會，講者為蘇泰安老師，老師不只講解了如何善用函數來幫助程式碼更簡潔，也介紹了一些以函數為編寫基礎的語言（例如 Elixir），不過由於我對 Javascript 以外的語言並不了解，所以這篇筆記並不會著墨於其他語言。">
+<meta property="og:description" content="这篇笔记来自于 2020.1.9 六角学院的线上研讨会，讲者为苏泰安老师，老师不只讲解了如何善用函数来帮助程式码更简洁，也介绍了一些以函数为编写基础的语言（例如 Elixir），不过由于我对 Javascript 以外的语言并不了解，所以这篇笔记并不会著墨于其他语言。">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-01-19T09:38:56.000Z">
 <meta property="article:modified_time" content="2020-02-10T03:53:45.132Z">
@@ -74,7 +74,7 @@
   };
 </script>
 
-  <title>[JS] 講座筆記：函數式程式設計 | 前端日志</title>
+  <title>[JS] 讲座笔记：函数式程式设计 | 前端日志</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154635603-1"></script>
     <script>
@@ -134,7 +134,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切換導航欄">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -148,7 +148,7 @@
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -228,7 +228,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          [JS] 講座筆記：函數式程式設計
+          [JS] 讲座笔记：函数式程式设计
         </h2>
 
         <div class="post-meta">
@@ -236,22 +236,22 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">發表於</span>
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="創建時間：2020-01-19 17:38:56" itemprop="dateCreated datePublished" datetime="2020-01-19T17:38:56+08:00">2020-01-19</time>
+              <time title="创建时间：2020-01-19 17:38:56" itemprop="dateCreated datePublished" datetime="2020-01-19T17:38:56+08:00">2020-01-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-02-10 11:53:45" itemprop="dateModified" datetime="2020-02-10T11:53:45+08:00">2020-02-10</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-10 11:53:45" itemprop="dateModified" datetime="2020-02-10T11:53:45+08:00">2020-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">分類於</span>
+              <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/javascript/" itemprop="url" rel="index">
                     <span itemprop="name">JavaScript</span>
@@ -284,30 +284,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>這篇筆記來自於 2020.1.9 六角學院的線上研討會，講者為蘇泰安老師，老師不只講解了如何善用函數來幫助程式碼更簡潔，也介紹了一些以函數為編寫基礎的語言（例如 Elixir），不過由於我對 Javascript 以外的語言並不了解，所以這篇筆記並不會著墨於其他語言。</p>
+        <p>这篇笔记来自于 2020.1.9 六角学院的线上研讨会，讲者为苏泰安老师，老师不只讲解了如何善用函数来帮助程式码更简洁，也介绍了一些以函数为编写基础的语言（例如 Elixir），不过由于我对 Javascript 以外的语言并不了解，所以这篇笔记并不会著墨于其他语言。</p>
 <a id="more"></a>
 
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在 JavaScript 函式是一級公民，可以傳入另一個函式作為參數。<br>傳入其他函式作為參數的函式稱為 Callback function。<br>而接收其他函式當作自己的參數的則稱為高階函式。</p>
-<h2 id="高階函式-High-order-function-：處理函式的函式"><a href="#高階函式-High-order-function-：處理函式的函式" class="headerlink" title="高階函式(High order function)：處理函式的函式"></a>高階函式(High order function)：處理函式的函式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cook</span> (<span class="params">food1,food2, f</span>) </span>&#123;</span><br><span class="line">  f(food1);</span><br><span class="line">  f(food2);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;food1&#125;</span> in <span class="subst">$&#123;food2&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">cook(<span class="string">'beef'</span>, <span class="string">'curry'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;<span class="built_in">console</span>.log(x)&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在 JavaScript 函式是一级公民，可以传入另一个函式作为参数。<br>传入其他函式作为参数的函式称为 Callback function。<br>而接收其他函式当作自己的参数的则称为高阶函式。</p>
+<h2 id="高阶函式-High-order-function-：处理函式的函式"><a href="#高阶函式-High-order-function-：处理函式的函式" class="headerlink" title="高阶函式(High order function)：处理函式的函式"></a>高阶函式(High order function)：处理函式的函式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cook</span> (<span class="params">food1,food2, f</span>) </span>&#123;</span><br><span class="line">  f(food1);</span><br><span class="line">  f(food2);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;food1&#125;</span> in <span class="subst">$&#123;food2&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">cook(<span class="string">'beef'</span>, <span class="string">'curry'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;<span class="built_in">console</span>.log(x)&#125;);</span><br></pre></td></tr></table></figure>
 
-<h2 id="高階函式三大台柱：map-、reduce-、filter"><a href="#高階函式三大台柱：map-、reduce-、filter" class="headerlink" title="高階函式三大台柱：map()、reduce()、filter()"></a>高階函式三大台柱：<code>map()</code>、<code>reduce()</code>、<code>filter()</code></h2><h3 id="map"><a href="#map" class="headerlink" title="map()"></a>map()</h3><p>對 A 陣列進行某種處理，回傳處理過後的新陣列 B。</p>
+<h2 id="高阶函式三大台柱：map-、reduce-、filter"><a href="#高阶函式三大台柱：map-、reduce-、filter" class="headerlink" title="高阶函式三大台柱：map()、reduce()、filter()"></a>高阶函式三大台柱：<code>map()</code>、<code>reduce()</code>、<code>filter()</code></h2><h3 id="map"><a href="#map" class="headerlink" title="map()"></a>map()</h3><p>对 A 阵列进行某种处理，回传处理过后的新阵列 B。</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let result = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>].map(i =&gt; i * <span class="number">10</span>);</span><br><span class="line">console.log(result);</span><br><span class="line"><span class="comment">// [10,20,30,40,50]</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="filter"><a href="#filter" class="headerlink" title="filter()"></a>filter()</h3><p>從 A 陣列中篩選符合某條件的值，符合條件的值以新陣列 B 回傳。</p>
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter()"></a>filter()</h3><p>从 A 阵列中筛选符合某条件的值，符合条件的值以新阵列 B 回传。</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let result = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>].map(i =&gt; i % <span class="number">2</span> == <span class="number">0</span>);</span><br><span class="line">console.log(result);</span><br><span class="line"><span class="comment">// [2,4,6]</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce()"></a>reduce()</h3><p>有順序上的依賴，依序對陣列內的值進行處理（累加、相乘等等）。</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// for 迴圈的累加寫法</span></span><br><span class="line">let ary = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line">let result = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (let i of ary)&#123;</span><br><span class="line">  result = result + i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce()"></a>reduce()</h3><p>有顺序上的依赖，依序对阵列内的值进行处理（累加、相乘等等）。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// for 回圈的累加写法</span></span><br><span class="line">let ary = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line">let result = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (let i of ary)&#123;</span><br><span class="line">  result = result + i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// reduce() 的累加寫法</span></span><br><span class="line"><span class="keyword">let</span> result = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>].reduce(reducer, <span class="number">0</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">accu, i</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> accu + i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 起始值為 0</span></span><br><span class="line"><span class="comment">// accu 為一個暫存、累加的值，就如同上一段在 for 迴圈之前宣告的 result</span></span><br><span class="line"><span class="comment">// 第一次遞迴：accu 為 0，i 為 1，相加為 1</span></span><br><span class="line"><span class="comment">// 第二次遞迴：accu 為 1，i 為 2，相加為 3</span></span><br><span class="line"><span class="comment">// 以下類推</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 起始值的型別跟最後運算完的型別一致</span></span><br><span class="line"><span class="comment">// 常用的起始值：0, 1, [], '', &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// reduce() 的累加写法</span></span><br><span class="line"><span class="keyword">let</span> result = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>].reduce(reducer, <span class="number">0</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">accu, i</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> accu + i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 起始值为 0</span></span><br><span class="line"><span class="comment">// accu 为一个暂存、累加的值，就如同上一段在 for 回圈之前宣告的 result</span></span><br><span class="line"><span class="comment">// 第一次递回：accu 为 0，i 为 1，相加为 1</span></span><br><span class="line"><span class="comment">// 第二次递回：accu 为 1，i 为 2，相加为 3</span></span><br><span class="line"><span class="comment">// 以下类推</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 起始值的型别跟最后运算完的型别一致</span></span><br><span class="line"><span class="comment">// 常用的起始值：0, 1, [], '', &#123;&#125;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="迴圈跟-map-、reduce-、filter-的差別："><a href="#迴圈跟-map-、reduce-、filter-的差別：" class="headerlink" title="迴圈跟 map()、reduce()、filter() 的差別："></a>迴圈跟 <code>map()</code>、<code>reduce()</code>、<code>filter()</code> 的差別：</h3><p>迴圈一定要依序對值進行處理，就像手搖店員對一個接一個的客人進行結帳；陣列方法不強調值的處理順序，只強調處理的手法。</p>
-<h2 id="閉包-Closure"><a href="#閉包-Closure" class="headerlink" title="閉包 Closure"></a>閉包 Closure</h2><p>利用閉包（closure）的作法，讓函式有自己的私有變數，避免函式受到外在值的變動而被污染。當你看到一個函式內 return 了另一個函式，通常就是有用到閉包的概念。<br>參照：<a href="https://taian.su/2012-10-17-explaining-javascript-scope-and-closures-by-robert-nyman/" target="_blank" rel="external nofollow noopener noreferrer">Robert Nyman: 解釋 JavaScript 的 scope 及 closures</a>、<a href="https://pjchender.blogspot.com/2017/05/javascript-closure.html" target="_blank" rel="external nofollow noopener noreferrer">深入淺出瞭解 JavaScript 閉包（closure）</a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下情形會讓函式的結果受到外在變數的污染</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params">i</span>) </span>&#123; <span class="keyword">return</span> a + i&#125;</span><br><span class="line"><span class="built_in">console</span>.log(foo(<span class="number">100</span>));</span><br><span class="line">a = <span class="number">99</span>;</span><br><span class="line"><span class="built_in">console</span>.log(foo(<span class="number">100</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 兩次 console 結果不一樣</span></span><br><span class="line"><span class="comment">// 因為函式會吃到參數以外的變數值</span></span><br><span class="line"><span class="comment">// 而且改變變數值時，也會影響到函式結果</span></span><br></pre></td></tr></table></figure>
+<h3 id="回圈跟-map-、reduce-、filter-的差别："><a href="#回圈跟-map-、reduce-、filter-的差别：" class="headerlink" title="回圈跟 map()、reduce()、filter() 的差别："></a>回圈跟 <code>map()</code>、<code>reduce()</code>、<code>filter()</code> 的差别：</h3><p>回圈一定要依序对值进行处理，就像手摇店员对一个接一个的客人进行结帐；阵列方法不强调值的处理顺序，只强调处理的手法。</p>
+<h2 id="闭包-Closure"><a href="#闭包-Closure" class="headerlink" title="闭包 Closure"></a>闭包 Closure</h2><p>利用闭包（closure）的作法，让函式有自己的私有变数，避免函式受到外在值的变动而被污染。当你看到一个函式内 return 了另一个函式，通常就是有用到闭包的概念。<br>参照：<a href="https://taian.su/2012-10-17-explaining-javascript-scope-and-closures-by-robert-nyman/" target="_blank" rel="external nofollow noopener noreferrer">Robert Nyman: 解释 JavaScript 的 scope 及 closures</a>、<a href="https://pjchender.blogspot.com/2017/05/javascript-closure.html" target="_blank" rel="external nofollow noopener noreferrer">深入浅出了解 JavaScript 闭包（closure）</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下情形会让函式的结果受到外在变数的污染</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params">i</span>) </span>&#123; <span class="keyword">return</span> a + i&#125;</span><br><span class="line"><span class="built_in">console</span>.log(foo(<span class="number">100</span>));</span><br><span class="line">a = <span class="number">99</span>;</span><br><span class="line"><span class="built_in">console</span>.log(foo(<span class="number">100</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 两次 console 结果不一样</span></span><br><span class="line"><span class="comment">// 因为函式会吃到参数以外的变数值</span></span><br><span class="line"><span class="comment">// 而且改变变数值时，也会影响到函式结果</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fooDad</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + i;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> foo;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> foo = fooDad();</span><br><span class="line"><span class="built_in">console</span>.log(foo(<span class="number">100</span>));  <span class="comment">// 101</span></span><br><span class="line">a = <span class="number">99</span>;</span><br><span class="line"><span class="built_in">console</span>.log(foo(<span class="number">100</span>));  <span class="comment">// 101，不受污染</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="學員提問"><a href="#學員提問" class="headerlink" title="學員提問"></a>學員提問</h2><p>Q: 具名函式 VS 匿名函式的區別？<br>A: 具名函式可提升，匿名不能提升（會 <code>undefined</code>）。</p>
+<h2 id="学员提问"><a href="#学员提问" class="headerlink" title="学员提问"></a>学员提问</h2><p>Q: 具名函式 VS 匿名函式的区别？<br>A: 具名函式可提升，匿名不能提升（会 <code>undefined</code>）。</p>
 
     </div>
 
@@ -328,12 +328,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/Vuejs/20191226/433566073/" rel="prev" title="[Vue] Vue Router 配置與運作">
-      <i class="fa fa-chevron-left"></i> [Vue] Vue Router 配置與運作
+    <a href="/Vuejs/20191226/433566073/" rel="prev" title="[Vue] Vue Router 配置与运作">
+      <i class="fa fa-chevron-left"></i> [Vue] Vue Router 配置与运作
     </a></div>
       <div class="post-nav-item">
-    <a href="/Vuejs/20200121/3810438936/" rel="next" title="[Vue] Vue CLI 3 使用筆記及如何將專案升級至 CLI 3">
-      [Vue] Vue CLI 3 使用筆記及如何將專案升級至 CLI 3 <i class="fa fa-chevron-right"></i>
+    <a href="/Vuejs/20200121/3810438936/" rel="next" title="[Vue] Vue CLI 3 使用笔记及如何将专案升级至 CLI 3">
+      [Vue] Vue CLI 3 使用笔记及如何将专案升级至 CLI 3 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -404,7 +404,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高階函式-High-order-function-：處理函式的函式"><span class="nav-number">2.</span> <span class="nav-text">高階函式(High order function)：處理函式的函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高階函式三大台柱：map-、reduce-、filter"><span class="nav-number">3.</span> <span class="nav-text">高階函式三大台柱：map()、reduce()、filter()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-number">3.1.</span> <span class="nav-text">map()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter"><span class="nav-number">3.2.</span> <span class="nav-text">filter()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce"><span class="nav-number">3.3.</span> <span class="nav-text">reduce()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迴圈跟-map-、reduce-、filter-的差別："><span class="nav-number">3.4.</span> <span class="nav-text">迴圈跟 map()、reduce()、filter() 的差別：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#閉包-Closure"><span class="nav-number">4.</span> <span class="nav-text">閉包 Closure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#學員提問"><span class="nav-number">5.</span> <span class="nav-text">學員提問</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高阶函式-High-order-function-：处理函式的函式"><span class="nav-number">2.</span> <span class="nav-text">高阶函式(High order function)：处理函式的函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高阶函式三大台柱：map-、reduce-、filter"><span class="nav-number">3.</span> <span class="nav-text">高阶函式三大台柱：map()、reduce()、filter()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-number">3.1.</span> <span class="nav-text">map()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter"><span class="nav-number">3.2.</span> <span class="nav-text">filter()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce"><span class="nav-number">3.3.</span> <span class="nav-text">reduce()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回圈跟-map-、reduce-、filter-的差别："><span class="nav-number">3.4.</span> <span class="nav-text">回圈跟 map()、reduce()、filter() 的差别：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包-Closure"><span class="nav-number">4.</span> <span class="nav-text">闭包 Closure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学员提问"><span class="nav-number">5.</span> <span class="nav-text">学员提问</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -427,7 +427,7 @@
             <a href="/categories/">
           
         <span class="site-state-item-count">12</span>
-        <span class="site-state-item-name">分類</span></a>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
@@ -564,7 +564,7 @@
         config: {page: {
             url: "http://lineargenius.github.io/javascript/20200119/2279697082/",
             identifier: "javascript/20200119/2279697082/",
-            title: "[JS] 講座筆記：函數式程式設計"
+            title: "[JS] 讲座笔记：函数式程式设计"
           }
         }
       });
