@@ -1,340 +1,179 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
+
   <url>
     <loc>http://lineargenius.github.io/Git/20200621/438927621/</loc>
-    
+
     <lastmod>2020-06-21T05:08:45.566Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/javascript/20200601/270454248/</loc>
-    
+
     <lastmod>2020-06-08T15:14:55.233Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/Git/20200608/1285084183/</loc>
-    
+
     <lastmod>2020-06-08T15:13:58.367Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/Gulp/20200525/2363080042/</loc>
-    
+
     <lastmod>2020-05-25T12:42:59.351Z</lastmod>
-    
+
   </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/20200518/2522345259/</loc>
-    
-    <lastmod>2020-05-18T15:06:00.127Z</lastmod>
-    
-  </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/javascript/20200504/221423942/</loc>
-    
+
     <lastmod>2020-05-04T14:09:10.204Z</lastmod>
-    
+
   </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/%E8%81%B7%E6%B6%AF%E8%88%87%E5%AD%B8%E7%BF%92/20200427/1054851528/</loc>
-    
-    <lastmod>2020-04-27T14:35:58.064Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20200420/127038282/</loc>
-    
-    <lastmod>2020-04-20T03:23:59.751Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20200406/1863907667/</loc>
-    
-    <lastmod>2020-04-06T15:42:07.026Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191218/2429605945/</loc>
-    
-    <lastmod>2020-03-30T07:11:42.014Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20200330/3884529085/</loc>
-    
-    <lastmod>2020-03-30T04:45:16.633Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20200323/1597330136/</loc>
-    
-    <lastmod>2020-03-30T04:31:13.725Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191218/2311842168/</loc>
-    
-    <lastmod>2020-03-30T04:17:24.377Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/20200316/2576586368/</loc>
-    
-    <lastmod>2020-03-23T04:36:32.537Z</lastmod>
-    
-  </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/Gulp/20200310/2050018576/</loc>
-    
+
     <lastmod>2020-03-09T16:13:32.159Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/javascript/20200302/2110342105/</loc>
-    
+
     <lastmod>2020-03-02T03:16:49.031Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/javascript/20200224/3747532111/</loc>
-    
+
     <lastmod>2020-03-02T03:06:40.090Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/D3-js/20200217/1734732239/</loc>
-    
+
     <lastmod>2020-02-17T15:48:41.721Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/UI-UX/20200210/3766866311/</loc>
-    
+
     <lastmod>2020-02-14T03:15:53.282Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/javascript/20200119/2279697082/</loc>
-    
+
     <lastmod>2020-02-10T03:53:45.132Z</lastmod>
-    
+
   </url>
-  
+
   <url>
-    <loc>http://lineargenius.github.io/Vuejs/20200121/3810438936/</loc>
-    
-    <lastmod>2020-01-21T16:06:20.951Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191225/1488994884/</loc>
-    
-    <lastmod>2020-01-21T15:39:30.381Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191226/433566073/</loc>
-    
+    <loc>https://lineargenius.github.io/uncategorized/20191226/433566073/</loc>
+
     <lastmod>2019-12-26T15:15:41.266Z</lastmod>
-    
+
   </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191224/3312282522/</loc>
-    
-    <lastmod>2019-12-23T16:35:13.893Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191222/3102883103/</loc>
-    
-    <lastmod>2019-12-22T06:46:55.195Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191222/2039005974/</loc>
-    
-    <lastmod>2019-12-22T06:34:30.997Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191221/4254408561/</loc>
-    
-    <lastmod>2019-12-21T07:07:40.473Z</lastmod>
-    
-  </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/categories/index.html</loc>
-    
+
     <lastmod>2019-12-21T06:47:26.748Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/tags/index.html</loc>
-    
+
     <lastmod>2019-12-21T06:47:26.748Z</lastmod>
-    
+
   </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191219/1844116139/</loc>
-    
-    <lastmod>2019-12-21T06:47:26.747Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191218/266480435/</loc>
-    
-    <lastmod>2019-12-21T06:47:26.747Z</lastmod>
-    
-  </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/hexo/20191217/2656253328/</loc>
-    
+
     <lastmod>2019-12-21T06:47:26.747Z</lastmod>
-    
+
   </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/hexo/20191216/2697934891/</loc>
-    
-    <lastmod>2019-12-21T06:47:26.747Z</lastmod>
-    
-  </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/SASS/20191217/3307620580/</loc>
-    
+
     <lastmod>2019-12-21T06:47:26.746Z</lastmod>
-    
+
   </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191217/300157404/</loc>
-    
-    <lastmod>2019-12-21T06:47:26.746Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191220/2032442117/</loc>
-    
-    <lastmod>2019-12-21T06:47:26.746Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191218/150943901/</loc>
-    
-    <lastmod>2019-12-21T06:47:26.746Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191220/3720178681/</loc>
-    
-    <lastmod>2019-12-21T06:47:26.746Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lineargenius.github.io/Vuejs/20191219/714316638/</loc>
-    
-    <lastmod>2019-12-21T06:47:26.746Z</lastmod>
-    
-  </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/rwd/20191216/822299504/</loc>
-    
+
     <lastmod>2019-12-21T06:47:26.745Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/rwd/20191216/3809709620/</loc>
-    
+
     <lastmod>2019-12-21T06:47:26.745Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/rwd/20191217/296575981/</loc>
-    
+
     <lastmod>2019-12-21T06:47:26.745Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/rwd/20191216/3160700070/</loc>
-    
+
     <lastmod>2019-12-21T06:47:26.745Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/SASS/20191217/1546590558/</loc>
-    
+
     <lastmod>2019-12-21T06:47:26.745Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/htmlcss/20191217/214491870/</loc>
-    
+
     <lastmod>2019-12-21T06:47:26.744Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/htmlcss/20191216/3595727743/</loc>
-    
+
     <lastmod>2019-12-21T06:47:26.744Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/htmlcss/20191216/714228330/</loc>
-    
+
     <lastmod>2019-12-21T06:47:26.744Z</lastmod>
-    
+
   </url>
-  
+
   <url>
     <loc>http://lineargenius.github.io/Privacy-Policy/index.html</loc>
-    
+
     <lastmod>2019-12-21T06:47:26.744Z</lastmod>
-    
+
   </url>
-  
+
 </urlset>
