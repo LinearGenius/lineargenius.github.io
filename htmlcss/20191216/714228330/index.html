@@ -11,8 +11,6 @@
   <link rel="mask-icon" href="/images/iconfinder_horse_384872.png" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Sans TC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
@@ -47,12 +45,12 @@
   };
 </script>
 
-  <meta name="description" content="由于老师耳提面命，float 及 clear 是网页排版的基石之一，所以决定来汇整一下相关的资料，刚好某种程度上也可以承接上一篇的主题。">
+  <meta name="description" content="由于老师耳提面命，float 及 clear 是网页排版的基石之一，所以决定来汇整一下相关的数据，刚好某种程度上也可以承接上一篇的主题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[CSS] 浮动 (float) 与清除浮动 (clear)">
 <meta property="og:url" content="http:&#x2F;&#x2F;lineargenius.github.io&#x2F;htmlcss&#x2F;20191216&#x2F;714228330&#x2F;index.html">
 <meta property="og:site_name" content="前端日志">
-<meta property="og:description" content="由于老师耳提面命，float 及 clear 是网页排版的基石之一，所以决定来汇整一下相关的资料，刚好某种程度上也可以承接上一篇的主题。">
+<meta property="og:description" content="由于老师耳提面命，float 及 clear 是网页排版的基石之一，所以决定来汇整一下相关的数据，刚好某种程度上也可以承接上一篇的主题。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;upload.cc&#x2F;i1&#x2F;2019&#x2F;12&#x2F;17&#x2F;YZure6.jpeg">
 <meta property="og:image" content="https:&#x2F;&#x2F;upload.cc&#x2F;i1&#x2F;2019&#x2F;12&#x2F;17&#x2F;cZz5wI.jpeg">
@@ -117,7 +115,7 @@
   </style>
 </noscript>
 
-  <link rel="stylesheet" href="/css/guide-pet.css?v=1">
+  <link rel="stylesheet" href="/css/guide-pet.css?v=2">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -288,10 +286,10 @@
     <div class="post-body" itemprop="articleBody">
 
 
-        <p>由于老师耳提面命，<code>float</code> 及 <code>clear</code> 是网页排版的基石之一，所以决定来汇整一下相关的资料，刚好某种程度上也可以承接上一篇的主题。</p>
+        <p>由于老师耳提面命，<code>float</code> 及 <code>clear</code> 是网页排版的基石之一，所以决定来汇整一下相关的数据，刚好某种程度上也可以承接上一篇的主题。</p>
 <a id="more"></a>
 
-<h2 id="float-属性的使用时机"><a href="#float-属性的使用时机" class="headerlink" title="float 属性的使用时机"></a>float 属性的使用时机</h2><p>使用诸如 <code>&lt;div&gt;</code> 之类的区块元素排版时，默认的排列方式都是由左至右、由上至下。但如果我们今天想要做的是多栏式排版，或是让多个区块元素并排时，就需要使用 <code>float</code> 属性。</p>
+<h2 id="float-属性的使用时机"><a href="#float-属性的使用时机" class="headerlink" title="float 属性的使用时机"></a>float 属性的使用时机</h2><p>使用诸如 <code>&lt;div&gt;</code> 之类的区域元素排版时，默认的排列方式都是由左至右、由上至下。但如果我们今天想要做的是多栏式排版，或是让多个区域元素并排时，就需要使用 <code>float</code> 属性。</p>
 <h2 id="float-属性的值"><a href="#float-属性的值" class="headerlink" title="float 属性的值"></a>float 属性的值</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">float</span>: 浮动方向 ;</span><br></pre></td></tr></table></figure>
 <p>浮动方向可以用的值有 <code>left</code>、<code>right</code>、<code>none</code>（默认值，也就是不浮动）以及 <code>inherit</code>（继承自父层的属性），最后这个 <code>inherit</code> 尽量不要使用，避免 IE 不支持的情况发生。</p>
 <h2 id="clear-属性的使用时机"><a href="#clear-属性的使用时机" class="headerlink" title="clear 属性的使用时机"></a>clear 属性的使用时机</h2><p>如果想控制浮动元素的排版，就一定要懂 <code>clear</code> 属性的操作方式。</p>
@@ -303,8 +301,8 @@
 <p><code>clear</code> 属性可以有 3 种使用方法：</p>
 <ol>
 <li>在浮动元素的后面多加一个 <code>&lt;div&gt;</code>（命名为 <code>.clearfix</code>），并在 <code>.clearfix</code> 使用 <code>clear: both</code> 语法。</li>
-<li>在要清除浮动内容的父层多加一个 <code>.clearfix</code> 并使用伪元素。★<br><img src="https://upload.cc/i1/2019/12/17/cZz5wI.jpeg" alt="after 伪元素：通过 content 在元素的后面生成了内容为一个点的区块元素"></li>
-<li>在浮动元素后面的区块元素加上 <code>clear: both</code>。</li>
+<li>在要清除浮动内容的父层多加一个 <code>.clearfix</code> 并使用伪元素。★<br><img src="https://upload.cc/i1/2019/12/17/cZz5wI.jpeg" alt="after 伪元素：通过 content 在元素的后面生成了内容为一个点的区域元素"></li>
+<li>在浮动元素后面的区域元素加上 <code>clear: both</code>。</li>
 </ol>
 <blockquote>
 <p>使用 <code>clear</code> 属性须注意，在 <code>&lt;ul&gt;&lt;li&gt;</code> 结构中，必须在 <code>&lt;ul&gt;</code> 父元素清除子元素，没办法在 <code>&lt;li&gt;</code> 后面插入 <code>.clearfix</code>。</p>
@@ -333,8 +331,8 @@
       <i class="fa fa-chevron-left"></i> [CSS] 没有清除浮动，还是没搞清楚元素特性？
     </a></div>
       <div class="post-nav-item">
-    <a href="/rwd/20191216/3160700070/" rel="next" title="[RWD] 响应式网页 - 常用选单样式与注意事项">
-      [RWD] 响应式网页 - 常用选单样式与注意事项 <i class="fa fa-chevron-right"></i>
+    <a href="/rwd/20191216/3160700070/" rel="next" title="[RWD] 响应式网页 - 常用菜单样式与注意事项">
+      [RWD] 响应式网页 - 常用菜单样式与注意事项 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -578,6 +576,6 @@
   });
 </script>
 
-  <script defer src="/js/guide-pet.js?v=1"></script>
+  <script defer src="/js/guide-pet.js?v=2"></script>
 </body>
 </html>

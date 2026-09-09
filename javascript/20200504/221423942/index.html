@@ -12,9 +12,6 @@
   <link rel="mask-icon" href="/images/iconfinder_horse_384872.png" color="#222">
 
   <link rel="stylesheet" href="/css/main.css">
-
-  <link rel="stylesheet"
-    href="//fonts.googleapis.com/css?family=Noto Sans TC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
   <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
@@ -172,7 +169,7 @@
     </style>
   </noscript>
 
-  <link rel="stylesheet" href="/css/guide-pet.css?v=1">
+  <link rel="stylesheet" href="/css/guide-pet.css?v=2">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -444,7 +441,7 @@
 
                   <h3 id="类数组"><a href="#类数组" class="headerlink" title="类数组"></a>类数组</h3>
                   <p>有些东西外观很像数组，也具有一些数组的特性，但却不是真正的数组，称为类数组，例如用 <code>querySelectorAll()</code> 取出来的
-                    <code>NodeList</code> 会以类数组的形式呈现所有被选取的节点，但它却不是真正的数组。</p>
+                    <code>NodeList</code> 会以类数组的形式呈现所有被选择的节点，但它却不是真正的数组。</p>
                   <p>在新的空数组中，通过展开符号可以复制类数组中的内容，借此将类数组<strong>转为真正的数组</strong>。</p>
                   <figure class="highlight js">
                     <table>
@@ -459,7 +456,7 @@
                     </table>
                   </figure>
 
-                  <p>另一个类数组的例子是函数内建的 <code>arguments</code> 对象，<code>arguments</code> 会包含所有传入函数的参数。</p>
+                  <p>另一个类数组的例子是函数内置的 <code>arguments</code> 对象，<code>arguments</code> 会包含所有传入函数的参数。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -495,7 +492,7 @@
                   </figure>
 
                   <h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2>
-                  <p>解构赋值语法可以将数组或对象中的资料取出成独立变量。<br>基本上就是把等号右边的值，套用到等号左边。</p>
+                  <p>解构赋值语法可以将数组或对象中的数据取出成独立变量。<br>基本上就是把等号右边的值，应用到等号左边。</p>
                   <h3 id="数组解构赋值"><a href="#数组解构赋值" class="headerlink" title="数组解构赋值"></a>数组解构赋值</h3>
                   <h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4>
                   <p>在之前，我们如果要修改数组内的元素，都只能用 <code>=</code> 一个一个直接赋值。</p>
@@ -573,7 +570,7 @@
                   </figure>
 
                   <h4 id="变量交换"><a href="#变量交换" class="headerlink" title="变量交换"></a>变量交换</h4>
-                  <p>使用解构赋值可以即时交换两个变量的值，不需要通过声明第三个变量来达成。</p>
+                  <p>使用解构赋值可以实时交换两个变量的值，不需要通过声明第三个变量来达成。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -617,7 +614,7 @@
                   </figure>
 
                   <h3 id="对象解构赋值"><a href="#对象解构赋值" class="headerlink" title="对象解构赋值"></a>对象解构赋值</h3>
-                  <p>数组的解构赋值强调的是<strong>顺序</strong>，而对象的解构赋值强调的则是<strong>属性名称</strong>，属性名称必须相互对应才能够取得到值。</p>
+                  <p>数组的解构赋值强调的是<strong>顺序</strong>，而对象的解构赋值强调的则是<strong>属性名称</strong>，属性名称必须相互对应才能够获取到值。</p>
                   <p>在对象解构赋值中，冒号前是用来对应对象的属性名称，冒号后才是真正创建的变量名称和被赋值的对象。</p>
                   <p>参照：<a href="https://pjchender.blogspot.com/2017/01/es6-object-destructuring.html" target="_blank"
                       rel="external nofollow noopener noreferrer">[笔记] JavaScript ES6 中的对象解构赋值（object destructuring）</a>
@@ -669,8 +666,8 @@
                     </table>
                   </figure>
 
-                  <p>第一个范例中，左边默认 <code>apple</code> 等于 ‘苹果’，因为右边没有传新的值，所以会保持 <code>apple</code>
-                    为苹果。<br>第二个范例中，右边传了新的值，所以 <code>apple</code> 的值就变成凤梨了。</p>
+                  <p>第一个示例中，左边默认 <code>apple</code> 等于 ‘苹果’，因为右边没有传新的值，所以会保持 <code>apple</code>
+                    为苹果。<br>第二个示例中，右边传了新的值，所以 <code>apple</code> 的值就变成凤梨了。</p>
                   <h2 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h2>
                   <h3 id="对象缩写"><a href="#对象缩写" class="headerlink" title="对象缩写"></a>对象缩写</h3>
                   <p>将一个字符串与一个对象，在另一个新对象里合并。<br>新对象里的特性名称如果跟来源变量一致时，就可以使用缩写。</p>
@@ -695,7 +692,7 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"><span class="comment">// 将套件从 './App' 路径加载，并使用 App 这个变量名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router, <span class="comment">// 原始写法为 router: router</span></span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;</span><br><span class="line">&#125;);</span><br></pre>
+                          <pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"><span class="comment">// 将软件包从 './App' 路径加载，并使用 App 这个变量名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router, <span class="comment">// 原始写法为 router: router</span></span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;</span><br><span class="line">&#125;);</span><br></pre>
                         </td>
                       </tr>
                     </table>
@@ -795,7 +792,7 @@
                       rel="external nofollow noopener noreferrer">[笔记] JavaScript ES6 中的箭头函数（arrow function）及对 this
                       的影响</a></p>
                   <h3 id="善用方式"><a href="#善用方式" class="headerlink" title="善用方式"></a>善用方式</h3>
-                  <p>在进入箭头函数之前，先把要指向的对象（<code>this</code>）用变量储存起来。</p>
+                  <p>在进入箭头函数之前，先把要指向的对象（<code>this</code>）用变量存储起来。</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -834,7 +831,7 @@
                           <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
                         </td>
                         <td class="code">
-                          <pre><span class="line"><span class="comment">// JS</span></span><br><span class="line"><span class="comment">// 用 const 选取 DOM</span></span><br><span class="line"><span class="keyword">const</span> list = <span class="built_in">document</span>.querySelector(<span class="string">'.list'</span>)</span><br><span class="line"><span class="comment">// 用 const 储存要放入的图片路径</span></span><br><span class="line"><span class="keyword">const</span> imgURL = <span class="string">'logo.png'</span>;</span><br></pre>
+                          <pre><span class="line"><span class="comment">// JS</span></span><br><span class="line"><span class="comment">// 用 const 选择 DOM</span></span><br><span class="line"><span class="keyword">const</span> list = <span class="built_in">document</span>.querySelector(<span class="string">'.list'</span>)</span><br><span class="line"><span class="comment">// 用 const 存储要放入的图片路径</span></span><br><span class="line"><span class="keyword">const</span> imgURL = <span class="string">'logo.png'</span>;</span><br></pre>
                         </td>
                       </tr>
                     </table>
@@ -869,9 +866,9 @@
                   </figure>
 
                   <p>新写法中这个长得像重音符号的东西叫做「反引号」，<code>${}</code> 里面可放入 JS 代码跟变量，支持 ES6 写法。</p>
-                  <p>组字符串不需要使用加号，而选取变量的方法则是把变量名称包在大括号内，前面再加个 <code>$</code> 符号，这样就可以了。</p>
+                  <p>组字符串不需要使用加号，而选择变量的方法则是把变量名称包在大括号内，前面再加个 <code>$</code> 符号，这样就可以了。</p>
                   <h3 id="搭配数组方法使用"><a href="#搭配数组方法使用" class="headerlink" title="搭配数组方法使用"></a>搭配数组方法使用</h3>
-                  <p>假设我们要根据一个数组里的资料，一笔笔输出为 <code>&lt;ul&gt; &lt;li&gt;</code> 列表：</p>
+                  <p>假设我们要根据一个数组里的数据，一笔笔输出为 <code>&lt;ul&gt; &lt;li&gt;</code> 列表：</p>
                   <figure class="highlight js">
                     <table>
                       <tr>
@@ -1305,7 +1302,7 @@
     });
   </script>
 
-  <script defer src="/js/guide-pet.js?v=1"></script>
+  <script defer src="/js/guide-pet.js?v=2"></script>
 </body>
 
 </html>

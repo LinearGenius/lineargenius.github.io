@@ -87,7 +87,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rebase -i &lt;commit编号&gt;</span><br></pre></td></tr></table></figure>
 
 <p>那么我们要如何知道 commit 的编号呢？可以使用 <code>git log --oneline</code>，就会出现 commit 历史记录的列表，就能看到各个 commit 的编号以及信息了。</p>
-<h3 id="合并数个-commit"><a href="#合并数个-commit" class="headerlink" title="合并数个 commit"></a>合并数个 commit</h3><p>下了上面这一段指令后，终端机就会出现一个操作界面（也就是 vim 编辑器），在界面中按 <code>i</code> 表示开始编辑，画面中会出现被你选取的所有 commit，下方会有参数的说明。</p>
+<h3 id="合并数个-commit"><a href="#合并数个-commit" class="headerlink" title="合并数个 commit"></a>合并数个 commit</h3><p>下了上面这一段指令后，终端就会出现一个操作界面（也就是 vim 编辑器），在界面中按 <code>i</code> 表示开始编辑，画面中会出现被你选择的所有 commit，下方会有参数的说明。</p>
 <p>以合并数个 commit 为例，第一个 commit 前面请使用 <code>pick</code> 参数，其他要合并的 commits 前面则使用 <code>s</code> （<code>squash</code>）参数。这样一来，使用 <code>s</code> 的 commit 就会合并进入第一个 commit 中。</p>
 <p>编辑完 commit 后按 <code>esc</code> → 输入 <code>:wq</code> → 界面会问你要不要更动 commit 信息，不修改的话可直接输入 <code>:wq</code>。</p>
 <h2 id="使用情境"><a href="#使用情境" class="headerlink" title="使用情境"></a>使用情境</h2><p>我使用这个指令通常是为了让同一个目的的 commit 集成在一起，避免线图太乱。例如，我在分支上做了一些功能，但累积了很多琐碎的 commit，此时我就会用 <code>rebase -i</code> 将所有 <code>commit</code> 合并为一个，之后才 <code>rebase</code> 上游分支、push 到远端并发 PR。</p>
@@ -158,25 +158,25 @@
       <![CDATA[<p>本篇笔记来自 2020.4.15 六角学院在线研讨会，讲者为卡斯伯老师。在这一次讲座中，老师讲解了关注点分离作为一种 JavaScript 设计模式是如何运作的。</p>
 <a id="more"></a>
 
-<h2 id="何谓关注点分离"><a href="#何谓关注点分离" class="headerlink" title="何谓关注点分离"></a>何谓关注点分离</h2><p>画面归画面、逻辑归逻辑、资料归资料<del>、孙子龟孙子</del></p>
+<h2 id="何谓关注点分离"><a href="#何谓关注点分离" class="headerlink" title="何谓关注点分离"></a>何谓关注点分离</h2><p>画面归画面、逻辑归逻辑、数据归数据<del>、孙子龟孙子</del></p>
 <ul>
 <li>画面：HTML 渲染方式，HTML 结构、样式等等</li>
-<li>逻辑：处理资料的方法</li>
-<li>资料：就是资料</li>
+<li>逻辑：处理数据的方法</li>
+<li>数据：就是数据</li>
 </ul>
 <p>MVC 也是属于此概念。</p>
 <h2 id="开发技巧"><a href="#开发技巧" class="headerlink" title="开发技巧"></a>开发技巧</h2><ol>
-<li>将资料拆分出来</li>
+<li>将数据拆分出来</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> data = [</span><br><span class="line">  &#123;</span><br><span class="line">    first: <span class="string">'Mark'</span>,</span><br><span class="line">    last: <span class="string">'Otto'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    first: <span class="string">'Jacob'</span>,</span><br><span class="line">    last: <span class="string">'Thornton'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    first: <span class="string">'Larry'</span>,</span><br><span class="line">    first: <span class="string">'the Bird'</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
-<li>一个区块维持一种渲染模式（大多数框架就是让开发者省去这段流程）</li>
+<li>一个区域维持一种渲染模式（大多数框架就是让开发者省去这段流程）</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> htmlString= <span class="string">''</span>;</span><br><span class="line">  data.forEach( <span class="function">(<span class="params">item, i</span>) =&gt;</span> &#123;</span><br><span class="line">    htmlString = htmlString + <span class="string">`&lt;tr&gt;</span></span><br><span class="line"><span class="string">        &lt;th scope="row"&gt;<span class="subst">$&#123; i + <span class="number">1</span> &#125;</span>&lt;/th&gt;</span></span><br><span class="line"><span class="string">        &lt;td&gt;<span class="subst">$&#123; item.first &#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">        &lt;td&gt;<span class="subst">$&#123; item.last &#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">        &lt;td&gt;&lt;button class="btn btn-outline-danger" data-id="<span class="subst">$&#123;i&#125;</span>"&gt;删除&lt;/button&gt;&lt;/td&gt;</span></span><br><span class="line"><span class="string">      &lt;tr&gt;`</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ol start="3">
-<li>逻辑不会与渲染方式混在一起<br>此部分重点在于<strong>资料处理的熟练度</strong></li>
+<li>逻辑不会与渲染方式混在一起<br>此部分重点在于<strong>数据处理的熟练度</strong></li>
 </ol>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeItem</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> id = e.target.dataset.id;</span><br><span class="line">  data.splice(id, <span class="number">1</span>);</span><br><span class="line">  render();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addItem</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> newItem = &#123;</span><br><span class="line">    first: <span class="string">'Greta'</span>,</span><br><span class="line">    last: <span class="string">'Ma'</span></span><br><span class="line">  &#125;</span><br><span class="line">  data.push(newItem);</span><br><span class="line">  render();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -202,19 +202,19 @@
 <p>以下内容关于是如何在项目中撰写 EJS。</p>
 <h2 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js"></a>gulpfile.js</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ejs block</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ejs</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src([<span class="string">'./src/templates/**.ejs'</span>, <span class="string">'!./src/templates/**/_*.ejs'</span>])</span><br><span class="line">    .pipe($.ejs(&#123;</span><br><span class="line">      msg: <span class="string">'Hello Gulp!'</span>,</span><br><span class="line">    &#125;))</span><br><span class="line">    .pipe($.rename(&#123; <span class="attr">extname</span>: <span class="string">'.html'</span> &#125;))</span><br><span class="line">    .pipe($.<span class="keyword">if</span>(options.env === <span class="string">'prod'</span>, $.htmlmin(&#123; <span class="attr">collapseWhitespace</span>: <span class="literal">true</span> &#125;)))</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'./public/'</span>))</span><br><span class="line">    .pipe(browserSync.stream());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// watch files</span></span><br><span class="line">gulp.task(<span class="string">'watch'</span>, gulp.parallel(<span class="string">'browser-sync'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="comment">// 改第一行</span></span><br><span class="line">  gulp.watch(<span class="string">'./src/templates/**/*.ejs'</span>, gulp.series(<span class="string">'ejs'</span>));</span><br><span class="line">  gulp.watch(<span class="string">'./src/sass/**/*.scss'</span>, gulp.series(<span class="string">'scss'</span>));</span><br><span class="line">  gulp.watch(<span class="string">'./src/js/**/*.js'</span>, gulp.series(<span class="string">'babel'</span>));</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
 
-<p>如果有需要加载其他套件的 js 档，需要再写一个段落来集成。</p>
+<p>如果有需要加载其他软件包的 js 文件，需要再写一个段落来集成。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">vendorsJs</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src([</span><br><span class="line">    <span class="string">'./node_modules/jquery/dist/**/jquery.min.js'</span>,</span><br><span class="line">    <span class="string">'./node_modules/popper.js/dist/umd/**/popper.min.js'</span>,</span><br><span class="line">    <span class="string">'./node_modules/bootstrap/dist/js/**/bootstrap.bundle.min.js'</span>,</span><br><span class="line">    <span class="string">'./node_modules/wowjs/dist/wow.min.js'</span>,</span><br><span class="line">  ])</span><br><span class="line">    .pipe($.concat(<span class="string">'vendors.js'</span>))</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'./public/javascript'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="项目文件夹结构"><a href="#项目文件夹结构" class="headerlink" title="项目文件夹结构"></a>项目文件夹结构</h2><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">src/</span><br><span class="line">  <span class="string">|-- templates/</span></span><br><span class="line">        <span class="string">|-- index/</span></span><br><span class="line">        <span class="string">|-- layout/</span></span><br><span class="line">        <span class="string">|-- index.ejs</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>index 文件夹：各区块的 .ejs 档，每个档里面的内容都是用 HTML 标签撰写的，且每个档名开头都是 <code>_</code>，例如 <code>_footer.ejs</code>。</li>
+<li>index 文件夹：各区域的 .ejs 文件，每个文件里面的内容都是用 HTML 标签撰写的，且每个文件名开头都是 <code>_</code>，例如 <code>_footer.ejs</code>。</li>
 <li>layout 文件夹：放一些共用的内容，例如 <code>&lt;head&gt;</code> 中的信息、所有要加载的 CDN <code>&lt;script&gt;</code> 等。</li>
 <li>index.ejs：把以上两个文件夹中所有 .ejs 排成一个完整的网页。</li>
 </ul>
 <h2 id="index-ejs"><a href="#index-ejs" class="headerlink" title="index.ejs"></a>index.ejs</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">include</span> ('<span class="attr">.</span>/<span class="attr">layout</span>/<span class="attr">_head.ejs</span>') %&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- header &amp; solvable --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">include</span> ('<span class="attr">.</span>/<span class="attr">layout</span>/<span class="attr">_header.ejs</span>') %&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- capable --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">include</span> ('<span class="attr">.</span>/<span class="attr">index</span>/<span class="attr">_capable.ejs</span>') %&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- formula --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">include</span> ('<span class="attr">.</span>/<span class="attr">index</span>/<span class="attr">_formula.ejs</span>') %&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- footer --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">include</span> ('<span class="attr">.</span>/<span class="attr">index</span>/<span class="attr">_footer.ejs</span>') %&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- script --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">include</span> ('<span class="attr">.</span>/<span class="attr">layout</span>/<span class="attr">_script.ejs</span>') %&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>引入其他的 .ejs 档，要用 <code>&lt;%- include (&#39;路径&#39;) %&gt;</code> 标签。</p>
+<p>引入其他的 .ejs 文件，要用 <code>&lt;%- include (&#39;路径&#39;) %&gt;</code> 标签。</p>
 ]]>
     </content>
     <categories>
@@ -257,11 +257,11 @@
 <p>如果只想修改 B 数组的话，就可以用展开符号来复制 A 数组，再进行操作。只传值的复制方式，就是浅复制。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> groupA = [<span class="string">'小明'</span>, <span class="string">'杰伦'</span>, <span class="string">'阿姨'</span>];</span><br><span class="line"><span class="keyword">let</span> groupB = [...groupA] <span class="comment">// 新数组</span></span><br><span class="line">groupB.push(<span class="string">'阿明'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(groupA); <span class="comment">// 不会有阿明</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="类数组"><a href="#类数组" class="headerlink" title="类数组"></a>类数组</h3><p>有些东西外观很像数组，也具有一些数组的特性，但却不是真正的数组，称为类数组，例如用 <code>querySelectorAll()</code> 取出来的 <code>NodeList</code> 会以类数组的形式呈现所有被选取的节点，但它却不是真正的数组。</p>
+<h3 id="类数组"><a href="#类数组" class="headerlink" title="类数组"></a>类数组</h3><p>有些东西外观很像数组，也具有一些数组的特性，但却不是真正的数组，称为类数组，例如用 <code>querySelectorAll()</code> 取出来的 <code>NodeList</code> 会以类数组的形式呈现所有被选择的节点，但它却不是真正的数组。</p>
 <p>在新的空数组中，通过展开符号可以复制类数组中的内容，借此将类数组<strong>转为真正的数组</strong>。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> doms = <span class="built_in">document</span>.querySelectorAll(<span class="string">'li'</span>); <span class="comment">// doms 为类数组</span></span><br><span class="line"><span class="keyword">let</span> newDoms = [...doms]; <span class="comment">// newDoms 为数组</span></span><br></pre></td></tr></table></figure>
 
-<p>另一个类数组的例子是函数内建的 <code>arguments</code> 对象，<code>arguments</code> 会包含所有传入函数的参数。</p>
+<p>另一个类数组的例子是函数内置的 <code>arguments</code> 对象，<code>arguments</code> 会包含所有传入函数的参数。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> originCash = <span class="number">1000</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateEasyCard</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// let arg = arguments;</span></span><br><span class="line">  <span class="keyword">let</span> arg = [...arguments]; <span class="comment">// 转成真正的数组</span></span><br><span class="line">  <span class="keyword">let</span> sum = arg.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">accumulator, currentValue</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> accumulator + currentValue;</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'我有 '</span> + sum + <span class="string">' 元'</span>);</span><br><span class="line"> &#125;</span><br><span class="line">updateEasyCard(<span class="number">0</span>); <span class="comment">// 我有 1000 元</span></span><br><span class="line">updateEasyCard(<span class="number">10</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">50</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">500</span>); <span class="comment">// 我有 718 元</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="其余参数"><a href="#其余参数" class="headerlink" title="其余参数"></a>其余参数</h3><p>如果不确定之后要传入函数的参数数量，可以在函数的<strong>唯一一个</strong>或<strong>最后一个</strong>参数前面加上展开符号（该参数就会变成其余参数），就能把多传入的参数值以<strong>数组</strong>的形式，容纳在其余参数中。</p>
@@ -269,7 +269,7 @@
 <p>参照：<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/rest_parameters" target="_blank" rel="external nofollow noopener noreferrer">其余参数 - JavaScript | MDN</a></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">moreMoney</span>(<span class="params">...money</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(money);</span><br><span class="line">  <span class="comment">// [100, 200, 300]</span></span><br><span class="line">&#125;</span><br><span class="line"> moreMoney(<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">moreMoney</span>(<span class="params">name, ...money</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(name, money);</span><br><span class="line">  <span class="comment">// "Grete" [100, 200, 300, 400, 500]</span></span><br><span class="line">&#125;</span><br><span class="line"> moreMoney(‘Grete’, <span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>, <span class="number">400</span>, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
 
-<h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><p>解构赋值语法可以将数组或对象中的资料取出成独立变量。<br>基本上就是把等号右边的值，套用到等号左边。</p>
+<h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><p>解构赋值语法可以将数组或对象中的数据取出成独立变量。<br>基本上就是把等号右边的值，应用到等号左边。</p>
 <h3 id="数组解构赋值"><a href="#数组解构赋值" class="headerlink" title="数组解构赋值"></a>数组解构赋值</h3><h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><p>在之前，我们如果要修改数组内的元素，都只能用 <code>=</code> 一个一个直接赋值。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> family = [<span class="string">'小明'</span>, <span class="string">'杰伦'</span>, <span class="string">'阿姨'</span>, <span class="string">'老妈'</span>, <span class="string">'老爸'</span>];</span><br><span class="line"><span class="keyword">let</span> ming = family[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">let</span> jay = family[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">let</span> auntie = family[<span class="number">2</span>];</span><br></pre></td></tr></table></figure>
 
@@ -285,14 +285,14 @@
 <h4 id="当输入的变量多于所给的值"><a href="#当输入的变量多于所给的值" class="headerlink" title="当输入的变量多于所给的值"></a>当输入的变量多于所给的值</h4><p>如果变量的数量多于赋予的值时，多出来的那个变量会被赋予 <code>undefined</code> 的值。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> family = [<span class="string">'小明'</span>, <span class="string">'杰伦'</span>, <span class="string">'阿姨'</span>, <span class="string">'老妈'</span>, <span class="string">'老爸'</span>];</span><br><span class="line"><span class="keyword">let</span> [ming, jay, aunt, mom, dad, sis] = family;</span><br><span class="line"><span class="built_in">console</span>.log(ming, jay, aunt, mom, dad, sis);</span><br><span class="line"><span class="comment">// "小明" "杰伦" "阿姨" "老妈" "老爸" undefined</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="变量交换"><a href="#变量交换" class="headerlink" title="变量交换"></a>变量交换</h4><p>使用解构赋值可以即时交换两个变量的值，不需要通过声明第三个变量来达成。</p>
+<h4 id="变量交换"><a href="#变量交换" class="headerlink" title="变量交换"></a>变量交换</h4><p>使用解构赋值可以实时交换两个变量的值，不需要通过声明第三个变量来达成。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> fruit = <span class="string">'banana'</span>;</span><br><span class="line"><span class="keyword">let</span> veg = <span class="string">'tomato'</span>;</span><br><span class="line">[fruit, veg] = [veg, fruit]; <span class="comment">// 左边是新的变量名，右边是交换后的值</span></span><br><span class="line"><span class="built_in">console</span>.log(fruit, veg);</span><br><span class="line"><span class="comment">// "tomato" "banana"</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="把字符串的字取出并个别声明变量"><a href="#把字符串的字取出并个别声明变量" class="headerlink" title="把字符串的字取出并个别声明变量"></a>把字符串的字取出并个别声明变量</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">'吃饱没'</span>;</span><br><span class="line"><span class="keyword">let</span> [a, b, c] = str;</span><br><span class="line"><span class="built_in">console</span>.log(a, b, c);</span><br><span class="line"><span class="comment">// "吃" "饱" "没"</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [g = <span class="string">'Grete'</span>, s = <span class="string">'Steffi'</span>] = [<span class="string">'葛蕾特'</span>];</span><br><span class="line"><span class="comment">// g 会被重新赋值，s 会用默认</span></span><br><span class="line"><span class="built_in">console</span>.log(g,s);</span><br><span class="line"><span class="comment">// "葛蕾特" "Steffi"</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="对象解构赋值"><a href="#对象解构赋值" class="headerlink" title="对象解构赋值"></a>对象解构赋值</h3><p>数组的解构赋值强调的是<strong>顺序</strong>，而对象的解构赋值强调的则是<strong>属性名称</strong>，属性名称必须相互对应才能够取得到值。</p>
+<h3 id="对象解构赋值"><a href="#对象解构赋值" class="headerlink" title="对象解构赋值"></a>对象解构赋值</h3><p>数组的解构赋值强调的是<strong>顺序</strong>，而对象的解构赋值强调的则是<strong>属性名称</strong>，属性名称必须相互对应才能够获取到值。</p>
 <p>在对象解构赋值中，冒号前是用来对应对象的属性名称，冒号后才是真正创建的变量名称和被赋值的对象。</p>
 <p>参照：<a href="https://pjchender.blogspot.com/2017/01/es6-object-destructuring.html" target="_blank" rel="external nofollow noopener noreferrer">[笔记] JavaScript ES6 中的对象解构赋值（object destructuring）</a></p>
 <h4 id="基本用法-1"><a href="#基本用法-1" class="headerlink" title="基本用法"></a>基本用法</h4><p>从对象中取出一个特性的值，并赋予这个值一个新的变量名称。</p>
@@ -304,12 +304,12 @@
 <p>左边 <code>fruits</code> 特性要解构赋值的对象是右边 <code>fruits</code> 的第二个值，所以在 <code>apple</code> 前面用逗点空了一个位置。</p>
 <h4 id="默认值-1"><a href="#默认值-1" class="headerlink" title="默认值"></a>默认值</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; <span class="attr">fruits</span>: apple = <span class="string">'苹果'</span> &#125; = &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(apple); <span class="comment">// "苹果"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">fruits</span>: apple = <span class="string">'苹果'</span> &#125; = &#123;<span class="attr">fruits</span>: <span class="string">'凤梨'</span>&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(apple); <span class="comment">// "凤梨"</span></span><br></pre></td></tr></table></figure>
 
-<p>第一个范例中，左边默认 <code>apple</code> 等于 ‘苹果’，因为右边没有传新的值，所以会保持 <code>apple</code> 为苹果。<br>第二个范例中，右边传了新的值，所以 <code>apple</code> 的值就变成凤梨了。</p>
+<p>第一个示例中，左边默认 <code>apple</code> 等于 ‘苹果’，因为右边没有传新的值，所以会保持 <code>apple</code> 为苹果。<br>第二个示例中，右边传了新的值，所以 <code>apple</code> 的值就变成凤梨了。</p>
 <h2 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h2><h3 id="对象缩写"><a href="#对象缩写" class="headerlink" title="对象缩写"></a>对象缩写</h3><p>将一个字符串与一个对象，在另一个新对象里合并。<br>新对象里的特性名称如果跟来源变量一致时，就可以使用缩写。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> Frieza = <span class="string">'弗利沙'</span></span><br><span class="line"><span class="keyword">const</span> GinyuTeam = &#123;</span><br><span class="line">  Ginyu: <span class="string">'基纽'</span>,</span><br><span class="line">  Jeice: <span class="string">'吉斯'</span>,</span><br><span class="line">  burter: <span class="string">'巴特'</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> newTeam = &#123;</span><br><span class="line">  GinyuTeam,  <span class="comment">// 原始写法为 GinyuTeam: GinyuTeam</span></span><br><span class="line">  Frieza  <span class="comment">// 原始写法为 Frieza: Frieza</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在 Vue CLI 里也会时常应用缩写，例如以下的情境：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"><span class="comment">// 将套件从 './App' 路径加载，并使用 App 这个变量名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router, <span class="comment">// 原始写法为 router: router</span></span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"><span class="comment">// 将软件包从 './App' 路径加载，并使用 App 这个变量名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router, <span class="comment">// 原始写法为 router: router</span></span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span>,</span><br><span class="line">  components: &#123; App &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h3 id="对象方法缩写"><a href="#对象方法缩写" class="headerlink" title="对象方法缩写"></a>对象方法缩写</h3><h4 id="原始写法："><a href="#原始写法：" class="headerlink" title="原始写法："></a>原始写法：</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> newTeam = &#123;</span><br><span class="line">  showPosture: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'我们是 基纽特战队'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -333,7 +333,7 @@
 </ul>
 <p>写 Vue <code>methods</code> 时最好使用<strong>传统函数搭配缩写</strong>，因为使用箭头函数的话，<code>this</code> 指向的可能不是 Vue 实例。</p>
 <p>参照：<a href="https://pjchender.blogspot.com/2017/01/es6-arrow-function.html" target="_blank" rel="external nofollow noopener noreferrer">[笔记] JavaScript ES6 中的箭头函数（arrow function）及对 this 的影响</a></p>
-<h3 id="善用方式"><a href="#善用方式" class="headerlink" title="善用方式"></a>善用方式</h3><p>在进入箭头函数之前，先把要指向的对象（<code>this</code>）用变量储存起来。</p>
+<h3 id="善用方式"><a href="#善用方式" class="headerlink" title="善用方式"></a>善用方式</h3><p>在进入箭头函数之前，先把要指向的对象（<code>this</code>）用变量存储起来。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> antie = &#123;</span><br><span class="line">  name: <span class="string">'漂亮阿姨'</span>,</span><br><span class="line">  callname() &#123;</span><br><span class="line">    <span class="keyword">var</span> vm = <span class="keyword">this</span>;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(vm, vm.name);</span><br><span class="line">    &#125;, <span class="number">10</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="字符串模板"><a href="#字符串模板" class="headerlink" title="字符串模板"></a>字符串模板</h2><p>各位在用 <code>innerHTML</code> 组字符串时会不会感到很痛苦呢？我承认我会，因为各种标签名、文字、加号、单双引号，全部乱糟糟地都写在一起，真 D 会让人眼花啊！</p>
@@ -341,7 +341,7 @@
 <h3 id="基本用法-2"><a href="#基本用法-2" class="headerlink" title="基本用法"></a>基本用法</h3><p>假设我们要在一个 <code>&lt;ul&gt;&lt;li&gt;</code> 里放入图片：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// HTML</span></span><br><span class="line">&lt;ul <span class="class"><span class="keyword">class</span></span>=<span class="string">"list"</span>&gt;</span><br><span class="line">  &lt;li&gt;</span><br><span class="line">    &lt;img src=<span class="string">"logo.png"</span>&gt;</span><br><span class="line">  &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">&lt;/u</span>l&gt;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// JS</span></span><br><span class="line"><span class="comment">// 用 const 选取 DOM</span></span><br><span class="line"><span class="keyword">const</span> list = <span class="built_in">document</span>.querySelector(<span class="string">'.list'</span>)</span><br><span class="line"><span class="comment">// 用 const 储存要放入的图片路径</span></span><br><span class="line"><span class="keyword">const</span> imgURL = <span class="string">'logo.png'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// JS</span></span><br><span class="line"><span class="comment">// 用 const 选择 DOM</span></span><br><span class="line"><span class="keyword">const</span> list = <span class="built_in">document</span>.querySelector(<span class="string">'.list'</span>)</span><br><span class="line"><span class="comment">// 用 const 存储要放入的图片路径</span></span><br><span class="line"><span class="keyword">const</span> imgURL = <span class="string">'logo.png'</span>;</span><br></pre></td></tr></table></figure>
 
 <p>接下来要进行渲染至网页，传统写法是这样：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">list.innerHTML = <span class="string">'&lt;li&gt;&lt;img src='</span>+ imgURL +<span class="string">'&gt;&lt;/li&gt;'</span></span><br></pre></td></tr></table></figure>
@@ -350,8 +350,8 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">list.innetHTML = <span class="string">`&lt;li&gt;&lt;img src=" <span class="subst">$&#123;imgURL&#125;</span> "&gt;&lt;/li&gt;`</span></span><br></pre></td></tr></table></figure>
 
 <p>新写法中这个长得像重音符号的东西叫做「反引号」，<code>${}</code> 里面可放入 JS 代码跟变量，支持 ES6 写法。</p>
-<p>组字符串不需要使用加号，而选取变量的方法则是把变量名称包在大括号内，前面再加个 <code>$</code> 符号，这样就可以了。</p>
-<h3 id="搭配数组方法使用"><a href="#搭配数组方法使用" class="headerlink" title="搭配数组方法使用"></a>搭配数组方法使用</h3><p>假设我们要根据一个数组里的资料，一笔笔输出为 <code>&lt;ul&gt; &lt;li&gt;</code> 列表：</p>
+<p>组字符串不需要使用加号，而选择变量的方法则是把变量名称包在大括号内，前面再加个 <code>$</code> 符号，这样就可以了。</p>
+<h3 id="搭配数组方法使用"><a href="#搭配数组方法使用" class="headerlink" title="搭配数组方法使用"></a>搭配数组方法使用</h3><p>假设我们要根据一个数组里的数据，一笔笔输出为 <code>&lt;ul&gt; &lt;li&gt;</code> 列表：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">const</span> people = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'小明'</span>,</span><br><span class="line">    friends: <span class="number">2</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'阿姨'</span>,</span><br><span class="line">    friends: <span class="number">999</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">'杰伦'</span>,</span><br><span class="line">    friends: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newUl = <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;ul&gt; <span class="subst">$&#123;people.map(person =&gt;</span></span></span><br><span class="line"><span class="string"><span class="subst">    <span class="string">`&lt;li&gt;我叫做 <span class="subst">$&#123;person.name&#125;</span>&lt;/li&gt;`</span>)</span></span></span><br><span class="line"><span class="string"><span class="subst">    .join(<span class="string">''</span>)&#125;</span></span></span><br><span class="line"><span class="string">  &lt;/ul&gt;`</span></span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -423,32 +423,32 @@
     <title>[JS] 讲座笔记：JS Promise 实战教学</title>
     <url>/javascript/20200302/2110342105/</url>
     <content>
-      <![CDATA[<p>本篇笔记来自 2020.2.26 六角学院在线研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师为大家复习了异步行为与 Queue 的概念，并接续介绍了使异步行为依序进行的四种方法。</p>
+      <![CDATA[<p>本篇笔记来自 2020.2.26 六角学院在线研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师为大家复习了异步行为与 Queue 的概念，并接续介绍了使异步行为依次进行的四种方法。</p>
 <a id="more"></a>
 
 <p>当我们有 3 个 <code>setTimeout()</code> 时，我们可以使它们按照顺序执行；但是当我们有 3 个 AJAX 时，由于变因太多、无法确定各自返回的时间，因此不一定能照顺序执行。</p>
-<p>要解决异步无法依序执行的问题，第一个方法是使用 callback function。</p>
-<h2 id="让异步依序执行-解法一：callback"><a href="#让异步依序执行-解法一：callback" class="headerlink" title="让异步依序执行 解法一：callback"></a>让异步依序执行 解法一：callback</h2><p>三个 <code>setTimeout()</code> 个别用 function 包起来，且各个 function 都带入一个 callback 参数。</p>
+<p>要解决异步无法依次执行的问题，第一个方法是使用 callback function。</p>
+<h2 id="让异步依次执行-解法一：callback"><a href="#让异步依次执行-解法一：callback" class="headerlink" title="让异步依次执行 解法一：callback"></a>让异步依次执行 解法一：callback</h2><p>三个 <code>setTimeout()</code> 个别用 function 包起来，且各个 function 都带入一个 callback 参数。</p>
 <p><img src="https://i.imgur.com/flYXHnz.png" alt></p>
 <p>调用 function A 时，同时定义 callback 的任务内容，如此一来就可以先印出 <code>&#39;A&#39;</code> 再印出 <code>&#39;OK&#39;</code>。</p>
 <p><img src="https://i.imgur.com/a8Pnnxr.png" alt></p>
 <p>运用这个原理，就可以把 function B 当作 function A 的 callback，把 function C 当作 function B 的 callback。</p>
 <p><img src="https://i.imgur.com/rUBofui.png" alt></p>
-<p>但是这种做法一旦遇到<strong>太多函数要依序执行时</strong>，就会变成 <em>callback hell</em>，将会很难去分辨代码。</p>
-<h2 id="让异步依序执行-解法二：Generator"><a href="#让异步依序执行-解法二：Generator" class="headerlink" title="让异步依序执行 解法二：Generator"></a>让异步依序执行 解法二：Generator</h2><ul>
+<p>但是这种做法一旦遇到<strong>太多函数要依次执行时</strong>，就会变成 <em>callback hell</em>，将会很难去分辨代码。</p>
+<h2 id="让异步依次执行-解法二：Generator"><a href="#让异步依次执行-解法二：Generator" class="headerlink" title="让异步依次执行 解法二：Generator"></a>让异步依次执行 解法二：Generator</h2><ul>
 <li>在 function 后面加一个 <code>*</code>，执行时会得到一个 <code>generator</code> 对象。</li>
 <li>在 for 循环中使用 <code>yield</code> 关键字：代表<strong>暂停</strong>，先跳出 function，等之后在 function 外面用 <code>函数名称.next()</code> 调用时，才会再回到 function 内部继续执行。</li>
 <li><code>generator</code> 对象会带出 <code>done</code> 特性</li>
-<li><code>arguments</code> : 类数组对象，可取得所有传入 function 的参数</li>
+<li><code>arguments</code> : 类数组对象，可获取所有传入 function 的参数</li>
 <li>递回：在函数里调用函数本身</li>
 </ul>
 <p><img src="https://i.imgur.com/tIwffhZ.png" alt></p>
 <p><code>for</code> 循环跑到最后一次时，<code>done</code> 的值为 <code>true</code>：</p>
 <p><img src="https://i.imgur.com/PPGVq6s.png" alt></p>
-<p>在 <code>recursion()</code> 中使用 <code>.next()</code> 调用函数与递回，让 function A, function B, function C 依序执行：</p>
+<p>在 <code>recursion()</code> 中使用 <code>.next()</code> 调用函数与递回，让 function A, function B, function C 依次执行：</p>
 <p><img src="https://i.imgur.com/AXlstmC.png" alt></p>
-<p>小结：最后一行，在 <code>generator()</code> 带入多个函数作为参数，就能依序执行并避免 callback hell。</p>
-<h2 id="让异步依序执行-解法三：Promise"><a href="#让异步依序执行-解法三：Promise" class="headerlink" title="让异步依序执行 解法三：Promise"></a>让异步依序执行 解法三：Promise</h2><ul>
+<p>小结：最后一行，在 <code>generator()</code> 带入多个函数作为参数，就能依次执行并避免 callback hell。</p>
+<h2 id="让异步依次执行-解法三：Promise"><a href="#让异步依次执行-解法三：Promise" class="headerlink" title="让异步依次执行 解法三：Promise"></a>让异步依次执行 解法三：Promise</h2><ul>
 <li>一个封装 <code>Promise</code> 的函数</li>
 <li><code>Promise</code> 的 callback function 要带入两个参数：<code>resolve</code> (成功时调用)，以及 <code>reject</code> (失败时调用)。</li>
 </ul>
@@ -458,10 +458,10 @@
 <p>异步失败时，<code>Promise</code> 会执行 <code>reject</code>，<code>reject</code> 必须准备对应的函数，这个函数是针对单一的 <code>Promise</code>，在失败时执行的方案。</p>
 <p>在异步失败时执行对应的行为也能用 <code>catch</code> 达成，<code>catch</code> 的意思是，只要其中一个 <code>Promise</code> 没成功执行，就跳到 <code>catch</code>。</p>
 <p><img src="https://i.imgur.com/tkBRQMP.png" alt></p>
-<h2 id="让异步依序执行-解法四：async…await"><a href="#让异步依序执行-解法四：async…await" class="headerlink" title="让异步依序执行 解法四：async…await"></a>让异步依序执行 解法四：async…await</h2><ul>
+<h2 id="让异步依次执行-解法四：async…await"><a href="#让异步依次执行-解法四：async…await" class="headerlink" title="让异步依次执行 解法四：async…await"></a>让异步依次执行 解法四：async…await</h2><ul>
 <li>ES7 语法，要搭配 <code>Promise</code> 使用</li>
 <li><code>async</code> + function：声明这个函数是异步</li>
-<li><code>await</code> + <code>Promise</code>：依序执行函数</li>
+<li><code>await</code> + <code>Promise</code>：依次执行函数</li>
 <li>条件：<code>async</code> 跟 <code>await</code> 一定要搭配使用，不能只用 <code>await</code> 却不用 <code>async</code>。</li>
 </ul>
 <p><img src="https://i.imgur.com/0nEubbT.png" alt></p>
@@ -469,9 +469,9 @@
 <p><img src="https://i.imgur.com/6yejkHH.png" alt></p>
 <p>三个函数异步失败时想要不同的错误信息：</p>
 <p><img src="https://i.imgur.com/Yi3LpB1.png" alt></p>
-<p>实务上使用 <code>XMLHttpRequest</code> 时的写法：</p>
+<p>实际开发中使用 <code>XMLHttpRequest</code> 时的写法：</p>
 <p><img src="https://i.imgur.com/IBlkZKh.png" alt></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://slides.com/yi-tailin/deck-e329c0#/" target="_blank" rel="external nofollow noopener noreferrer">slides 简报</a><br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/function*" target="_blank" rel="external nofollow noopener noreferrer">function*</a><br><a href="https://developers.google.com/web/fundamentals/primers/promises?hl=zh-tw#top_of_page" target="_blank" rel="external nofollow noopener noreferrer">JavaScript Promise：简介</a><br><a href="https://wcc723.github.io/development/2020/02/16/all-new-promise/" target="_blank" rel="external nofollow noopener noreferrer">JavaScript Promise 全介绍</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://slides.com/yi-tailin/deck-e329c0#/" target="_blank" rel="external nofollow noopener noreferrer">slides 演示文稿</a><br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/function*" target="_blank" rel="external nofollow noopener noreferrer">function*</a><br><a href="https://developers.google.com/web/fundamentals/primers/promises?hl=zh-tw#top_of_page" target="_blank" rel="external nofollow noopener noreferrer">JavaScript Promise：简介</a><br><a href="https://wcc723.github.io/development/2020/02/16/all-new-promise/" target="_blank" rel="external nofollow noopener noreferrer">JavaScript Promise 全介绍</a></p>
 ]]>
     </content>
     <categories>
@@ -491,10 +491,10 @@
     <content>
       <![CDATA[<p>本篇笔记来自 2020.2.19 六角学院在线研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师用许多 Demo 示范了异步行为与 Queue 之间的关系。</p>
 <a id="more"></a>
-<h2 id="Event-Queue-事件伫列"><a href="#Event-Queue-事件伫列" class="headerlink" title="Event Queue 事件伫列"></a>Event Queue 事件伫列</h2><p>JavaScript 是 Single Thread（单线程）语言，只用一颗 CPU 运转，一次只能做一件事。但是，计时器（setTimeout）、AJAX、Promise 是属于 Web APIs，不受单线程限制，它们会被放到 Queue 中，等待 JavaScript 执行。</p>
+<h2 id="Event-Queue-事件队列"><a href="#Event-Queue-事件队列" class="headerlink" title="Event Queue 事件队列"></a>Event Queue 事件队列</h2><p>JavaScript 是 Single Thread（单线程）语言，只用一颗 CPU 运转，一次只能做一件事。但是，计时器（setTimeout）、AJAX、Promise 是属于 Web APIs，不受单线程限制，它们会被放到 Queue 中，等待 JavaScript 执行。</p>
 <p>因此，整个流程（Event Loop）就像这样：</p>
 <p>所有要执行的任务会被放到 Call Stack 里面，JavaScript 的线程会逐一执行 Stack 里的任务，当碰上异步事件时，为了不让程序被这些<strong>需要等待的事件</strong>卡着，就会继续执行后续的动作。</p>
-<p>那这些异步事件什么时候才能被执行？答案是，它们会在 Queue 中排队，等到 JavaScript 的线程把 Stack 的任务都消化完了，才轮到 Queue 中的异步事件依序执行。</p>
+<p>那这些异步事件什么时候才能被执行？答案是，它们会在 Queue 中排队，等到 JavaScript 的线程把 Stack 的任务都消化完了，才轮到 Queue 中的异步事件依次执行。</p>
 <p><strong>观念重点：异步事件会被放进排队序列，先进先出。</strong></p>
 <p>单线程与 Event Queue 的概念可以参照<a href="https://wcc723.github.io/javascript/2017/12/07/javascript-event-queue/" target="_blank" rel="external nofollow noopener noreferrer">铁人赛：一次只能做一件事情的 JavaScript</a>，有动图更好理解。</p>
 <h2 id="单线程与-Queue"><a href="#单线程与-Queue" class="headerlink" title="单线程与 Queue"></a>单线程与 Queue</h2><p>JavaScript 单线程会按照顺序执行在 Stack 中的任务。</p>
@@ -514,13 +514,13 @@
 <p>答案是，可以用 <code>setTiomeiut()</code> 来达成。</p>
 <figure class="highlight lisp"><table><tr><td class="code"><pre><span class="line">for(<span class="name">let</span> i = <span class="number">0</span><span class="comment">;i &lt; 5; i++)&#123;</span></span><br><span class="line">  setTimout(<span class="name">function</span>()&#123;</span><br><span class="line">    this.list.push(<span class="name">i+1</span>)<span class="comment">;</span></span><br><span class="line">  &#125;.bind(<span class="name">this</span>, i)) // 指定 callback 的 this 指向外层的对象</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>为什么用 <code>setTiomeiut()</code> 就能达成呢？</p>
-<p>因为 <code>for</code> 循环一开始没用 <code>setTimeout()</code> 时，只有 <code>for</code> 自己一个任务在 Stack 中；而使用 <code>setTimeout()</code> 后，就变成每跑一次循环就产生一个存放在 Queue 中的任务，每个 Queue 中的任务又会被依序插入 Stack 中，于是就能一个执行（渲染）完才换成下一个执行（渲染）。</p>
-<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>传统网页在跟后端捞资料时，流程是这样的：请求 =&gt; 回应 =&gt; 请求 =&gt; 回应；而使用了 AJAX 技术的网页捞取资料的方法，则是在背景送出请求取得回应。</p>
+<p>因为 <code>for</code> 循环一开始没用 <code>setTimeout()</code> 时，只有 <code>for</code> 自己一个任务在 Stack 中；而使用 <code>setTimeout()</code> 后，就变成每跑一次循环就产生一个存放在 Queue 中的任务，每个 Queue 中的任务又会被依次插入 Stack 中，于是就能一个执行（渲染）完才换成下一个执行（渲染）。</p>
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>传统网页在跟后端捞数据时，流程是这样的：请求 =&gt; 响应 =&gt; 请求 =&gt; 响应；而使用了 AJAX 技术的网页捞取数据的方法，则是在背景送出请求获取响应。</p>
 <h3 id="常见底层"><a href="#常见底层" class="headerlink" title="常见底层"></a>常见底层</h3><ul>
 <li>XMLHttpRequest (可支持 IE 7 以上, jQuery, axios)</li>
 <li>HTML5 Fetch API (IE 11 以下都不支持)</li>
 </ul>
-<h3 id="测试用-API"><a href="#测试用-API" class="headerlink" title="测试用 API"></a>测试用 API</h3><p>以下两个网站都可以用来制作测试用的 API，也可以客制化 AJAX 成功后的返回信息。</p>
+<h3 id="测试用-API"><a href="#测试用-API" class="headerlink" title="测试用 API"></a>测试用 API</h3><p>以下两个网站都可以用来制作测试用的 API，也可以定制 AJAX 成功后的返回信息。</p>
 <ul>
 <li><a href="http://www.mocky.io" target="_blank" rel="external nofollow noopener noreferrer">Mocky: Real HTTP mocking</a></li>
 <li><a href="https://www.mockable.io/" target="_blank" rel="external nofollow noopener noreferrer">Mockable.io</a></li>
@@ -528,27 +528,27 @@
 <h3 id="XMLHttpRequest-DEMO"><a href="#XMLHttpRequest-DEMO" class="headerlink" title="XMLHttpRequest DEMO"></a>XMLHttpRequest DEMO</h3><ol>
 <li><p>异步 GET 请求</p>
 <figure class="highlight qml"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.addEventListener(<span class="string">'load'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.responseText);</span><br><span class="line">&#125;)</span><br><span class="line">xhr.open(<span class="string">'GET'</span>, <span class="built_in">url</span>);</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
-<p>AJAX 行为会被丢到 Queue，等取得回应后才回到 JS 线程。</p>
+<p>AJAX 行为会被丢到 Queue，等获取响应后才回到 JS 线程。</p>
 </li>
 <li><p>同步 GET 请求</p>
 <figure class="highlight qml"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'start'</span>);</span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">'GET'</span>, <span class="built_in">url</span>, <span class="literal">false</span>);</span><br><span class="line">xhr.send();</span><br><span class="line"><span class="built_in">console</span>.log(xhr.responseText);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'end'</span>);</span><br><span class="line"><span class="comment">// 'start'</span></span><br><span class="line"><span class="comment">// responseText</span></span><br><span class="line"><span class="comment">// 'end'</span></span><br></pre></td></tr></table></figure>
-<p>这边只是示范同步的 AJAX 是长什么样，实务上尽量还是用异步 AJAX 才能让网页效能较好。</p>
+<p>这边只是示范同步的 AJAX 是长什么样，实际开发中尽量还是用异步 AJAX 才能让网页性能较好。</p>
 </li>
 <li><p>异步 POST 请求</p>
-<figure class="highlight qml"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 如何把参数发送到后端</span></span><br><span class="line"><span class="keyword">var</span> data = <span class="keyword">new</span> FormData(); <span class="comment">// 声明 FormData 对象</span></span><br><span class="line">data.append(<span class="string">'id'</span>, <span class="string">'5'</span>);  <span class="comment">// 在 FormData 中塞入资料</span></span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.addEventListener(<span class="string">'load'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.responseText);</span><br><span class="line">&#125;)</span><br><span class="line">xhr.open(<span class="string">'POST'</span>, <span class="built_in">url</span>);</span><br><span class="line">xhr.send(data); <span class="comment">// 把带有资料的 FormData 传送到后端</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight qml"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 如何把参数发送到后端</span></span><br><span class="line"><span class="keyword">var</span> data = <span class="keyword">new</span> FormData(); <span class="comment">// 声明 FormData 对象</span></span><br><span class="line">data.append(<span class="string">'id'</span>, <span class="string">'5'</span>);  <span class="comment">// 在 FormData 中塞入数据</span></span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.addEventListener(<span class="string">'load'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.responseText);</span><br><span class="line">&#125;)</span><br><span class="line">xhr.open(<span class="string">'POST'</span>, <span class="built_in">url</span>);</span><br><span class="line">xhr.send(data); <span class="comment">// 把带有数据的 FormData 传送到后端</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
 <h3 id="Fetch-DEMO"><a href="#Fetch-DEMO" class="headerlink" title="Fetch DEMO"></a>Fetch DEMO</h3><ol>
 <li><p>Fetch 发送 GET 请求</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">fetch(<span class="string">'url'</span>).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> response.json(); <span class="comment">//解读 JSON 格式</span></span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="params">data</span> =&gt;</span> </span><br><span class="line">  <span class="built_in">console</span>.log(data)) <span class="comment">// 取得资料</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">fetch(<span class="string">'url'</span>).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> response.json(); <span class="comment">//解读 JSON 格式</span></span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function"><span class="params">data</span> =&gt;</span> </span><br><span class="line">  <span class="built_in">console</span>.log(data)) <span class="comment">// 获取数据</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Fetch 发送 POST 请求</p>
-<figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 把资料参数传到后端，一样要先声明 FormData</span></span><br><span class="line"><span class="built_in">var</span> <span class="built_in">data</span> = <span class="literal">new</span> FormData();</span><br><span class="line"><span class="built_in">data</span>.append(<span class="string">'id'</span>, <span class="string">'5'</span>);</span><br><span class="line"></span><br><span class="line">fetch(<span class="string">'url'</span>, &#123; method: <span class="string">'POST'</span>, body: <span class="built_in">data</span> &#125;) <span class="comment">// 带入参数</span></span><br><span class="line">.then(response =&gt; response.json();) <span class="comment">// 解读JSON格式</span></span><br><span class="line">.then(<span class="built_in">data</span> =&gt; </span><br><span class="line">  console.<span class="keyword">log</span>(<span class="built_in">data</span>)) <span class="comment">// 取得资料</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 把数据参数传到后端，一样要先声明 FormData</span></span><br><span class="line"><span class="built_in">var</span> <span class="built_in">data</span> = <span class="literal">new</span> FormData();</span><br><span class="line"><span class="built_in">data</span>.append(<span class="string">'id'</span>, <span class="string">'5'</span>);</span><br><span class="line"></span><br><span class="line">fetch(<span class="string">'url'</span>, &#123; method: <span class="string">'POST'</span>, body: <span class="built_in">data</span> &#125;) <span class="comment">// 带入参数</span></span><br><span class="line">.then(response =&gt; response.json();) <span class="comment">// 解读JSON格式</span></span><br><span class="line">.then(<span class="built_in">data</span> =&gt; </span><br><span class="line">  console.<span class="keyword">log</span>(<span class="built_in">data</span>)) <span class="comment">// 获取数据</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://slides.com/yi-tailin/event-queue-ajax/#/" target="_blank" rel="external nofollow noopener noreferrer">slide 简报</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://slides.com/yi-tailin/event-queue-ajax/#/" target="_blank" rel="external nofollow noopener noreferrer">slide 演示文稿</a></p>
 ]]>
     </content>
     <categories>
@@ -569,9 +569,9 @@
 <a id="more"></a>
 
 <h2 id="什么是-D3-js"><a href="#什么是-D3-js" class="headerlink" title="什么是 D3.js"></a>什么是 D3.js</h2><blockquote>
-<p>D3.js（Data-Driven Documents）是一个使用动态图形进行资料可视化的 JavaScript 程序库。与 W3C 标准相容，并且利用广泛实现的 SVG、JavaScript 和 CSS 标准⋯⋯最常被运用在在线新闻网站呈现互动式图形、呈现资料资料的图表和呈现含有地理信息的资料。——维基百科</p>
+<p>D3.js（Data-Driven Documents）是一个使用动态图形进行数据可视化的 JavaScript 程序库。与 W3C 标准兼容，并且利用广泛实现的 SVG、JavaScript 和 CSS 标准⋯⋯最常被运用在在线新闻网站呈现互动式图形、呈现数据数据的图表和呈现含有地理信息的数据。——维基百科</p>
 </blockquote>
-<p>简单来说，D3.js 能以图像的方式来呈现资料，并用资料来驱动 DOM。</p>
+<p>简单来说，D3.js 能以图像的方式来呈现数据，并用数据来驱动 DOM。</p>
 <h2 id="SVG-标签"><a href="#SVG-标签" class="headerlink" title="SVG 标签"></a>SVG 标签</h2><p>D3.js 是用 SVG 来绘制图像的，所以需要具备一些 SVG 绘图的背景知识。SVG 与 HTML 一样是有标签的，以下就是常见的 SVG 标签：</p>
 <ul>
 <li><code>&lt;text&gt;</code> - 文字标签</li>
@@ -580,42 +580,42 @@
 <li><code>&lt;path&gt;</code> - 弧形标签</li>
 <li><code>&lt;g&gt;</code> - 集成以上的对象，在 <code>&lt;g&gt;</code> 里面可以放各类型的标签</li>
 </ul>
-<h2 id="创建-D3-js-画布"><a href="#创建-D3-js-画布" class="headerlink" title="创建 D3.js 画布"></a>创建 D3.js 画布</h2><p>首先先来了解如何用 D3.js 选取 DOM。</p>
+<h2 id="创建-D3-js-画布"><a href="#创建-D3-js-画布" class="headerlink" title="创建 D3.js 画布"></a>创建 D3.js 画布</h2><p>首先先来了解如何用 D3.js 选择 DOM。</p>
 <ul>
-<li>选取单个 DOM：d3.select(‘.className’)</li>
-<li>选取多个 DOM：d3.selectAll(‘.className’)</li>
+<li>选择单个 DOM：d3.select(‘.className’)</li>
+<li>选择多个 DOM：d3.selectAll(‘.className’)</li>
 </ul>
-<p>了解如何选取 DOM 后，接着先选取一个空的 <code>&lt;div&gt;</code>，动态添加一个 SVG 画布，再用 <code>attr()</code> 动态加上属性来设置宽高，注意，<code>attr()</code> 内的格式是对象。</p>
+<p>了解如何选择 DOM 后，接着先选择一个空的 <code>&lt;div&gt;</code>，动态添加一个 SVG 画布，再用 <code>attr()</code> 动态加上属性来设置宽高，注意，<code>attr()</code> 内的格式是对象。</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line">d3.<span class="keyword">select</span>(<span class="string">'.chart-d3'</span>)</span><br><span class="line">  .<span class="built_in">append</span>(<span class="string">'svg'</span>)</span><br><span class="line">  .attr(&#123;</span><br><span class="line">    <span class="string">"width"</span>: <span class="string">"75px"</span>,</span><br><span class="line">    <span class="string">"height"</span>: <span class="string">"75px"</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
 
-<h2 id="将资料导入"><a href="#将资料导入" class="headerlink" title="将资料导入"></a>将资料导入</h2><p>已经准备好画布之后，就可以开始用资料来绘制 DOM 了。</p>
+<h2 id="将数据导入"><a href="#将数据导入" class="headerlink" title="将数据导入"></a>将数据导入</h2><p>已经准备好画布之后，就可以开始用数据来绘制 DOM 了。</p>
 <ol>
-<li>准备一个数组当作资料基础。<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">var vote</span> = [<span class="string">'30'</span>,<span class="string">'50'</span>,<span class="string">'100'</span>,<span class="string">'20'</span>];</span><br></pre></td></tr></table></figure></li>
+<li>准备一个数组当作数据基础。<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">var vote</span> = [<span class="string">'30'</span>,<span class="string">'50'</span>,<span class="string">'100'</span>,<span class="string">'20'</span>];</span><br></pre></td></tr></table></figure></li>
 <li>HTML 中准备一个空的 <code>&lt;ul&gt;</code>，className 为 <code>.list</code>。</li>
-<li>用 D3 选择 <code>.list</code>。<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">d3</span><span class="selector-class">.select</span>(<span class="string">'.list'</span>)</span><br><span class="line"><span class="selector-class">.selectAll</span>(<span class="string">'li'</span>) <span class="comment">// 预先选取等一下会创建的与资料数相同的 li</span></span><br><span class="line"><span class="selector-class">.data</span>(vote)  <span class="comment">// 导入资料</span></span><br><span class="line"><span class="selector-class">.enter</span>()  <span class="comment">// 自动生成与资料对应数量的元素</span></span><br><span class="line"><span class="selector-class">.append</span>(<span class="string">'li'</span>) <span class="comment">// 插入元素</span></span><br><span class="line"><span class="selector-class">.text</span>(function(d)&#123;</span><br><span class="line">  <span class="selector-tag">return</span> <span class="selector-tag">d</span>;</span><br><span class="line">  <span class="comment">// d 指的是资料数组中的每个元素(如果数组内是对象，带进来的就是对象)</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<li>用 D3 选择 <code>.list</code>。<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">d3</span><span class="selector-class">.select</span>(<span class="string">'.list'</span>)</span><br><span class="line"><span class="selector-class">.selectAll</span>(<span class="string">'li'</span>) <span class="comment">// 预先选择等一下会创建的与数据数相同的 li</span></span><br><span class="line"><span class="selector-class">.data</span>(vote)  <span class="comment">// 导入数据</span></span><br><span class="line"><span class="selector-class">.enter</span>()  <span class="comment">// 自动生成与数据对应数量的元素</span></span><br><span class="line"><span class="selector-class">.append</span>(<span class="string">'li'</span>) <span class="comment">// 插入元素</span></span><br><span class="line"><span class="selector-class">.text</span>(function(d)&#123;</span><br><span class="line">  <span class="selector-tag">return</span> <span class="selector-tag">d</span>;</span><br><span class="line">  <span class="comment">// d 指的是数据数组中的每个元素(如果数组内是对象，带进来的就是对象)</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<h2 id="如何绘制长条图"><a href="#如何绘制长条图" class="headerlink" title="如何绘制长条图"></a>如何绘制长条图</h2><ol>
+<h2 id="如何绘制柱状图"><a href="#如何绘制柱状图" class="headerlink" title="如何绘制柱状图"></a>如何绘制柱状图</h2><ol>
 <li>准备一个数组，里面是对象，每个对象都是等一下会呈现的长条。<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">var vote</span> =[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Grete"</span>,</span><br><span class="line">    <span class="string">"num"</span>: 80</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Steffi"</span>,</span><br><span class="line">    <span class="string">"num"</span>: 100</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Lala"</span>,</span><br><span class="line">    <span class="string">"num"</span>: 200</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br></pre></td></tr></table></figure></li>
 <li>在 HTML 准备一个空的 <code>&lt;div&gt;</code>，className 取为 <code>.chart</code>。</li>
-<li>插入资料。<figure class="highlight scilab"><table><tr><td class="code"><pre><span class="line">d3.<span class="keyword">select</span>(<span class="string">'.chart'</span>)</span><br><span class="line">  .selectAll(<span class="string">'div'</span>)</span><br><span class="line">  .data(vote)</span><br><span class="line">  .enter()</span><br><span class="line">  .append(<span class="string">'div'</span>)</span><br><span class="line">  .html(<span class="function"><span class="keyword">function</span><span class="params">(d)</span>&#123;</span></span><br><span class="line">    <span class="comment">// .html() 类似 .innerHTML，D3 允许 SVG 跟 HTML 标签混用</span></span><br><span class="line">    <span class="keyword">return</span> d.name + <span class="string">'&lt;br&gt;'</span> + d.num</span><br><span class="line">  &#125;)</span><br><span class="line">  .style(<span class="string">"height"</span>, <span class="function"><span class="keyword">function</span><span class="params">(d)</span>&#123;</span></span><br><span class="line">    <span class="keyword">return</span> d.num + <span class="string">'px'</span>  <span class="comment">// 调整每个长条的高度</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<li>插入数据。<figure class="highlight scilab"><table><tr><td class="code"><pre><span class="line">d3.<span class="keyword">select</span>(<span class="string">'.chart'</span>)</span><br><span class="line">  .selectAll(<span class="string">'div'</span>)</span><br><span class="line">  .data(vote)</span><br><span class="line">  .enter()</span><br><span class="line">  .append(<span class="string">'div'</span>)</span><br><span class="line">  .html(<span class="function"><span class="keyword">function</span><span class="params">(d)</span>&#123;</span></span><br><span class="line">    <span class="comment">// .html() 类似 .innerHTML，D3 允许 SVG 跟 HTML 标签混用</span></span><br><span class="line">    <span class="keyword">return</span> d.name + <span class="string">'&lt;br&gt;'</span> + d.num</span><br><span class="line">  &#125;)</span><br><span class="line">  .style(<span class="string">"height"</span>, <span class="function"><span class="keyword">function</span><span class="params">(d)</span>&#123;</span></span><br><span class="line">    <span class="keyword">return</span> d.num + <span class="string">'px'</span>  <span class="comment">// 调整每个长条的高度</span></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<h2 id="如何更新图表"><a href="#如何更新图表" class="headerlink" title="如何更新图表"></a>如何更新图表</h2><p>完成上一段的长条图之后，如果之后有新数据要更新图表，应该怎么做呢？<br>以下的例子从原始资料创建图表开始，示范如何用新资料盖过旧资料。</p>
+<h2 id="如何更新图表"><a href="#如何更新图表" class="headerlink" title="如何更新图表"></a>如何更新图表</h2><p>完成上一段的柱状图之后，如果之后有新数据要更新图表，应该怎么做呢？<br>以下的例子从原始数据创建图表开始，示范如何用新数据盖过旧数据。</p>
 <ol>
-<li>准备原始资料数组与新资料数组。<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这是原始的资料</span></span><br><span class="line"><span class="keyword">var</span> vote =[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Grete"</span>,</span><br><span class="line">    <span class="string">"num"</span>: <span class="number">80</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Steffi"</span>,</span><br><span class="line">    <span class="string">"num"</span>: <span class="number">100</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Lala"</span>,</span><br><span class="line">    <span class="string">"num"</span>: <span class="number">200</span></span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这是新的资料</span></span><br><span class="line"><span class="keyword">var</span> voteUpdate =[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Grete"</span>,</span><br><span class="line">    <span class="string">"num"</span>: <span class="number">120</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Steffi"</span>,</span><br><span class="line">    <span class="string">"num"</span>: <span class="number">80</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Lala"</span>,</span><br><span class="line">    <span class="string">"num"</span>: <span class="number">60</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure></li>
-<li>使用上一段绘制长条图的技巧，用原始资料把节点 (<code>node</code>) 都先创建出来。<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> node = d3</span><br><span class="line">  .<span class="keyword">select</span>(<span class="string">'.chart'</span>)</span><br><span class="line">  .selectAll(<span class="string">'div'</span>)</span><br><span class="line">  .data(vote)</span><br><span class="line">  .enter()</span><br><span class="line">  .<span class="built_in">append</span>(<span class="string">'div'</span>)</span><br></pre></td></tr></table></figure></li>
-<li>把绘制图像的代码都放到一个函数里 (<code>update()</code>)，直接选择 <code>node</code> 进行渲染。函数化的目的是让每次替换节点里塞入的资料时，可以通过调用函数就重新绘制图像。<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  node</span><br><span class="line">  .html(<span class="function"><span class="keyword">function</span><span class="params">(d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> d.name + <span class="string">'&lt;br&gt;'</span> + d.num</span><br><span class="line">  &#125;)</span><br><span class="line">  .style(<span class="string">"height"</span>, <span class="function"><span class="keyword">function</span><span class="params">(d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> d.num + <span class="string">'px'</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">update();</span><br></pre></td></tr></table></figure></li>
-<li>最后，变更 <code>node</code> 塞入的 data，然后调用更新函数。<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">node</span>.<span class="title">data</span>(voteUpdate); // 带入新资料</span><br><span class="line">update();  // 重新渲染</span><br></pre></td></tr></table></figure>
-<h2 id="小补充"><a href="#小补充" class="headerlink" title="小补充"></a>小补充</h2><h3 id="加入-className-的方法"><a href="#加入-className-的方法" class="headerlink" title="加入 className 的方法"></a>加入 className 的方法</h3>用这个方法可以把自己写的样式动态加到 DOM 上面：<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.attr</span>(<span class="string">"class"</span>, <span class="string">".d3-tip"</span>) <span class="comment">// 加入自订的 className</span></span><br></pre></td></tr></table></figure>
+<li>准备原始数据数组与新数据数组。<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这是原始的数据</span></span><br><span class="line"><span class="keyword">var</span> vote =[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Grete"</span>,</span><br><span class="line">    <span class="string">"num"</span>: <span class="number">80</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Steffi"</span>,</span><br><span class="line">    <span class="string">"num"</span>: <span class="number">100</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Lala"</span>,</span><br><span class="line">    <span class="string">"num"</span>: <span class="number">200</span></span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这是新的数据</span></span><br><span class="line"><span class="keyword">var</span> voteUpdate =[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Grete"</span>,</span><br><span class="line">    <span class="string">"num"</span>: <span class="number">120</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Steffi"</span>,</span><br><span class="line">    <span class="string">"num"</span>: <span class="number">80</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"Lala"</span>,</span><br><span class="line">    <span class="string">"num"</span>: <span class="number">60</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure></li>
+<li>使用上一段绘制柱状图的技巧，用原始数据把节点 (<code>node</code>) 都先创建出来。<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> node = d3</span><br><span class="line">  .<span class="keyword">select</span>(<span class="string">'.chart'</span>)</span><br><span class="line">  .selectAll(<span class="string">'div'</span>)</span><br><span class="line">  .data(vote)</span><br><span class="line">  .enter()</span><br><span class="line">  .<span class="built_in">append</span>(<span class="string">'div'</span>)</span><br></pre></td></tr></table></figure></li>
+<li>把绘制图像的代码都放到一个函数里 (<code>update()</code>)，直接选择 <code>node</code> 进行渲染。函数化的目的是让每次替换节点里塞入的数据时，可以通过调用函数就重新绘制图像。<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  node</span><br><span class="line">  .html(<span class="function"><span class="keyword">function</span><span class="params">(d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> d.name + <span class="string">'&lt;br&gt;'</span> + d.num</span><br><span class="line">  &#125;)</span><br><span class="line">  .style(<span class="string">"height"</span>, <span class="function"><span class="keyword">function</span><span class="params">(d)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> d.num + <span class="string">'px'</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">update();</span><br></pre></td></tr></table></figure></li>
+<li>最后，变更 <code>node</code> 塞入的 data，然后调用更新函数。<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line"><span class="keyword">node</span>.<span class="title">data</span>(voteUpdate); // 带入新数据</span><br><span class="line">update();  // 重新渲染</span><br></pre></td></tr></table></figure>
+<h2 id="小补充"><a href="#小补充" class="headerlink" title="小补充"></a>小补充</h2><h3 id="加入-className-的方法"><a href="#加入-className-的方法" class="headerlink" title="加入 className 的方法"></a>加入 className 的方法</h3>用这个方法可以把自己写的样式动态加到 DOM 上面：<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.attr</span>(<span class="string">"class"</span>, <span class="string">".d3-tip"</span>) <span class="comment">// 加入自定义的 className</span></span><br></pre></td></tr></table></figure>
 <h3 id="插入字符串的方法"><a href="#插入字符串的方法" class="headerlink" title="插入字符串的方法"></a>插入字符串的方法</h3>用这个方法就等同于用 <code>.innerHTML</code> 插入字符串到 DOM 里面：<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line">.html(<span class="function"><span class="keyword">function</span><span class="params">(d)</span></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"字符串"</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2>本篇笔记是我在<a href="https://www.youtube.com/watch?v=0PQ8VOsyjzw" target="_blank" rel="external nofollow noopener noreferrer">观看六角学院放在 Youtube 的教学</a>时写下的，不过我也搜集了一些跟 D3.js 相关的文章，也放在这里提供给大家参考。</li>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2>本篇笔记是我在<a href="https://www.youtube.com/watch?v=0PQ8VOsyjzw" target="_blank" rel="external nofollow noopener noreferrer">观看六角学院放在 Youtube 的教学</a>时写下的，不过我也收集了一些跟 D3.js 相关的文章，也放在这里提供给大家参考。</li>
 </ol>
 <ul>
 <li><a href="https://medium.com/@mybaseball52/%E5%A2%9E%E5%BC%B7-d3-js-%E7%9A%84%E8%A6%96%E8%A6%BA%E5%8C%96%E5%8A%9F%E8%83%BD-68eaa66eef98" target="_blank" rel="external nofollow noopener noreferrer">增强 D3.js 的可视化功能</a></li>
-<li><a href="https://ithelp.ithome.com.tw/users/20105602/ironman/1582?page=3" target="_blank" rel="external nofollow noopener noreferrer">让你资料美美的(d3.js+vue.js) 系列</a></li>
+<li><a href="https://ithelp.ithome.com.tw/users/20105602/ironman/1582?page=3" target="_blank" rel="external nofollow noopener noreferrer">让你数据美美的(d3.js+vue.js) 系列</a></li>
 <li><a href="https://www.oxxostudio.tw/articles/201509/svg-d3-18-enter-update-exit.html" target="_blank" rel="external nofollow noopener noreferrer">SVG D3.js - Enter、Update 和 Exit</a></li>
 </ul>
 ]]>
@@ -627,8 +627,8 @@
       <tag>w3HexSchool</tag>
       <tag>D3.js</tag>
       <tag>DataDrivenDocuments</tag>
-      <tag>资料可视化</tag>
-      <tag>长条图</tag>
+      <tag>数据可视化</tag>
+      <tag>柱状图</tag>
       <tag>SVG</tag>
     </tags>
   </entry>
@@ -654,13 +654,13 @@
 <h2 id="用户旅程地图"><a href="#用户旅程地图" class="headerlink" title="用户旅程地图"></a>用户旅程地图</h2><p>可以做得简单也可以做得复杂，可以把前中后台、用户场景、商业逻辑都用<strong>可视化</strong>的方式呈现。<br>可视化是 UX 设计师很重要的工作，把抽象的事情变具体，也能帮助讨论不要发散。</p>
 <h2 id="Wireframe"><a href="#Wireframe" class="headerlink" title="Wireframe"></a>Wireframe</h2><p>工程师可以在 Wireframe 上确认规格跟使用流程。</p>
 <h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q &amp; A"></a>Q &amp; A</h2><p>Q: 没办法从过去的 UX 案例来预估成效吗？<br>A: 过去的成功无法代表未来的成功。<del>跟投资买股票一样。</del></p>
-<p>Q: 哪个阶段会开始请工程师？<br>A: 在第一天就会跟工程师讨论，画出一个边界，确认解决问题到什么程度，这其实是商业模式层次的问题。<br>UX 会先定义用户角色，接着做用户研究、在线访谈，使用产品的场景、频率、需求、流程，然后把搜集到的信息拿去跟客户做讨论。如果发现有些指标适合量化，就会先列出来，提供之后规格的参考。</p>
+<p>Q: 哪个阶段会开始请工程师？<br>A: 在第一天就会跟工程师讨论，画出一个边界，确认解决问题到什么程度，这其实是商业模式层次的问题。<br>UX 会先定义用户角色，接着做用户研究、在线访谈，使用产品的场景、频率、需求、流程，然后把收集到的信息拿去跟客户做讨论。如果发现有些指标适合量化，就会先列出来，提供之后规格的参考。</p>
 <p>Q: 请问每一个案子都会做用户测试吗？如果会的话用户测试大约会找多少人测试呢？<br>A: 依照尼尔森原则，找 5 到 8 个人就能找出 85% 的问题。在做测试时应该追求快速有效的方法，找越多人测试就越旷日费时、成本越高。测试时，也会把时间限缩在 5 到 10 分钟就做完，并会对测试者进行放声思考法，引导他们讲出对特定界面、元素的认知。</p>
 <p>Q: 在判断客户的使用情况是否流畅，可否观察用户在按下某个按钮后，过了多久时间才按下设计师所期待的用户的按钮，可以这样来判断吗? （如果很快就按下的话, 可以代表这个设计是符合UX吗？）<br>A: 我们会设置一个特定的任务，针对一定数量的用户去测他们进行任务的秒数，可以用 GA 查看有些比较久才进行特定任务的人是先去干嘛了。</p>
 <p>Q: 请问，目前 UX 设计遇到的大环境威胁有哪些？例如：</p>
 <ol>
 <li>移动设备越做越小，导致能够设计的空间变少</li>
-<li>客户会为了省钱，而直接要求你们做过的案例框架拿来套用，为了不愿多花设计费</li>
+<li>客户会为了省钱，而直接要求你们做过的案例框架拿来应用，为了不愿多花设计费</li>
 <li>案例越做越多，模仿的竞争者越来越多</li>
 <li>其他？</li>
 </ol>
@@ -668,7 +668,7 @@
 <p>A:</p>
 <ol>
 <li>有限制是好的，因为画面小反而塞不了太多东西，Web 画面较大，可以塞的东西就多，业主常常会希望把画面塞得满满的，导致画面臃肿不堪，所以 Web 比 APP 还难设计。</li>
-<li>每个业主的商业模式都不一样，所以不太会拿其他人的来套用。</li>
+<li>每个业主的商业模式都不一样，所以不太会拿其他人的来应用。</li>
 <li>市面上越多流畅的产品，越能够带动业界质量提升，所以竞争多是好事。</li>
 </ol>
 <p>Q: 有没有案子是在 iPad 上面做相关的测试？<br>A: 有，但当时客户不想单独测试 iPad，iPad 可以直着看也可以横着看，所以 UI 有把尺寸设计好就没问题。</p>
@@ -702,12 +702,12 @@
 <h3 id="filter"><a href="#filter" class="headerlink" title="filter()"></a>filter()</h3><p>从 A 数组中筛选符合某条件的值，符合条件的值以新数组 B 返回。</p>
 <figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">let result = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>].map(i =&gt; i % <span class="number">2</span> == <span class="number">0</span>);</span><br><span class="line">console.log(result);</span><br><span class="line"><span class="comment">// [2,4,6]</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce()"></a>reduce()</h3><p>有顺序上的依赖，依序对数组内的值进行处理（累加、相乘等等）。</p>
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce()"></a>reduce()</h3><p>有顺序上的依赖，依次对数组内的值进行处理（累加、相乘等等）。</p>
 <figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// for 循环的累加写法</span></span><br><span class="line">let ary = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line">let result = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (let i of ary)&#123;</span><br><span class="line">  result = result + i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// reduce() 的累加写法</span></span><br><span class="line"><span class="keyword">let</span> result = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>].reduce(reducer, <span class="number">0</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">accu, i</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> accu + i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 起始值为 0</span></span><br><span class="line"><span class="comment">// accu 为一个暂存、累加的值，就如同上一段在 for 循环之前声明的 result</span></span><br><span class="line"><span class="comment">// 第一次递回：accu 为 0，i 为 1，相加为 1</span></span><br><span class="line"><span class="comment">// 第二次递回：accu 为 1，i 为 2，相加为 3</span></span><br><span class="line"><span class="comment">// 以下类推</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 起始值的型别跟最后运算完的型别一致</span></span><br><span class="line"><span class="comment">// 常用的起始值：0, 1, [], '', &#123;&#125;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="循环跟-map-、reduce-、filter-的差别："><a href="#循环跟-map-、reduce-、filter-的差别：" class="headerlink" title="循环跟 map()、reduce()、filter() 的差别："></a>循环跟 <code>map()</code>、<code>reduce()</code>、<code>filter()</code> 的差别：</h3><p>循环一定要依序对值进行处理，就像手摇店员对一个接一个的客人进行结帐；数组方法不强调值的处理顺序，只强调处理的手法。</p>
+<h3 id="循环跟-map-、reduce-、filter-的差别："><a href="#循环跟-map-、reduce-、filter-的差别：" class="headerlink" title="循环跟 map()、reduce()、filter() 的差别："></a>循环跟 <code>map()</code>、<code>reduce()</code>、<code>filter()</code> 的差别：</h3><p>循环一定要依次对值进行处理，就像手摇店员对一个接一个的客人进行结帐；数组方法不强调值的处理顺序，只强调处理的手法。</p>
 <h2 id="闭包-Closure"><a href="#闭包-Closure" class="headerlink" title="闭包 Closure"></a>闭包 Closure</h2><p>利用闭包（closure）的作法，让函数有自己的私有变量，避免函数受到外在值的变动而被污染。当你看到一个函数内 return 了另一个函数，通常就是有用到闭包的概念。<br>参照：<a href="https://taian.su/2012-10-17-explaining-javascript-scope-and-closures-by-robert-nyman/" target="_blank" rel="external nofollow noopener noreferrer">Robert Nyman: 解释 JavaScript 的 scope 及 closures</a>、<a href="https://pjchender.blogspot.com/2017/05/javascript-closure.html" target="_blank" rel="external nofollow noopener noreferrer">深入浅出了解 JavaScript 闭包（closure）</a></p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 以下情形会让函数的结果受到外在变量的污染</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params">i</span>) </span>&#123; <span class="keyword">return</span> a + i&#125;</span><br><span class="line"><span class="built_in">console</span>.log(foo(<span class="number">100</span>));</span><br><span class="line">a = <span class="number">99</span>;</span><br><span class="line"><span class="built_in">console</span>.log(foo(<span class="number">100</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 两次 console 结果不一样</span></span><br><span class="line"><span class="comment">// 因为函数会吃到参数以外的变量值</span></span><br><span class="line"><span class="comment">// 而且改变变量值时，也会影响到函数结果</span></span><br></pre></td></tr></table></figure>
 
@@ -741,32 +741,32 @@
 <h2 id="建置步骤"><a href="#建置步骤" class="headerlink" title="建置步骤"></a>建置步骤</h2><ol>
 <li><p>下载 Vue Router：<code>npm install vue-router --save</code></p>
 </li>
-<li><p>在 <code>src</code> 文件夹里新建 <code>router</code> 文件夹：在里面添加一个 <code>index.js</code>，作为放置整个路由的配置档</p>
+<li><p>在 <code>src</code> 文件夹里新建 <code>router</code> 文件夹：在里面添加一个 <code>index.js</code>，作为放置整个路由的配置文件</p>
 </li>
 <li><p><code>index.js</code> 一开始要写入的是官方组件：</p>
 <figure class="highlight clean"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 官方组件</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">'vue-router'</span>;</span><br></pre></td></tr></table></figure></li>
-<li><p>加载自订组件，也就是把 <code>components</code> 文件夹内的 <code>.vue</code> 档写入 <code>index.js</code>：</p>
-<figure class="highlight clean"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 自订的分页组件</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'src/components/HelloWorld'</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>加载自定义组件，也就是把 <code>components</code> 文件夹内的 <code>.vue</code> 文件写入 <code>index.js</code>：</p>
+<figure class="highlight clean"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 自定义的分页组件</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'src/components/HelloWorld'</span>;</span><br></pre></td></tr></table></figure></li>
 <li><p>启用 router：<code>Vue.use(VueRouter);</code></p>
 </li>
 <li><p>将 <code>index.js</code> 汇出给进入点（<code>main.js</code>）使用：</p>
 <figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在 index.js 继续写</span></span><br><span class="line"><span class="selector-tag">export</span> <span class="selector-tag">default</span> <span class="selector-tag">new</span> <span class="selector-tag">VueRouter</span>(&#123;</span><br><span class="line">  <span class="comment">// 数组内可放多组路径及对应的组件</span></span><br><span class="line">  <span class="attribute">routes</span>:[</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attribute">name</span>: <span class="string">'首页'</span>, <span class="comment">// 组件呈现的名称</span></span><br><span class="line">      <span class="attribute">path</span>: <span class="string">'/index'</span>, <span class="comment">// 对应的虚拟路径</span></span><br><span class="line">      <span class="attribute">component</span>: Home, <span class="comment">// 对应的组件</span></span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-<li><p>在 <code>main.js</code> 汇入 router：</p>
+<li><p>在 <code>main.js</code> 导入 router：</p>
 <figure class="highlight clean"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span>;</span><br><span class="line"><span class="comment">// 再到 new Vue 下面加上 router 这个单字</span></span><br></pre></td></tr></table></figure></li>
 <li><p>到 <code>App.vue</code>，在要<strong>呈现组件的地方</strong>用 <code>&lt;router-view&gt;&lt;/router-view&gt;</code> 替换</p>
 </li>
 <li><p>当网址 <code>/#</code> 后面接的是 <code>/index</code> 时，对应的组件就会呈现在画面上</p>
 </li>
 </ol>
-<h2 id="添加路由路径及连结"><a href="#添加路由路径及连结" class="headerlink" title="添加路由路径及连结"></a>添加路由路径及连结</h2><ol>
+<h2 id="添加路由路径及链接"><a href="#添加路由路径及链接" class="headerlink" title="添加路由路径及链接"></a>添加路由路径及链接</h2><ol>
 <li>添加新的路由：基本上就是在上一段第 6 点的 router 数组里面添加对象</li>
-<li>在 index.html 用 CDN 加载 BS，或是用 GUI 下载 BS 套件</li>
+<li>在 index.html 用 CDN 加载 BS，或是用 GUI 下载 BS 软件包</li>
 <li>在 components 文件夹下添加 pages 文件夹，专门管理分页组件</li>
-<li>把 HelloWorld.vue 另存新档为 page.vue，存在 pages 里</li>
-<li>整理 page.vue 里的内容，只留下 <code>&lt;script&gt;</code> 区块（<code>data</code> 可留空）及空的 <code>&lt;template&gt;</code>，把 BS 的卡片组件贴在 <code>&lt;template&gt;</code> 里面</li>
+<li>把 HelloWorld.vue 另存为为 page.vue，存在 pages 里</li>
+<li>整理 page.vue 里的内容，只留下 <code>&lt;script&gt;</code> 区域（<code>data</code> 可留空）及空的 <code>&lt;template&gt;</code>，把 BS 的卡片组件贴在 <code>&lt;template&gt;</code> 里面</li>
 <li>回到 router 的 index.js，在 <code>import Home</code> 下面添加：<br><code>import Page form ‘/components/pages/page’;</code></li>
 <li>在 router 数组里添加相关信息：<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  name: ‘分页’,</span><br><span class="line">  path: ‘/page’,</span><br><span class="line">  component: Page</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>在 App.vue 插入 BS navbar，制作分页导览列，其中 a 连结的标签改为 <code>&lt;router-link&gt;</code>，并把 <code>href</code> 属性改为 <code>to=&quot;path值&quot;</code>，例如 <code>to=&quot;/page&quot;</code>；或是使用 <code>:to=&quot;{ name: &#39;分页&#39;}&quot;</code> 也有同样效果</li>
+<li>在 App.vue 插入 BS navbar，制作分页导航栏，其中 a 链接的标签改为 <code>&lt;router-link&gt;</code>，并把 <code>href</code> 属性改为 <code>to=&quot;path值&quot;</code>，例如 <code>to=&quot;/page&quot;</code>；或是使用 <code>:to=&quot;{ name: &#39;分页&#39;}&quot;</code> 也有同样效果</li>
 </ol>
 <h2 id="巢状路由"><a href="#巢状路由" class="headerlink" title="巢状路由"></a>巢状路由</h2><p>刚刚在 page 分页中的卡片，如果希望卡片不变但是里面内容被抽换，要如何通过虚拟路由来达成呢？</p>
 <ol>
@@ -778,13 +778,13 @@
 <h2 id="使用动态路由切换页面-AJAX-结果"><a href="#使用动态路由切换页面-AJAX-结果" class="headerlink" title="使用动态路由切换页面 AJAX 结果"></a>使用动态路由切换页面 AJAX 结果</h2>在同样的版型下，用网址后面的 id 决定带入的内容。<br>让我们把上一段的卡片 3 改成动态路由试试看！</li>
 <li>把上一段的 <code>path: &#39;child3&#39;</code> 改成 <code>path: &#39;child/:id&#39;</code>，<code>id</code> 是一个可自定义名称的参数，这时 <code>:id</code> 就成为动态路由。</li>
 <li>到卡片 3 的组件文件（<code>child3.vue</code>），在 <code>export default</code> 的大括号内增加一个 <code>created()</code>，这个方法会在组件生成时执行。</li>
-<li>访问 API 中固定的一笔资料（以 <a href="https://randomuser.me/" target="_blank" rel="external nofollow noopener noreferrer">randomuser</a> 为例）：<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> id = <span class="keyword">this</span>.$route.params.id;</span><br><span class="line"><span class="comment">// route 已被挂载到 Vue 上，所以可以用 $ 调用</span></span><br><span class="line"><span class="comment">// params 是 router 的方法，可以读取 router 里的参数</span></span><br><span class="line"><span class="comment">// id 是我们自订的参数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// AJAX</span></span><br><span class="line"><span class="comment">// get() 中的网址参考 reandomuser 文件中的 Seeds 一节</span></span><br><span class="line"><span class="comment">// ?seed=$&#123;网址参数&#125;，且 API 网址整串要用反引号包住</span></span><br><span class="line"><span class="keyword">this</span>.$http.get(<span class="string">`https://randomuser.me/api/?seed=<span class="subst">$&#123;id&#125;</span>`</span>).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(response);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-<li>在网址列随意打几个英文字，就能从 API 中抓取到特定资料。正式开发时，id 是由后端定义的，添加产品资料后会自动产生这个产品的 id ，前端要做的只是抓到这个 id ，并把资料显示出来。</li>
+<li>访问 API 中固定的一笔数据（以 <a href="https://randomuser.me/" target="_blank" rel="external nofollow noopener noreferrer">randomuser</a> 为例）：<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> id = <span class="keyword">this</span>.$route.params.id;</span><br><span class="line"><span class="comment">// route 已被挂载到 Vue 上，所以可以用 $ 调用</span></span><br><span class="line"><span class="comment">// params 是 router 的方法，可以读取 router 里的参数</span></span><br><span class="line"><span class="comment">// id 是我们自定义的参数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// AJAX</span></span><br><span class="line"><span class="comment">// get() 中的网址参考 reandomuser 文件中的 Seeds 一节</span></span><br><span class="line"><span class="comment">// ?seed=$&#123;网址参数&#125;，且 API 网址整串要用反引号包住</span></span><br><span class="line"><span class="keyword">this</span>.$http.get(<span class="string">`https://randomuser.me/api/?seed=<span class="subst">$&#123;id&#125;</span>`</span>).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(response);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li>在网址列随意打几个英文字，就能从 API 中抓取到特定数据。正式开发时，id 是由后端定义的，添加产品数据后会自动产生这个产品的 id ，前端要做的只是抓到这个 id ，并把数据显示出来。</li>
 </ol>
-<h2 id="命名路由，同一个路径加载两个组件"><a href="#命名路由，同一个路径加载两个组件" class="headerlink" title="命名路由，同一个路径加载两个组件"></a>命名路由，同一个路径加载两个组件</h2><p>为卡片多做一个导览列。</p>
+<h2 id="命名路由，同一个路径加载两个组件"><a href="#命名路由，同一个路径加载两个组件" class="headerlink" title="命名路由，同一个路径加载两个组件"></a>命名路由，同一个路径加载两个组件</h2><p>为卡片多做一个导航栏。</p>
 <ol>
 <li>在 <code>App.vue</code> 的 <code>.container</code> 上方添加一个 <code>&lt;router-view&gt;</code> 并且设置 <code>name</code> 属性，例如 <code>name=&quot;menu&quot;</code>。</li>
-<li><code>page.vue</code> 另存新档为 <code>menu.vue</code>，<code>page.vue</code> 只留 <code>.card</code> 其余的 <code>&lt;router-link&gt;</code> 删掉，<code>menu.vue</code> 只留 <code>&lt;router-link&gt;</code> 其余删掉。</li>
+<li><code>page.vue</code> 另存为为 <code>menu.vue</code>，<code>page.vue</code> 只留 <code>.card</code> 其余的 <code>&lt;router-link&gt;</code> 删掉，<code>menu.vue</code> 只留 <code>&lt;router-link&gt;</code> 其余删掉。</li>
 <li>使用 BS nav 美化 menu，把 nav 代码贴进来，用 <code>&lt;router-link&gt;</code> 取代 nav 里面的 <code>&lt;a&gt;</code>，记得补上 <code>.nav-link</code>。</li>
 <li>到 router 文件夹的 <code>index.js</code> 中将 <code>menu.vue</code> <code>import</code> 进来，并到下方的路由设置改写代码：<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 原本使用 component 特性，改用 components 设置单一路由但多个组件</span></span><br><span class="line"><span class="symbol">components:</span> &#123;</span><br><span class="line"><span class="symbol">  default:</span> Page, <span class="comment">// 在 router-view 没有设置 name 时默认显示哪个组件</span></span><br><span class="line"><span class="symbol">  menu:</span> Menu <span class="comment">// 第一个 menu 是 router-view 的 name，第二个 Menu 是组件名</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 <h2 id="Vue-Router-参数设置"><a href="#Vue-Router-参数设置" class="headerlink" title="Vue Router 参数设置"></a>Vue Router 参数设置</h2>请搭配 Vue Router 官方文件。<br>Vue Router 的 API 分为 Router 构造配置及 Router 实例，这篇只介绍常用的 Router 配置。</li>
@@ -798,7 +798,7 @@
 <li>linkExactActiveClass 字符串：跟上一个差不多。</li>
 </ul>
 <h2 id="自定义切换路由方法"><a href="#自定义切换路由方法" class="headerlink" title="自定义切换路由方法"></a>自定义切换路由方法</h2><p>有些行为必须在 AJAX 结束后才去切换画面，此时 <code>router-link</code> 就不一定适用。</p>
-<p>举例来说，当我们在电商网站买完东西、结帐送出后，需要进行一些 AJAX 的行为，得到资料后使用一些方法，使网页切换。</p>
+<p>举例来说，当我们在电商网站买完东西、结帐送出后，需要进行一些 AJAX 的行为，得到数据后使用一些方法，使网页切换。</p>
 <p>此时，我们应该运用组件 <code>methods</code> + Vue Router 的实例方法，来切换画面。</p>
 <p>在官方文件的 API / Router 实例方法中，有许多我们能运用的方法，其中较常用的有：</p>
 <ul>
@@ -809,7 +809,7 @@
 <li><code>router.replace()</code>：括号里放入<code>&#39;路径&#39;</code>，通过这个方法前往指定路径，将不会记录在浏览器。</li>
 </ul>
 <h3 id="应用方式"><a href="#应用方式" class="headerlink" title="应用方式"></a>应用方式</h3><ol>
-<li>在组件写一个 <code>&lt;a&gt;</code>，并绑定一个自订的事件，通过这个事件来更新路径。<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;a <span class="attribute">href</span>=<span class="string">"#"</span> @click.<span class="attribute">prevent</span>=<span class="string">"updatePath"</span>&gt;切换到指定页面&lt;/a&gt;</span><br></pre></td></tr></table></figure></li>
+<li>在组件写一个 <code>&lt;a&gt;</code>，并绑定一个自定义的事件，通过这个事件来更新路径。<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;a <span class="attribute">href</span>=<span class="string">"#"</span> @click.<span class="attribute">prevent</span>=<span class="string">"updatePath"</span>&gt;切换到指定页面&lt;/a&gt;</span><br></pre></td></tr></table></figure></li>
 <li>在组件里添加 <code>methods</code>，使用 <code>router.push()</code> 方法。<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  updatePath() &#123;</span><br><span class="line">    <span class="keyword">this</span>.$router.<span class="keyword">push</span>(<span class="string">'/page/child2'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
@@ -829,15 +829,15 @@
       <![CDATA[<p>估狗估不到什么东西，还好自己有摸索成功，干脆来发一篇！</p>
 <a id="more"></a>
 <p>在搬运 Medium 文章过来的过程中遇到一个问题，就是我之前在 Medium 写文的时候超常 embed Codepen 的，毕竟有些效果真的有 Demo 辅助说明会比较好。<br>但在 hexo NexT 的环境下要怎么嵌入 Codepen 哩？</p>
-<h2 id="第一次踩雷"><a href="#第一次踩雷" class="headerlink" title="第一次踩雷"></a>第一次踩雷</h2><p>我首先找到这篇文章： <a href="https://www.jianshu.com/p/79e808bbf0a8" target="_blank" rel="external nofollow noopener noreferrer">Hexo NexT：在文章中嵌入 CodePen或 jsFiddle</a>，但是我下载完套件后，按照文中的方式在文章里插入模板，却跑出一堆错误信息，整篇文章的内容都无法渲染。</p>
-<p>所以我只好舍弃这个方法，跑去翻翻 NexT 官方文件：<a href="https://hexo.io/zh-tw/docs/tag-plugins" target="_blank" rel="external nofollow noopener noreferrer">标签外挂（Tag Plugins）</a>。<br>看到官方有提供插入 iframe 的语法，我就想说 Codepen 也有提供 iframe 代码，说不定行得通。</p>
+<h2 id="第一次踩雷"><a href="#第一次踩雷" class="headerlink" title="第一次踩雷"></a>第一次踩雷</h2><p>我首先找到这篇文章： <a href="https://www.jianshu.com/p/79e808bbf0a8" target="_blank" rel="external nofollow noopener noreferrer">Hexo NexT：在文章中嵌入 CodePen或 jsFiddle</a>，但是我下载完软件包后，按照文中的方式在文章里插入模板，却跑出一堆错误信息，整篇文章的内容都无法渲染。</p>
+<p>所以我只好舍弃这个方法，跑去翻翻 NexT 官方文件：<a href="https://hexo.io/zh-tw/docs/tag-plugins" target="_blank" rel="external nofollow noopener noreferrer">标签插件（Tag Plugins）</a>。<br>看到官方有提供插入 iframe 的语法，我就想说 Codepen 也有提供 iframe 代码，说不定行得通。</p>
 <h2 id="Next-与-Codepen-iframe-语法"><a href="#Next-与-Codepen-iframe-语法" class="headerlink" title="Next 与 Codepen iframe 语法"></a>Next 与 Codepen iframe 语法</h2><p>Next 官方提供的语法：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% iframe url [width] [height] %&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Codepen 提供的 iframe 代码：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">height</span>=<span class="string">"265"</span> <span class="attr">style</span>=<span class="string">"width: 100%;"</span> <span class="attr">scrolling</span>=<span class="string">"no"</span> <span class="attr">title</span>=<span class="string">"bs flex order"</span> <span class="attr">src</span>=<span class="string">"https://codepen.io/gretema/embed/eYOjPJx?height=265&amp;theme-id=default&amp;default-tab=html,result"</span> <span class="attr">frameborder</span>=<span class="string">"no"</span> <span class="attr">allowtransparency</span>=<span class="string">"true"</span> <span class="attr">allowfullscreen</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">  See the Pen <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'https://codepen.io/gretema/pen/eYOjPJx'</span>&gt;</span>bs flex order<span class="tag">&lt;/<span class="name">a</span>&gt;</span> by 马维君</span><br><span class="line">  (<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'https://codepen.io/gretema'</span>&gt;</span>@gretema<span class="tag">&lt;/<span class="name">a</span>&gt;</span>) on <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'https://codepen.io'</span>&gt;</span>CodePen<span class="tag">&lt;/<span class="name">a</span>&gt;</span>.</span><br><span class="line"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="第二次踩雷"><a href="#第二次踩雷" class="headerlink" title="第二次踩雷"></a>第二次踩雷</h2><p>我把 Next 语法中的 <code>url</code> 代换成 Codepen 连结网址 (<code>https://codepen.io/gretema/pen/eYOjPJx</code>)，<code>[width]</code> 代换成 <code>[100%]</code>，<code>[height]</code> 代换成 <code>[265]</code>。<br>宽度跟高度的数值都是从 Codepen 提供的代码中取出来的。<br>呈现出来是这样：</p>
+<h2 id="第二次踩雷"><a href="#第二次踩雷" class="headerlink" title="第二次踩雷"></a>第二次踩雷</h2><p>我把 Next 语法中的 <code>url</code> 代换成 Codepen 链接网址 (<code>https://codepen.io/gretema/pen/eYOjPJx</code>)，<code>[width]</code> 代换成 <code>[100%]</code>，<code>[height]</code> 代换成 <code>[265]</code>。<br>宽度跟高度的数值都是从 Codepen 提供的代码中取出来的。<br>呈现出来是这样：</p>
 <iframe src="https://codepen.io/gretema/pen/eYOjPJx" width="[100%]" height="[265]" frameborder="0" loading="lazy" allowfullscreen></iframe>
 <p>嗯…… Codepen 画面是出来了，但尺寸很有问题。</p>
 <h2 id="终于成功啦"><a href="#终于成功啦" class="headerlink" title="终于成功啦"></a>终于成功啦</h2><p>最后，我尝试把 Codepen 提供的代码中，<code>&lt;iframe&gt;</code> 的 <code>src</code> 值取出来，放到 Next iframe 语法的 <code>url</code> 位置，而 <code>[width]</code> 跟 <code>[height]</code> 都去掉。</p>
@@ -922,7 +922,7 @@
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-<p>范例中，原本 <code>.col-*</code> 会被 <code>.row</code> 包裹，但因为 Bootstrap 已经帮 <code>.row</code> 内建 <code>flex-wrap</code> 换行了，所以改用 <code>.d-flex</code> 包裹 <code>.col-*</code>。</p>
+<p>示例中，原本 <code>.col-*</code> 会被 <code>.row</code> 包裹，但因为 Bootstrap 已经帮 <code>.row</code> 内置 <code>flex-wrap</code> 换行了，所以改用 <code>.d-flex</code> 包裹 <code>.col-*</code>。</p>
 <h4 id="align-content（外层）"><a href="#align-content（外层）" class="headerlink" title="align-content（外层）"></a>align-content（外层）</h4><p>只有在换行（<code>flex-wrap</code>）的情况下可使用，用在有高度的外层容器上，会使内层对象在父元素内垂直对齐。</p>
 <p class="codepen" data-height="265" data-theme-id="default" data-default-tab="html,result" data-user="gretema" data-slug-hash="mdbjzqw" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="bs flex align-content">
   <span>See the Pen <a href="https://codepen.io/gretema/pen/mdbjzqw" target="_blank" rel="external nofollow noopener noreferrer">
@@ -931,7 +931,7 @@
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-<h4 id="order-属性（内层）"><a href="#order-属性（内层）" class="headerlink" title="order 属性（内层）"></a>order 属性（内层）</h4><p>用来更改区块排列的顺序，将 <code>order-*</code> 写在 class 里，<code>*</code> 代表我们希望区块排列的顺序。</p>
+<h4 id="order-属性（内层）"><a href="#order-属性（内层）" class="headerlink" title="order 属性（内层）"></a>order 属性（内层）</h4><p>用来更改区域排列的顺序，将 <code>order-*</code> 写在 class 里，<code>*</code> 代表我们希望区域排列的顺序。</p>
 <p class="codepen" data-height="265" data-theme-id="default" data-default-tab="html,result" data-user="gretema" data-slug-hash="eYOjPJx" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="bs flex order">
   <span>See the Pen <a href="https://codepen.io/gretema/pen/eYOjPJx" target="_blank" rel="external nofollow noopener noreferrer">
   bs flex order</a> by 马维君 (<a href="https://codepen.io/gretema" target="_blank" rel="external nofollow noopener noreferrer">@gretema</a>)
@@ -983,7 +983,7 @@
 <li>用 CSS 画各方向的三角型</li>
 </ul>
 <blockquote>
-<p>温馨提示：平常可以多累积自己的 mixin 数据库，设一个 mixin 文件夹把学过的一些 CSS 技巧记录成 .sass 档存放进去。有些面试官光看应征者的 mixin 库就能了解这个人处理过多少项目了。</p>
+<p>温馨提示：平常可以多累积自己的 mixin 数据库，设一个 mixin 文件夹把学过的一些 CSS 技巧记录成 .sass 文件存放进去。有些面试官光看应征者的 mixin 库就能了解这个人处理过多少项目了。</p>
 </blockquote>
 <h2 id="将-mixin-用于开发-RWD"><a href="#将-mixin-用于开发-RWD" class="headerlink" title="将 @mixin 用于开发 RWD"></a>将 <code>@mixin</code> 用于开发 RWD</h2><p>先用 <code>@mixin</code> 设置好断点，各断点可以取名为该装置的名字，例如 <code>pad</code>、<code>iPhone5</code> 等。<br>接着在 media query 里面只要加一个东西，那就是 <code>@content</code>。</p>
 <figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> iphone5&#123;</span><br><span class="line">  <span class="keyword">@media</span> (max-width: <span class="number">320px</span>) &#123;</span><br><span class="line">    <span class="keyword">@content</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1014,9 +1014,9 @@
 <a id="more"></a>
 
 <h2 id="什么是-SASS？"><a href="#什么是-SASS？" class="headerlink" title="什么是 SASS？"></a>什么是 SASS？</h2><p>SASS 是一种针对 CSS 的脚本程序语言，借由提供程序语言的特性，例如变量、巢状结构、混合、函数与扩充（继承）等等，可以预先对 CSS 进行结构化的工作，最后再编译可使用于网页上的 CSS 语法。需要搭配 SASS 解译器 (如 prepros) 进行撰写。</p>
-<p>SASS 包括两套语法。最开始的语法叫做「缩排语法」，使用缩排来区分代码块，并且用换行将不同规则分隔开，附档名为 .sass。而较新的语法叫做「SCSS」，使用和 CSS 一样的块语法，即使用大括号将不同的规则分开，使用分号将具体的样式分开。</p>
+<p>SASS 包括两套语法。最开始的语法叫做「缩排语法」，使用缩排来区分代码块，并且用换行将不同规则分隔开，附文件名为 .sass。而较新的语法叫做「SCSS」，使用和 CSS 一样的块语法，即使用大括号将不同的规则分开，使用分号将具体的样式分开。</p>
 <p>以下以 SCSS 语法为主，整理 SASS 的应用方法。</p>
-<h2 id="写法：减少重工，不必重复写同样的选取器。"><a href="#写法：减少重工，不必重复写同样的选取器。" class="headerlink" title="写法：减少重工，不必重复写同样的选取器。"></a>写法：减少重工，不必重复写同样的选取器。</h2><p>子元素的样式直接写在父元素里即可。</p>
+<h2 id="写法：减少重工，不必重复写同样的选择器。"><a href="#写法：减少重工，不必重复写同样的选择器。" class="headerlink" title="写法：减少重工，不必重复写同样的选择器。"></a>写法：减少重工，不必重复写同样的选择器。</h2><p>子元素的样式直接写在父元素里即可。</p>
 <h2 id="变量：便于管理，快速管理出同样设置的样式"><a href="#变量：便于管理，快速管理出同样设置的样式" class="headerlink" title="变量：便于管理，快速管理出同样设置的样式"></a>变量：便于管理，快速管理出同样设置的样式</h2><p>在最前面设一个变量名，例如 <code>linkcolor</code> ，名称前加一个 <code>$</code> 字号，并写上该变量代表的值。例：</p>
 <figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="variable">$linkcolor</span>: <span class="number">#000</span>;</span><br></pre></td></tr></table></figure>
 
@@ -1031,9 +1031,9 @@
 <figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="attribute">font</span>-m: <span class="number">16px</span>;</span><br><span class="line"><span class="attribute">font</span>-l: font-m * <span class="number">1.2</span> // 支持加减乘除</span><br><span class="line">font-s: font-m * <span class="number">0.8</span></span><br></pre></td></tr></table></figure>
 
 
-<h2 id="拆档：-import-让每支-scss-档各司其职"><a href="#拆档：-import-让每支-scss-档各司其职" class="headerlink" title="拆档：@import 让每支 .scss 档各司其职"></a>拆档：<code>@import</code> 让每支 .scss 档各司其职</h2><ol>
-<li>一支 .scss 文件只单独处理一件事，例如 reset 写在一个 .scss 档，档名命名为 <code>_reset.scss</code>；首页样式写在另一个档，档名命名为 <code>_index.scss</code>。前面加<u>底线</u>很重要，代表那是<strong>合并用</strong>的 sass 档，理论上并不会编译出对应的 .css 档。</li>
-<li>在名为 all 的 .scss 档里做统整，用 <code>@import</code>「依序」汇入个别的 .scss 档。网页中只会引入 <code>all.scss</code> 编译出来的 <code>all.css</code>。</li>
+<h2 id="拆分文件：-import-让每支-scss-文件各司其职"><a href="#拆分文件：-import-让每支-scss-文件各司其职" class="headerlink" title="拆分文件：@import 让每支 .scss 文件各司其职"></a>拆分文件：<code>@import</code> 让每支 .scss 文件各司其职</h2><ol>
+<li>一支 .scss 文件只单独处理一件事，例如 reset 写在一个 .scss 文件，文件名命名为 <code>_reset.scss</code>；首页样式写在另一个文件，文件名命名为 <code>_index.scss</code>。前面加<u>底线</u>很重要，代表那是<strong>合并用</strong>的 sass 文件，理论上并不会编译出对应的 .css 文件。</li>
+<li>在名为 all 的 .scss 文件里做汇总，用 <code>@import</code>「依次」导入个别的 .scss 文件。网页中只会引入 <code>all.scss</code> 编译出来的 <code>all.css</code>。</li>
 </ol>
 ]]>
     </content>
@@ -1068,13 +1068,13 @@
     </tags>
   </entry>
   <entry>
-    <title>[RWD] 响应式网页 - 固定式选单及 off-canvas 选单</title>
+    <title>[RWD] 响应式网页 - 固定式菜单及 off-canvas 菜单</title>
     <url>/rwd/20191216/822299504/</url>
     <content>
-      <![CDATA[<p>本篇文章接续上一篇，继续记录 RWD 的常用选单语法结构，包含固定式选单及侧边展开（off-canvas）选单等两种。</p>
+      <![CDATA[<p>本篇文章接续上一篇，继续记录 RWD 的常用菜单语法结构，包含固定式菜单及侧边展开（off-canvas）菜单等两种。</p>
 <a id="more"></a>
 
-<h2 id="固定式选单"><a href="#固定式选单" class="headerlink" title="固定式选单"></a>固定式选单</h2><p>让用户在滑动页面时，表头永远在屏幕上方。<br>使用 <code>position: fixed</code>，但要注意页面内容会被表头遮住，所以内容区块要用 <code>padding-top</code> 空出表头的高度，才不会被遮住部分内容。</p>
+<h2 id="固定式菜单"><a href="#固定式菜单" class="headerlink" title="固定式菜单"></a>固定式菜单</h2><p>让用户在滑动页面时，表头永远在屏幕上方。<br>使用 <code>position: fixed</code>，但要注意页面内容会被表头遮住，所以内容区域要用 <code>padding-top</code> 空出表头的高度，才不会被遮住部分内容。</p>
 <h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h3><ul>
 <li><code>position: fixed</code> 在安卓部分旧型手机上不适用，若能用 JS 做兼容是较好的做法。</li>
 <li>要考虑到表头是否会占屏幕太多版面，会的话就不要用 <code>fixed</code>。</li>
@@ -1082,23 +1082,23 @@
 <h3 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@media(max-width: 767px)&#123;</span><br><span class="line">  <span class="selector-class">.header</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background</span>: black; &#125;</span><br><span class="line">  <span class="selector-class">.content</span>&#123;</span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">81px</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="off-canvas-选单设计"><a href="#off-canvas-选单设计" class="headerlink" title="off canvas 选单设计"></a>off canvas 选单设计</h2><p>适合用于选项超多的选单，PC 版（放较少选项）跟手机版（放较多选项）可以各一套选单设计。</p>
-<h3 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h3><p>请搭配 <a href="https://codepen.io/gretema/pen/zeyxqO" target="_blank" rel="external nofollow noopener noreferrer">范例代码</a> 一同阅读。</p>
+<h2 id="off-canvas-菜单设计"><a href="#off-canvas-菜单设计" class="headerlink" title="off canvas 菜单设计"></a>off canvas 菜单设计</h2><p>适合用于选项超多的菜单，PC 版（放较少选项）跟手机版（放较多选项）可以各一套菜单设计。</p>
+<h3 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h3><p>请搭配 <a href="https://codepen.io/gretema/pen/zeyxqO" target="_blank" rel="external nofollow noopener noreferrer">示例代码</a> 一同阅读。</p>
 <ul>
-<li>结构：<code>.container</code> 底下有 <code>.aside</code>（会滑出来的选单）跟 <code>.main</code>（底下有 <code>.header</code>）</li>
-<li>预期效果：点了表头中的 a 连结按钮（<code>.mobile-link</code>）就会让 <code>body</code> 动态加入 <code>.open</code>，之后 <code>.aside</code> 选单从左侧滑出来，点 <code>.aside</code> 中的 a 连结按钮（<code>.mobile-close</code>）又滑回去。</li>
+<li>结构：<code>.container</code> 底下有 <code>.aside</code>（会滑出来的菜单）跟 <code>.main</code>（底下有 <code>.header</code>）</li>
+<li>预期效果：点了表头中的 a 链接按钮（<code>.mobile-link</code>）就会让 <code>body</code> 动态加入 <code>.open</code>，之后 <code>.aside</code> 菜单从左侧滑出来，点 <code>.aside</code> 中的 a 链接按钮（<code>.mobile-close</code>）又滑回去。</li>
 </ul>
 <h3 id="语法：-1"><a href="#语法：-1" class="headerlink" title="语法："></a>语法：</h3><h4 id="CSS："><a href="#CSS：" class="headerlink" title="CSS："></a>CSS：</h4><ol>
-<li><code>.aside</code> 设置绝对定位<br>用 <code>transform</code> ( 或 <code>margin</code> ) 设置 X 轴位移的距离 (=宽度)<br>注：<code>transform</code> 在网页上的效能比 <code>padding</code>、<code>margin</code> 都好<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.aside</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">270px</span>;</span><br><span class="line">  height: 100%;;</span><br><span class="line">  <span class="selector-tag">overflow</span>: <span class="selector-tag">hidden</span>;</span><br><span class="line">  <span class="selector-tag">transform</span>: <span class="selector-tag">translateX</span>(<span class="selector-tag">-270px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>核心代码<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.open</span> <span class="selector-class">.main</span>&#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">270px</span>);</span><br><span class="line">  // 点了 .header 会让 .menu 往右推 270 px 以容纳滑出来的选单</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.open</span> <span class="selector-class">.aside</span>&#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">0px</span>);</span><br><span class="line">  // 点了 .header 会让选单滑入视窗中</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>选单滑入的动画效果 — <code>transition</code>，可以有<strong>影格效果</strong><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.main</span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="selector-tag">transition</span>: 0<span class="selector-class">.3s</span> <span class="selector-tag">ease</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><code>.aside</code> 设置绝对定位<br>用 <code>transform</code> ( 或 <code>margin</code> ) 设置 X 轴位移的距离 (=宽度)<br>注：<code>transform</code> 在网页上的性能比 <code>padding</code>、<code>margin</code> 都好<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.aside</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">270px</span>;</span><br><span class="line">  height: 100%;;</span><br><span class="line">  <span class="selector-tag">overflow</span>: <span class="selector-tag">hidden</span>;</span><br><span class="line">  <span class="selector-tag">transform</span>: <span class="selector-tag">translateX</span>(<span class="selector-tag">-270px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>核心代码<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.open</span> <span class="selector-class">.main</span>&#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">270px</span>);</span><br><span class="line">  // 点了 .header 会让 .menu 往右推 270 px 以容纳滑出来的菜单</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.open</span> <span class="selector-class">.aside</span>&#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">0px</span>);</span><br><span class="line">  // 点了 .header 会让菜单滑入窗口中</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>菜单滑入的动画效果 — <code>transition</code>，可以有<strong>帧效果</strong><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.main</span>&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="selector-tag">transition</span>: 0<span class="selector-class">.3s</span> <span class="selector-tag">ease</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
 <h4 id="jQ："><a href="#jQ：" class="headerlink" title="jQ："></a>jQ：</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'.mobile-link'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  $(<span class="string">'body'</span>).addClass(<span class="string">'open'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">'.mobile-close'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  $(<span class="string">'body'</span>).removeClass(<span class="string">'open'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <hr>
-<p>好啦，响应式的选单设计就先介绍四种，虽然选单不是响应式设计的全部，但应该算是蛮核心的部分了，其他眉眉角角就等我之后有时间精力再来补写啰（瘫）。</p>
+<p>好啦，响应式的菜单设计就先介绍四种，虽然菜单不是响应式设计的全部，但应该算是蛮核心的部分了，其他眉眉角角就等我之后有时间精力再来补写啰（瘫）。</p>
 ]]>
     </content>
     <categories>
@@ -1112,32 +1112,32 @@
     </tags>
   </entry>
   <entry>
-    <title>[RWD] 响应式网页 - 多栏多列选单及汉堡选单</title>
+    <title>[RWD] 响应式网页 - 多栏多列菜单及汉堡菜单</title>
     <url>/rwd/20191216/3809709620/</url>
     <content>
-      <![CDATA[<p>本篇文章将记录 RWD 的常用选单语法结构，包含多行多列选单及汉堡选单等两种。</p>
+      <![CDATA[<p>本篇文章将记录 RWD 的常用菜单语法结构，包含多行多列菜单及汉堡菜单等两种。</p>
 <a id="more"></a>
 
-<h2 id="多栏多列选单排版法：以-3-2-为例"><a href="#多栏多列选单排版法：以-3-2-为例" class="headerlink" title="多栏多列选单排版法：以 3*2 为例"></a>多栏多列选单排版法：以 3*2 为例</h2><h3 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h3><h4 id="HTML："><a href="#HTML：" class="headerlink" title="HTML："></a>HTML：</h4><p><code>&lt;ul&gt;&lt;li&gt;</code> 结构，<code>&lt;li&gt;</code> 需要 6 个</p>
+<h2 id="多栏多列菜单排版法：以-3-2-为例"><a href="#多栏多列菜单排版法：以-3-2-为例" class="headerlink" title="多栏多列菜单排版法：以 3*2 为例"></a>多栏多列菜单排版法：以 3*2 为例</h2><h3 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h3><h4 id="HTML："><a href="#HTML：" class="headerlink" title="HTML："></a>HTML：</h4><p><code>&lt;ul&gt;&lt;li&gt;</code> 结构，<code>&lt;li&gt;</code> 需要 6 个</p>
 <h4 id="CSS："><a href="#CSS：" class="headerlink" title="CSS："></a>CSS：</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">float: right;  // PC版排版</span><br><span class="line"><span class="keyword">@media</span> ( <span class="attribute">max-width:</span> <span class="number">767px</span>)&#123;</span><br><span class="line">  float: none;  // 自然排列，这是 RWD 的精髓</span><br><span class="line">  <span class="selector-tag">width</span>: 33<span class="selector-class">.33333</span> % ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="汉堡选单排版法"><a href="#汉堡选单排版法" class="headerlink" title="汉堡选单排版法"></a>汉堡选单排版法</h2><p>请搭配 <a href="https://codepen.io/gretema/pen/bzQveq" target="_blank" rel="external nofollow noopener noreferrer">范例代码</a> 一同观看。</p>
-<h3 id="汉堡选单是怎么出现的"><a href="#汉堡选单是怎么出现的" class="headerlink" title="汉堡选单是怎么出现的"></a>汉堡选单是怎么出现的</h3><p>在写 PC 版时，就预先写好了汉堡选单的按钮（<code>&lt;a&gt;.showmenu</code>），只是用 <code>display: none</code> 先隐藏起来；汉堡选单里的选项跟 PC 版其实是同一套，只是把 <code>float</code> 拿掉而已。</p>
-<h3 id="PC-版选单怎么变成汉堡选单的"><a href="#PC-版选单怎么变成汉堡选单的" class="headerlink" title="PC 版选单怎么变成汉堡选单的"></a>PC 版选单怎么变成汉堡选单的</h3><h4 id="CSS：-1"><a href="#CSS：-1" class="headerlink" title="CSS："></a>CSS：</h4><blockquote>
+<h2 id="汉堡菜单排版法"><a href="#汉堡菜单排版法" class="headerlink" title="汉堡菜单排版法"></a>汉堡菜单排版法</h2><p>请搭配 <a href="https://codepen.io/gretema/pen/bzQveq" target="_blank" rel="external nofollow noopener noreferrer">示例代码</a> 一同观看。</p>
+<h3 id="汉堡菜单是怎么出现的"><a href="#汉堡菜单是怎么出现的" class="headerlink" title="汉堡菜单是怎么出现的"></a>汉堡菜单是怎么出现的</h3><p>在写 PC 版时，就预先写好了汉堡菜单的按钮（<code>&lt;a&gt;.showmenu</code>），只是用 <code>display: none</code> 先隐藏起来；汉堡菜单里的选项跟 PC 版其实是同一套，只是把 <code>float</code> 拿掉而已。</p>
+<h3 id="PC-版菜单怎么变成汉堡菜单的"><a href="#PC-版菜单怎么变成汉堡菜单的" class="headerlink" title="PC 版菜单怎么变成汉堡菜单的"></a>PC 版菜单怎么变成汉堡菜单的</h3><h4 id="CSS：-1"><a href="#CSS：-1" class="headerlink" title="CSS："></a>CSS：</h4><blockquote>
 <p>以下都是写在 <code>@media (max-width: 767px)</code> 的大括号里，在相对应的装置才会触发，1~3 都是 <code>.menu</code> 的样式。</p>
 </blockquote>
 <ol>
-<li>隐藏选单<strong>（关键语法）</strong>（之后会用 jQ 动态加入 <code>class</code>，就会展开）<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="attribute">max-height</span>: <span class="number">0px</span>;</span><br><span class="line"><span class="attribute">overflow</span>: hidden;</span><br></pre></td></tr></table></figure></li>
-<li>绝对定位叠在网页上<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="attribute">position</span>: absolute;</span><br><span class="line"><span class="attribute">z-index</span>: <span class="number">100</span>; <span class="comment">// 权重</span></span><br><span class="line"><span class="attribute">top</span>: <span class="number">81px</span>; <span class="comment">// 因为 header 80 px + border 1 px，若汉堡选单要从 header 下方展开就要这样设</span></span><br><span class="line"><span class="attribute">left</span>: <span class="number">0</span>; <span class="comment">// 在绝对定位之下要做出满版效果，左右都要0</span></span><br><span class="line"><span class="attribute">right</span>: <span class="number">0</span>;</span><br></pre></td></tr></table></figure></li>
-<li>选单展开的渐变效果<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">transition</span>: <span class="selector-tag">max-height</span> 2<span class="selector-class">.3s</span>;</span><br></pre></td></tr></table></figure></li>
-<li>取消隐藏汉堡选单的按钮<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.showmenu</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">1</span> em;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>配合 jQ 指令的 CSS 语法：点击后，动态在 <code>body</code> 加上 <code>class</code><figure class="highlight mel"><table><tr><td class="code"><pre><span class="line">.<span class="keyword">menu</span>-show .<span class="keyword">menu</span>&#123;</span><br><span class="line">  <span class="keyword">max</span>-height: <span class="number">500</span>px; <span class="comment">// 选单的高度，原本是设成 0 px</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="jQ："><a href="#jQ：" class="headerlink" title="jQ："></a>jQ：</h4>点击汉堡按钮（<code>.showmenu</code>） 后，取消默认连结功能，动态在 <code>body</code> 加上 <code>class</code>（<code>.menu-show</code>）。<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'.showmenu'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  $(<span class="string">'body'</span>).toggleClass(<span class="string">'menu-show'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<li>隐藏菜单<strong>（关键语法）</strong>（之后会用 jQ 动态加入 <code>class</code>，就会展开）<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="attribute">max-height</span>: <span class="number">0px</span>;</span><br><span class="line"><span class="attribute">overflow</span>: hidden;</span><br></pre></td></tr></table></figure></li>
+<li>绝对定位叠在网页上<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="attribute">position</span>: absolute;</span><br><span class="line"><span class="attribute">z-index</span>: <span class="number">100</span>; <span class="comment">// 权重</span></span><br><span class="line"><span class="attribute">top</span>: <span class="number">81px</span>; <span class="comment">// 因为 header 80 px + border 1 px，若汉堡菜单要从 header 下方展开就要这样设</span></span><br><span class="line"><span class="attribute">left</span>: <span class="number">0</span>; <span class="comment">// 在绝对定位之下要做出满版效果，左右都要0</span></span><br><span class="line"><span class="attribute">right</span>: <span class="number">0</span>;</span><br></pre></td></tr></table></figure></li>
+<li>菜单展开的渐变效果<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">transition</span>: <span class="selector-tag">max-height</span> 2<span class="selector-class">.3s</span>;</span><br></pre></td></tr></table></figure></li>
+<li>取消隐藏汉堡菜单的按钮<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.showmenu</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">1</span> em;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>配合 jQ 指令的 CSS 语法：点击后，动态在 <code>body</code> 加上 <code>class</code><figure class="highlight mel"><table><tr><td class="code"><pre><span class="line">.<span class="keyword">menu</span>-show .<span class="keyword">menu</span>&#123;</span><br><span class="line">  <span class="keyword">max</span>-height: <span class="number">500</span>px; <span class="comment">// 菜单的高度，原本是设成 0 px</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="jQ："><a href="#jQ：" class="headerlink" title="jQ："></a>jQ：</h4>点击汉堡按钮（<code>.showmenu</code>） 后，取消默认链接功能，动态在 <code>body</code> 加上 <code>class</code>（<code>.menu-show</code>）。<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'.showmenu'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  $(<span class="string">'body'</span>).toggleClass(<span class="string">'menu-show'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <code>body</code> 加上 <code>.menu-show</code> 之后，<code>body</code> 中的 <code>.menu</code> 才会被触发，否则按了也不会展开。</li>
 </ol>
 <h3 id="menu-show-为何是加在-body-上"><a href="#menu-show-为何是加在-body-上" class="headerlink" title=".menu-show 为何是加在 body 上"></a>.menu-show 为何是加在 body 上</h3><p>如果 jQ 是在 <code>.menu</code> 上动态加上 <code>class</code> 会怎么样呢？</p>
-<p>其实要在哪里动态加上 <code>class</code>，需要看网页的样式怎么设计。像是有些设计可能不只影响 <code>.menu</code>，还会加上其他的效果，那就必须要加在 <code>body</code> 上。<br>若只有增加弹出选单的效果，那 <code>.menu-show</code> 其实不一定要在 <code>body</code> 上， 加在 <code>.header</code> 、加在 <code>.menu</code> 都可以。</p>
+<p>其实要在哪里动态加上 <code>class</code>，需要看网页的样式怎么设计。像是有些设计可能不只影响 <code>.menu</code>，还会加上其他的效果，那就必须要加在 <code>body</code> 上。<br>若只有增加弹出菜单的效果，那 <code>.menu-show</code> 其实不一定要在 <code>body</code> 上， 加在 <code>.header</code> 、加在 <code>.menu</code> 都可以。</p>
 ]]>
     </content>
     <categories>
@@ -1151,20 +1151,20 @@
     </tags>
   </entry>
   <entry>
-    <title>[RWD] 响应式网页 - 常用选单样式与注意事项</title>
+    <title>[RWD] 响应式网页 - 常用菜单样式与注意事项</title>
     <url>/rwd/20191216/3160700070/</url>
     <content>
-      <![CDATA[<p>在学习响应式网页设计（Responsive Web Design）的路上，想记录一些学习过程跟基础语法，本篇笔记将从 RWD 常用选单的样式及实现时的注意事项开始这个系列的旅程。</p>
+      <![CDATA[<p>在学习响应式网页设计（Responsive Web Design）的路上，想记录一些学习过程跟基础语法，本篇笔记将从 RWD 常用菜单的样式及实现时的注意事项开始这个系列的旅程。</p>
 <a id="more"></a>
 
 <h2 id="常用样式"><a href="#常用样式" class="headerlink" title="常用样式"></a>常用样式</h2><ul>
-<li>一行式横幅选单：每格选单的字数不能太多，文字总宽不能超过载具的宽度，例如一个字大约是 16px，在 iPhone 5 (320px) 上就不能超过 20 字。除了单行排列，也有 3*2 之类多栏多列的排版方式。但不要超过两行，因为排到三行就占太多版面了。</li>
-<li>汉堡选单：点开时覆盖部分网页内容，可以用下拉式，也可用从左 / 右方滑出的方式。</li>
+<li>一行式横幅菜单：每格菜单的字数不能太多，文字总宽不能超过设备的宽度，例如一个字大约是 16px，在 iPhone 5 (320px) 上就不能超过 20 字。除了单行排列，也有 3*2 之类多栏多列的排版方式。但不要超过两行，因为排到三行就占太多版面了。</li>
+<li>汉堡菜单：点开时覆盖部分网页内容，可以用下拉式，也可用从左 / 右方滑出的方式。</li>
 </ul>
 <h2 id="实现注意事项"><a href="#实现注意事项" class="headerlink" title="实现注意事项"></a>实现注意事项</h2><ul>
-<li>要避免选单点开后把原本网页内容往下挤的状况，因为这样浏览器在渲染网页的时候效能会降低。</li>
-<li>抓 320px 为最小值：这是 iPhone 5 、SE 的宽度，大约可以放 20 个字元（一格选项不超过4个字），不过考虑到留白的问题，12~16 个字元就差不多了。</li>
-<li>不放奇数选单：3 个选项的选单还可以刚好用 33% 去处理，5 个选项的选单排起来会很尴尬地空一格出来，所以要与客户沟通。</li>
+<li>要避免菜单点开后把原本网页内容往下挤的状况，因为这样浏览器在渲染网页的时候性能会降低。</li>
+<li>抓 320px 为最小值：这是 iPhone 5 、SE 的宽度，大约可以放 20 个字符（一格选项不超过4个字），不过考虑到留白的问题，12~16 个字符就差不多了。</li>
+<li>不放奇数菜单：3 个选项的菜单还可以刚好用 33% 去处理，5 个选项的菜单排起来会很尴尬地空一格出来，所以要与客户沟通。</li>
 </ul>
 ]]>
     </content>
@@ -1180,10 +1180,10 @@
     <title>[CSS] 浮动 (float) 与清除浮动 (clear)</title>
     <url>/htmlcss/20191216/714228330/</url>
     <content>
-      <![CDATA[<p>由于老师耳提面命，<code>float</code> 及 <code>clear</code> 是网页排版的基石之一，所以决定来汇整一下相关的资料，刚好某种程度上也可以承接上一篇的主题。</p>
+      <![CDATA[<p>由于老师耳提面命，<code>float</code> 及 <code>clear</code> 是网页排版的基石之一，所以决定来汇整一下相关的数据，刚好某种程度上也可以承接上一篇的主题。</p>
 <a id="more"></a>
 
-<h2 id="float-属性的使用时机"><a href="#float-属性的使用时机" class="headerlink" title="float 属性的使用时机"></a>float 属性的使用时机</h2><p>使用诸如 <code>&lt;div&gt;</code> 之类的区块元素排版时，默认的排列方式都是由左至右、由上至下。但如果我们今天想要做的是多栏式排版，或是让多个区块元素并排时，就需要使用 <code>float</code> 属性。</p>
+<h2 id="float-属性的使用时机"><a href="#float-属性的使用时机" class="headerlink" title="float 属性的使用时机"></a>float 属性的使用时机</h2><p>使用诸如 <code>&lt;div&gt;</code> 之类的区域元素排版时，默认的排列方式都是由左至右、由上至下。但如果我们今天想要做的是多栏式排版，或是让多个区域元素并排时，就需要使用 <code>float</code> 属性。</p>
 <h2 id="float-属性的值"><a href="#float-属性的值" class="headerlink" title="float 属性的值"></a>float 属性的值</h2><figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="attribute">float</span>: 浮动方向 ;</span><br></pre></td></tr></table></figure>
 <p>浮动方向可以用的值有 <code>left</code>、<code>right</code>、<code>none</code>（默认值，也就是不浮动）以及 <code>inherit</code>（继承自父层的属性），最后这个 <code>inherit</code> 尽量不要使用，避免 IE 不支持的情况发生。</p>
 <h2 id="clear-属性的使用时机"><a href="#clear-属性的使用时机" class="headerlink" title="clear 属性的使用时机"></a>clear 属性的使用时机</h2><p>如果想控制浮动元素的排版，就一定要懂 <code>clear</code> 属性的操作方式。</p>
@@ -1195,8 +1195,8 @@
 <p><code>clear</code> 属性可以有 3 种使用方法：</p>
 <ol>
 <li>在浮动元素的后面多加一个 <code>&lt;div&gt;</code>（命名为 <code>.clearfix</code>），并在 <code>.clearfix</code> 使用 <code>clear: both</code> 语法。</li>
-<li>在要清除浮动内容的父层多加一个 <code>.clearfix</code> 并使用伪元素。★<br><img src="https://upload.cc/i1/2019/12/17/cZz5wI.jpeg" alt="after 伪元素：通过 content 在元素的后面生成了内容为一个点的区块元素"></li>
-<li>在浮动元素后面的区块元素加上 <code>clear: both</code>。</li>
+<li>在要清除浮动内容的父层多加一个 <code>.clearfix</code> 并使用伪元素。★<br><img src="https://upload.cc/i1/2019/12/17/cZz5wI.jpeg" alt="after 伪元素：通过 content 在元素的后面生成了内容为一个点的区域元素"></li>
+<li>在浮动元素后面的区域元素加上 <code>clear: both</code>。</li>
 </ol>
 <blockquote>
 <p>使用 <code>clear</code> 属性须注意，在 <code>&lt;ul&gt;&lt;li&gt;</code> 结构中，必须在 <code>&lt;ul&gt;</code> 父元素清除子元素，没办法在 <code>&lt;li&gt;</code> 后面插入 <code>.clearfix</code>。</p>

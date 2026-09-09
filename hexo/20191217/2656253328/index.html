@@ -11,8 +11,6 @@
   <link rel="mask-icon" href="/images/iconfinder_horse_384872.png" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Sans TC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
@@ -114,7 +112,7 @@
   </style>
 </noscript>
 
-  <link rel="stylesheet" href="/css/guide-pet.css?v=1">
+  <link rel="stylesheet" href="/css/guide-pet.css?v=2">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -288,15 +286,15 @@
         <p>估狗估不到什么东西，还好自己有摸索成功，干脆来发一篇！</p>
 <a id="more"></a>
 <p>在搬运 Medium 文章过来的过程中遇到一个问题，就是我之前在 Medium 写文的时候超常 embed Codepen 的，毕竟有些效果真的有 Demo 辅助说明会比较好。<br>但在 hexo NexT 的环境下要怎么嵌入 Codepen 哩？</p>
-<h2 id="第一次踩雷"><a href="#第一次踩雷" class="headerlink" title="第一次踩雷"></a>第一次踩雷</h2><p>我首先找到这篇文章： <a href="https://www.jianshu.com/p/79e808bbf0a8" target="_blank" rel="external nofollow noopener noreferrer">Hexo NexT：在文章中嵌入 CodePen或 jsFiddle</a>，但是我下载完套件后，按照文中的方式在文章里插入模板，却跑出一堆错误信息，整篇文章的内容都无法渲染。</p>
-<p>所以我只好舍弃这个方法，跑去翻翻 NexT 官方文件：<a href="https://hexo.io/zh-tw/docs/tag-plugins" target="_blank" rel="external nofollow noopener noreferrer">标签外挂（Tag Plugins）</a>。<br>看到官方有提供插入 iframe 的语法，我就想说 Codepen 也有提供 iframe 代码，说不定行得通。</p>
+<h2 id="第一次踩雷"><a href="#第一次踩雷" class="headerlink" title="第一次踩雷"></a>第一次踩雷</h2><p>我首先找到这篇文章： <a href="https://www.jianshu.com/p/79e808bbf0a8" target="_blank" rel="external nofollow noopener noreferrer">Hexo NexT：在文章中嵌入 CodePen或 jsFiddle</a>，但是我下载完软件包后，按照文中的方式在文章里插入模板，却跑出一堆错误信息，整篇文章的内容都无法渲染。</p>
+<p>所以我只好舍弃这个方法，跑去翻翻 NexT 官方文件：<a href="https://hexo.io/zh-tw/docs/tag-plugins" target="_blank" rel="external nofollow noopener noreferrer">标签插件（Tag Plugins）</a>。<br>看到官方有提供插入 iframe 的语法，我就想说 Codepen 也有提供 iframe 代码，说不定行得通。</p>
 <h2 id="Next-与-Codepen-iframe-语法"><a href="#Next-与-Codepen-iframe-语法" class="headerlink" title="Next 与 Codepen iframe 语法"></a>Next 与 Codepen iframe 语法</h2><p>Next 官方提供的语法：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% iframe url [width] [height] %&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Codepen 提供的 iframe 代码：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">height</span>=<span class="string">"265"</span> <span class="attr">style</span>=<span class="string">"width: 100%;"</span> <span class="attr">scrolling</span>=<span class="string">"no"</span> <span class="attr">title</span>=<span class="string">"bs flex order"</span> <span class="attr">src</span>=<span class="string">"https://codepen.io/gretema/embed/eYOjPJx?height=265&amp;theme-id=default&amp;default-tab=html,result"</span> <span class="attr">frameborder</span>=<span class="string">"no"</span> <span class="attr">allowtransparency</span>=<span class="string">"true"</span> <span class="attr">allowfullscreen</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">  See the Pen <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'https://codepen.io/gretema/pen/eYOjPJx'</span>&gt;</span>bs flex order<span class="tag">&lt;/<span class="name">a</span>&gt;</span> by 马维君</span><br><span class="line">  (<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'https://codepen.io/gretema'</span>&gt;</span>@gretema<span class="tag">&lt;/<span class="name">a</span>&gt;</span>) on <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'https://codepen.io'</span>&gt;</span>CodePen<span class="tag">&lt;/<span class="name">a</span>&gt;</span>.</span><br><span class="line"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="第二次踩雷"><a href="#第二次踩雷" class="headerlink" title="第二次踩雷"></a>第二次踩雷</h2><p>我把 Next 语法中的 <code>url</code> 代换成 Codepen 连结网址 (<code>https://codepen.io/gretema/pen/eYOjPJx</code>)，<code>[width]</code> 代换成 <code>[100%]</code>，<code>[height]</code> 代换成 <code>[265]</code>。<br>宽度跟高度的数值都是从 Codepen 提供的代码中取出来的。<br>呈现出来是这样：</p>
+<h2 id="第二次踩雷"><a href="#第二次踩雷" class="headerlink" title="第二次踩雷"></a>第二次踩雷</h2><p>我把 Next 语法中的 <code>url</code> 代换成 Codepen 链接网址 (<code>https://codepen.io/gretema/pen/eYOjPJx</code>)，<code>[width]</code> 代换成 <code>[100%]</code>，<code>[height]</code> 代换成 <code>[265]</code>。<br>宽度跟高度的数值都是从 Codepen 提供的代码中取出来的。<br>呈现出来是这样：</p>
 <iframe src="https://codepen.io/gretema/pen/eYOjPJx" width="[100%]" height="[265]" frameborder="0" loading="lazy" allowfullscreen></iframe>
 <p>嗯…… Codepen 画面是出来了，但尺寸很有问题。</p>
 <h2 id="终于成功啦"><a href="#终于成功啦" class="headerlink" title="终于成功啦"></a>终于成功啦</h2><p>最后，我尝试把 Codepen 提供的代码中，<code>&lt;iframe&gt;</code> 的 <code>src</code> 值取出来，放到 Next iframe 语法的 <code>url</code> 位置，而 <code>[width]</code> 跟 <code>[height]</code> 都去掉。</p>
@@ -570,6 +568,6 @@
   });
 </script>
 
-  <script defer src="/js/guide-pet.js?v=1"></script>
+  <script defer src="/js/guide-pet.js?v=2"></script>
 </body>
 </html>

@@ -11,8 +11,6 @@
   <link rel="mask-icon" href="/images/iconfinder_horse_384872.png" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Sans TC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
@@ -115,7 +113,7 @@
   </style>
 </noscript>
 
-  <link rel="stylesheet" href="/css/guide-pet.css?v=1">
+  <link rel="stylesheet" href="/css/guide-pet.css?v=2">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -295,7 +293,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i &lt;commit编号&gt;</span><br></pre></td></tr></table></figure>
 
 <p>那么我们要如何知道 commit 的编号呢？可以使用 <code>git log --oneline</code>，就会出现 commit 历史记录的列表，就能看到各个 commit 的编号以及信息了。</p>
-<h3 id="合并数个-commit"><a href="#合并数个-commit" class="headerlink" title="合并数个 commit"></a>合并数个 commit</h3><p>下了上面这一段指令后，终端机就会出现一个操作界面（也就是 vim 编辑器），在界面中按 <code>i</code> 表示开始编辑，画面中会出现被你选取的所有 commit，下方会有参数的说明。</p>
+<h3 id="合并数个-commit"><a href="#合并数个-commit" class="headerlink" title="合并数个 commit"></a>合并数个 commit</h3><p>下了上面这一段指令后，终端就会出现一个操作界面（也就是 vim 编辑器），在界面中按 <code>i</code> 表示开始编辑，画面中会出现被你选择的所有 commit，下方会有参数的说明。</p>
 <p>以合并数个 commit 为例，第一个 commit 前面请使用 <code>pick</code> 参数，其他要合并的 commits 前面则使用 <code>s</code> （<code>squash</code>）参数。这样一来，使用 <code>s</code> 的 commit 就会合并进入第一个 commit 中。</p>
 <p>编辑完 commit 后按 <code>esc</code> → 输入 <code>:wq</code> → 界面会问你要不要更动 commit 信息，不修改的话可直接输入 <code>:wq</code>。</p>
 <h2 id="使用情境"><a href="#使用情境" class="headerlink" title="使用情境"></a>使用情境</h2><p>我使用这个指令通常是为了让同一个目的的 commit 集成在一起，避免线图太乱。例如，我在分支上做了一些功能，但累积了很多琐碎的 commit，此时我就会用 <code>rebase -i</code> 将所有 <code>commit</code> 合并为一个，之后才 <code>rebase</code> 上游分支、push 到远端并发 PR。</p>
@@ -572,6 +570,6 @@
   });
 </script>
 
-  <script defer src="/js/guide-pet.js?v=1"></script>
+  <script defer src="/js/guide-pet.js?v=2"></script>
 </body>
 </html>

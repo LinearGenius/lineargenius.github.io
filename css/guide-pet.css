@@ -1,11 +1,13 @@
 /* 小栈：与 NexT 黑白排版搭配的独立阅读向导。 */
-#guide-pet { position:fixed; right:28px; bottom:78px; z-index:1000; color:#333; font:14px/1.65 Lato,"PingFang SC","Microsoft YaHei",sans-serif; text-align:left; }
+#guide-pet { position:fixed; right:28px; bottom:78px; z-index:1000; color:#333; font:14px/1.65 Lato,"PingFang SC","Microsoft YaHei",sans-serif; text-align:left; will-change:left,top; }
 #guide-pet *, #guide-pet *::before, #guide-pet *::after { box-sizing:border-box; }
 #guide-pet [hidden] { display:none !important; }
 #guide-pet button, #guide-pet a { font:inherit; color:inherit; cursor:pointer; }
 #guide-pet button { margin:0; border:0; background:none; }
 #guide-pet button:focus-visible, #guide-pet a:focus-visible { outline:2px solid #333; outline-offset:4px; }
-#guide-pet .gp-launch { display:flex; flex-direction:column; align-items:center; width:94px; padding:0; border-radius:12px; }
+#guide-pet .gp-launch { display:flex; flex-direction:column; align-items:center; width:94px; padding:0; border-radius:12px; cursor:grab; touch-action:none; user-select:none; -webkit-user-select:none; }
+#guide-pet.gp-dragging .gp-launch { cursor:grabbing; }
+#guide-pet.gp-dragging .gp-cat { transform:translateY(-2px) rotate(-2deg); }
 #guide-pet .gp-cat { position:relative; display:block; width:76px; height:68px; transition:transform .2s; }
 #guide-pet .gp-launch:hover .gp-cat { transform:translateY(-4px) rotate(-3deg); }
 #guide-pet .gp-ear { position:absolute; top:4px; width:24px; height:30px; background:#353535; border-radius:4px 18px 0 0; transform:rotate(-12deg); left:9px; }
@@ -18,6 +20,8 @@
 #guide-pet .gp-paw.right { left:46px; }
 #guide-pet .gp-name { display:block; min-width:82px; margin-top:-1px; padding:2px 9px; border:1px solid #ddd; border-radius:4px; background:#fff; font-size:12px; letter-spacing:1px; box-shadow:0 3px 10px #00000008; }
 #guide-pet .gp-panel { position:absolute; right:0; bottom:104px; width:280px; max-width:calc(100vw - 32px); max-height:calc(100dvh - 220px); overflow:auto; padding:20px; background:#fff; border:1px solid #e5e5e5; border-top:3px solid #333; border-radius:3px; box-shadow:0 10px 35px #00000012; }
+#guide-pet .gp-panel.gp-panel-below { top:104px; bottom:auto; }
+#guide-pet .gp-panel.gp-align-left { right:auto; left:0; }
 #guide-pet .gp-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; }
 #guide-pet .gp-heading strong { font-size:16px; letter-spacing:1px; }
 #guide-pet .gp-close { min-width:32px; min-height:32px; font-size:22px; }

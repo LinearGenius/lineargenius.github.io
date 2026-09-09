@@ -11,8 +11,6 @@
   <link rel="mask-icon" href="/images/iconfinder_horse_384872.png" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Sans TC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
@@ -113,7 +111,7 @@
   </style>
 </noscript>
 
-  <link rel="stylesheet" href="/css/guide-pet.css?v=1">
+  <link rel="stylesheet" href="/css/guide-pet.css?v=2">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -287,25 +285,25 @@
         <p>本篇笔记来自 2020.4.15 六角学院在线研讨会，讲者为卡斯伯老师。在这一次讲座中，老师讲解了关注点分离作为一种 JavaScript 设计模式是如何运作的。</p>
 <a id="more"></a>
 
-<h2 id="何谓关注点分离"><a href="#何谓关注点分离" class="headerlink" title="何谓关注点分离"></a>何谓关注点分离</h2><p>画面归画面、逻辑归逻辑、资料归资料<del>、孙子龟孙子</del></p>
+<h2 id="何谓关注点分离"><a href="#何谓关注点分离" class="headerlink" title="何谓关注点分离"></a>何谓关注点分离</h2><p>画面归画面、逻辑归逻辑、数据归数据<del>、孙子龟孙子</del></p>
 <ul>
 <li>画面：HTML 渲染方式，HTML 结构、样式等等</li>
-<li>逻辑：处理资料的方法</li>
-<li>资料：就是资料</li>
+<li>逻辑：处理数据的方法</li>
+<li>数据：就是数据</li>
 </ul>
 <p>MVC 也是属于此概念。</p>
 <h2 id="开发技巧"><a href="#开发技巧" class="headerlink" title="开发技巧"></a>开发技巧</h2><ol>
-<li>将资料拆分出来</li>
+<li>将数据拆分出来</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = [</span><br><span class="line">  &#123;</span><br><span class="line">    first: <span class="string">'Mark'</span>,</span><br><span class="line">    last: <span class="string">'Otto'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    first: <span class="string">'Jacob'</span>,</span><br><span class="line">    last: <span class="string">'Thornton'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    first: <span class="string">'Larry'</span>,</span><br><span class="line">    first: <span class="string">'the Bird'</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
-<li>一个区块维持一种渲染模式（大多数框架就是让开发者省去这段流程）</li>
+<li>一个区域维持一种渲染模式（大多数框架就是让开发者省去这段流程）</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> htmlString= <span class="string">''</span>;</span><br><span class="line">  data.forEach( <span class="function">(<span class="params">item, i</span>) =&gt;</span> &#123;</span><br><span class="line">    htmlString = htmlString + <span class="string">`&lt;tr&gt;</span></span><br><span class="line"><span class="string">        &lt;th scope="row"&gt;<span class="subst">$&#123; i + <span class="number">1</span> &#125;</span>&lt;/th&gt;</span></span><br><span class="line"><span class="string">        &lt;td&gt;<span class="subst">$&#123; item.first &#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">        &lt;td&gt;<span class="subst">$&#123; item.last &#125;</span>&lt;/td&gt;</span></span><br><span class="line"><span class="string">        &lt;td&gt;&lt;button class="btn btn-outline-danger" data-id="<span class="subst">$&#123;i&#125;</span>"&gt;删除&lt;/button&gt;&lt;/td&gt;</span></span><br><span class="line"><span class="string">      &lt;tr&gt;`</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ol start="3">
-<li>逻辑不会与渲染方式混在一起<br>此部分重点在于<strong>资料处理的熟练度</strong></li>
+<li>逻辑不会与渲染方式混在一起<br>此部分重点在于<strong>数据处理的熟练度</strong></li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeItem</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> id = e.target.dataset.id;</span><br><span class="line">  data.splice(id, <span class="number">1</span>);</span><br><span class="line">  render();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addItem</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> newItem = &#123;</span><br><span class="line">    first: <span class="string">'Greta'</span>,</span><br><span class="line">    last: <span class="string">'Ma'</span></span><br><span class="line">  &#125;</span><br><span class="line">  data.push(newItem);</span><br><span class="line">  render();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -578,6 +576,6 @@
   });
 </script>
 
-  <script defer src="/js/guide-pet.js?v=1"></script>
+  <script defer src="/js/guide-pet.js?v=2"></script>
 </body>
 </html>

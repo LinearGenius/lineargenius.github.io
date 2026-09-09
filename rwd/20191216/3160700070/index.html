@@ -11,8 +11,6 @@
   <link rel="mask-icon" href="/images/iconfinder_horse_384872.png" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Sans TC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
@@ -47,12 +45,12 @@
   };
 </script>
 
-  <meta name="description" content="在学习响应式网页设计（Responsive Web Design）的路上，想记录一些学习过程跟基础语法，本篇笔记将从 RWD 常用选单的样式及实现时的注意事项开始这个系列的旅程。">
+  <meta name="description" content="在学习响应式网页设计（Responsive Web Design）的路上，想记录一些学习过程跟基础语法，本篇笔记将从 RWD 常用菜单的样式及实现时的注意事项开始这个系列的旅程。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[RWD] 响应式网页 - 常用选单样式与注意事项">
+<meta property="og:title" content="[RWD] 响应式网页 - 常用菜单样式与注意事项">
 <meta property="og:url" content="http:&#x2F;&#x2F;lineargenius.github.io&#x2F;rwd&#x2F;20191216&#x2F;3160700070&#x2F;index.html">
 <meta property="og:site_name" content="前端日志">
-<meta property="og:description" content="在学习响应式网页设计（Responsive Web Design）的路上，想记录一些学习过程跟基础语法，本篇笔记将从 RWD 常用选单的样式及实现时的注意事项开始这个系列的旅程。">
+<meta property="og:description" content="在学习响应式网页设计（Responsive Web Design）的路上，想记录一些学习过程跟基础语法，本篇笔记将从 RWD 常用菜单的样式及实现时的注意事项开始这个系列的旅程。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-16T07:38:25.000Z">
 <meta property="article:modified_time" content="2019-12-21T06:47:26.745Z">
@@ -73,7 +71,7 @@
   };
 </script>
 
-  <title>[RWD] 响应式网页 - 常用选单样式与注意事项 | 前端日志</title>
+  <title>[RWD] 响应式网页 - 常用菜单样式与注意事项 | 前端日志</title>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154635603-1"></script>
     <script>
@@ -113,7 +111,7 @@
   </style>
 </noscript>
 
-  <link rel="stylesheet" href="/css/guide-pet.css?v=1">
+  <link rel="stylesheet" href="/css/guide-pet.css?v=2">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -228,7 +226,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          [RWD] 响应式网页 - 常用选单样式与注意事项
+          [RWD] 响应式网页 - 常用菜单样式与注意事项
         </h2>
 
         <div class="post-meta">
@@ -284,17 +282,17 @@
     <div class="post-body" itemprop="articleBody">
 
 
-        <p>在学习响应式网页设计（Responsive Web Design）的路上，想记录一些学习过程跟基础语法，本篇笔记将从 RWD 常用选单的样式及实现时的注意事项开始这个系列的旅程。</p>
+        <p>在学习响应式网页设计（Responsive Web Design）的路上，想记录一些学习过程跟基础语法，本篇笔记将从 RWD 常用菜单的样式及实现时的注意事项开始这个系列的旅程。</p>
 <a id="more"></a>
 
 <h2 id="常用样式"><a href="#常用样式" class="headerlink" title="常用样式"></a>常用样式</h2><ul>
-<li>一行式横幅选单：每格选单的字数不能太多，文字总宽不能超过载具的宽度，例如一个字大约是 16px，在 iPhone 5 (320px) 上就不能超过 20 字。除了单行排列，也有 3*2 之类多栏多列的排版方式。但不要超过两行，因为排到三行就占太多版面了。</li>
-<li>汉堡选单：点开时覆盖部分网页内容，可以用下拉式，也可用从左 / 右方滑出的方式。</li>
+<li>一行式横幅菜单：每格菜单的字数不能太多，文字总宽不能超过设备的宽度，例如一个字大约是 16px，在 iPhone 5 (320px) 上就不能超过 20 字。除了单行排列，也有 3*2 之类多栏多列的排版方式。但不要超过两行，因为排到三行就占太多版面了。</li>
+<li>汉堡菜单：点开时覆盖部分网页内容，可以用下拉式，也可用从左 / 右方滑出的方式。</li>
 </ul>
 <h2 id="实现注意事项"><a href="#实现注意事项" class="headerlink" title="实现注意事项"></a>实现注意事项</h2><ul>
-<li>要避免选单点开后把原本网页内容往下挤的状况，因为这样浏览器在渲染网页的时候效能会降低。</li>
-<li>抓 320px 为最小值：这是 iPhone 5 、SE 的宽度，大约可以放 20 个字元（一格选项不超过4个字），不过考虑到留白的问题，12~16 个字元就差不多了。</li>
-<li>不放奇数选单：3 个选项的选单还可以刚好用 33% 去处理，5 个选项的选单排起来会很尴尬地空一格出来，所以要与客户沟通。</li>
+<li>要避免菜单点开后把原本网页内容往下挤的状况，因为这样浏览器在渲染网页的时候性能会降低。</li>
+<li>抓 320px 为最小值：这是 iPhone 5 、SE 的宽度，大约可以放 20 个字符（一格选项不超过4个字），不过考虑到留白的问题，12~16 个字符就差不多了。</li>
+<li>不放奇数菜单：3 个选项的菜单还可以刚好用 33% 去处理，5 个选项的菜单排起来会很尴尬地空一格出来，所以要与客户沟通。</li>
 </ul>
 
     </div>
@@ -319,8 +317,8 @@
       <i class="fa fa-chevron-left"></i> [CSS] 浮动 (float) 与清除浮动 (clear)
     </a></div>
       <div class="post-nav-item">
-    <a href="/rwd/20191216/3809709620/" rel="next" title="[RWD] 响应式网页 - 多栏多列选单及汉堡选单">
-      [RWD] 响应式网页 - 多栏多列选单及汉堡选单 <i class="fa fa-chevron-right"></i>
+    <a href="/rwd/20191216/3809709620/" rel="next" title="[RWD] 响应式网页 - 多栏多列菜单及汉堡菜单">
+      [RWD] 响应式网页 - 多栏多列菜单及汉堡菜单 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -551,7 +549,7 @@
         config: {page: {
             url: "http://lineargenius.github.io/rwd/20191216/3160700070/",
             identifier: "rwd/20191216/3160700070/",
-            title: "[RWD] 响应式网页 - 常用选单样式与注意事项"
+            title: "[RWD] 响应式网页 - 常用菜单样式与注意事项"
           }
         }
       });
@@ -564,6 +562,6 @@
   });
 </script>
 
-  <script defer src="/js/guide-pet.js?v=1"></script>
+  <script defer src="/js/guide-pet.js?v=2"></script>
 </body>
 </html>

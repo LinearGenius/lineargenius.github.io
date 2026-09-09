@@ -11,8 +11,6 @@
   <link rel="mask-icon" href="/images/iconfinder_horse_384872.png" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Sans TC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
@@ -113,7 +111,7 @@
   </style>
 </noscript>
 
-  <link rel="stylesheet" href="/css/guide-pet.css?v=1">
+  <link rel="stylesheet" href="/css/guide-pet.css?v=2">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -288,9 +286,9 @@
 <a id="more"></a>
 
 <h2 id="什么是-SASS？"><a href="#什么是-SASS？" class="headerlink" title="什么是 SASS？"></a>什么是 SASS？</h2><p>SASS 是一种针对 CSS 的脚本程序语言，借由提供程序语言的特性，例如变量、巢状结构、混合、函数与扩充（继承）等等，可以预先对 CSS 进行结构化的工作，最后再编译可使用于网页上的 CSS 语法。需要搭配 SASS 解译器 (如 prepros) 进行撰写。</p>
-<p>SASS 包括两套语法。最开始的语法叫做「缩排语法」，使用缩排来区分代码块，并且用换行将不同规则分隔开，附档名为 .sass。而较新的语法叫做「SCSS」，使用和 CSS 一样的块语法，即使用大括号将不同的规则分开，使用分号将具体的样式分开。</p>
+<p>SASS 包括两套语法。最开始的语法叫做「缩排语法」，使用缩排来区分代码块，并且用换行将不同规则分隔开，附文件名为 .sass。而较新的语法叫做「SCSS」，使用和 CSS 一样的块语法，即使用大括号将不同的规则分开，使用分号将具体的样式分开。</p>
 <p>以下以 SCSS 语法为主，整理 SASS 的应用方法。</p>
-<h2 id="写法：减少重工，不必重复写同样的选取器。"><a href="#写法：减少重工，不必重复写同样的选取器。" class="headerlink" title="写法：减少重工，不必重复写同样的选取器。"></a>写法：减少重工，不必重复写同样的选取器。</h2><p>子元素的样式直接写在父元素里即可。</p>
+<h2 id="写法：减少重工，不必重复写同样的选择器。"><a href="#写法：减少重工，不必重复写同样的选择器。" class="headerlink" title="写法：减少重工，不必重复写同样的选择器。"></a>写法：减少重工，不必重复写同样的选择器。</h2><p>子元素的样式直接写在父元素里即可。</p>
 <h2 id="变量：便于管理，快速管理出同样设置的样式"><a href="#变量：便于管理，快速管理出同样设置的样式" class="headerlink" title="变量：便于管理，快速管理出同样设置的样式"></a>变量：便于管理，快速管理出同样设置的样式</h2><p>在最前面设一个变量名，例如 <code>linkcolor</code> ，名称前加一个 <code>$</code> 字号，并写上该变量代表的值。例：</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$linkcolor</span>: <span class="number">#000</span>;</span><br></pre></td></tr></table></figure>
 
@@ -305,9 +303,9 @@
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">font</span>-m: <span class="number">16px</span>;</span><br><span class="line"><span class="attribute">font</span>-l: font-m * <span class="number">1.2</span> // 支持加减乘除</span><br><span class="line">font-s: font-m * <span class="number">0.8</span></span><br></pre></td></tr></table></figure>
 
 
-<h2 id="拆档：-import-让每支-scss-档各司其职"><a href="#拆档：-import-让每支-scss-档各司其职" class="headerlink" title="拆档：@import 让每支 .scss 档各司其职"></a>拆档：<code>@import</code> 让每支 .scss 档各司其职</h2><ol>
-<li>一支 .scss 文件只单独处理一件事，例如 reset 写在一个 .scss 档，档名命名为 <code>_reset.scss</code>；首页样式写在另一个档，档名命名为 <code>_index.scss</code>。前面加<u>底线</u>很重要，代表那是<strong>合并用</strong>的 sass 档，理论上并不会编译出对应的 .css 档。</li>
-<li>在名为 all 的 .scss 档里做统整，用 <code>@import</code>「依序」汇入个别的 .scss 档。网页中只会引入 <code>all.scss</code> 编译出来的 <code>all.css</code>。</li>
+<h2 id="拆分文件：-import-让每支-scss-文件各司其职"><a href="#拆分文件：-import-让每支-scss-文件各司其职" class="headerlink" title="拆分文件：@import 让每支 .scss 文件各司其职"></a>拆分文件：<code>@import</code> 让每支 .scss 文件各司其职</h2><ol>
+<li>一支 .scss 文件只单独处理一件事，例如 reset 写在一个 .scss 文件，文件名命名为 <code>_reset.scss</code>；首页样式写在另一个文件，文件名命名为 <code>_index.scss</code>。前面加<u>底线</u>很重要，代表那是<strong>合并用</strong>的 sass 文件，理论上并不会编译出对应的 .css 文件。</li>
+<li>在名为 all 的 .scss 文件里做汇总，用 <code>@import</code>「依次」导入个别的 .scss 文件。网页中只会引入 <code>all.scss</code> 编译出来的 <code>all.css</code>。</li>
 </ol>
 
     </div>
@@ -404,7 +402,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-SASS？"><span class="nav-number">1.</span> <span class="nav-text">什么是 SASS？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写法：减少重工，不必重复写同样的选取器。"><span class="nav-number">2.</span> <span class="nav-text">写法：减少重工，不必重复写同样的选取器。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量：便于管理，快速管理出同样设置的样式"><span class="nav-number">3.</span> <span class="nav-text">变量：便于管理，快速管理出同样设置的样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拆档：-import-让每支-scss-档各司其职"><span class="nav-number">4.</span> <span class="nav-text">拆档：@import 让每支 .scss 档各司其职</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-SASS？"><span class="nav-number">1.</span> <span class="nav-text">什么是 SASS？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写法：减少重工，不必重复写同样的选择器。"><span class="nav-number">2.</span> <span class="nav-text">写法：减少重工，不必重复写同样的选择器。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量：便于管理，快速管理出同样设置的样式"><span class="nav-number">3.</span> <span class="nav-text">变量：便于管理，快速管理出同样设置的样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拆分文件：-import-让每支-scss-文件各司其职"><span class="nav-number">4.</span> <span class="nav-text">拆分文件：@import 让每支 .scss 文件各司其职</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -577,6 +575,6 @@
   });
 </script>
 
-  <script defer src="/js/guide-pet.js?v=1"></script>
+  <script defer src="/js/guide-pet.js?v=2"></script>
 </body>
 </html>

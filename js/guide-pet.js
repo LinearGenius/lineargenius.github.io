@@ -30,20 +30,87 @@
   const copy = pet.querySelector('.gp-copy');
   copy.textContent = isArticle ? '慢慢读，我陪着你。想换个话题，也可以找找其他文章。' : '你好，我是小栈。想找一篇前端笔记？我来帮你带路。';
   const preference = 'blog-guide-resting';
+  const positionPreference = 'blog-guide-position';
+  let savedPosition = null;
+  let suppressClick = false;
   function save(value) { try { localStorage.setItem(preference, value); } catch (_) { /* Storage can be disabled. */ } }
   function rest(value) {
     pet.classList.toggle('gp-sleep', value);
     pet.querySelector('.gp-name').textContent = value ? '唤醒小栈' : '< 小栈 />';
     launch.setAttribute('aria-label', value ? '唤醒小栈阅读向导' : '打开小栈阅读向导');
   }
-  try { rest(localStorage.getItem(preference) === '1'); } catch (_) {}
+  function clamp(value, min, max) { return Math.min(Math.max(value, min), Math.max(min, max)); }
+  function panelPlacement() {
+    const rect = pet.getBoundingClientRect();
+    panel.classList.toggle('gp-panel-below', rect.top < Math.min(330, panel.scrollHeight + 24));
+    panel.classList.toggle('gp-align-left', rect.left < 280);
+  }
+  function applyPosition(position) {
+    if (!position || !Number.isFinite(position.x) || !Number.isFinite(position.y)) return;
+    const maxX = Math.max(0, innerWidth - pet.offsetWidth - 8);
+    const maxY = Math.max(0, innerHeight - pet.offsetHeight - 8);
+    pet.style.right = 'auto';
+    pet.style.bottom = 'auto';
+    pet.style.left = `${clamp(position.x, 0, 1) * maxX + 4}px`;
+    pet.style.top = `${clamp(position.y, 0, 1) * maxY + 4}px`;
+    panelPlacement();
+  }
+  function rememberPosition() {
+    const rect = pet.getBoundingClientRect();
+    const maxX = Math.max(1, innerWidth - pet.offsetWidth - 8);
+    const maxY = Math.max(1, innerHeight - pet.offsetHeight - 8);
+    savedPosition = {
+      x: clamp((rect.left - 4) / maxX, 0, 1),
+      y: clamp((rect.top - 4) / maxY, 0, 1)
+    };
+    try { localStorage.setItem(positionPreference, JSON.stringify(savedPosition)); } catch (_) {}
+  }
+  try {
+    rest(localStorage.getItem(preference) === '1');
+    savedPosition = JSON.parse(localStorage.getItem(positionPreference));
+  } catch (_) { savedPosition = null; }
+  if (savedPosition) requestAnimationFrame(() => applyPosition(savedPosition));
   function toggle(open, focus) {
     panel.hidden = !open;
     launch.setAttribute('aria-expanded', String(open));
     if (focus) (open ? pet.querySelector('.gp-close') : launch).focus();
-    if (open) progress();
+    if (open) { progress(); panelPlacement(); }
   }
-  launch.addEventListener('click', () => { rest(false); save('0'); toggle(panel.hidden, true); });
+  launch.addEventListener('click', () => {
+    if (suppressClick) { suppressClick = false; return; }
+    rest(false); save('0'); toggle(panel.hidden, true);
+  });
+  launch.addEventListener('pointerdown', event => {
+    if (event.button !== undefined && event.button !== 0) return;
+    const start = pet.getBoundingClientRect();
+    const origin = { x:event.clientX, y:event.clientY, left:start.left, top:start.top };
+    let moved = false;
+    launch.setPointerCapture(event.pointerId);
+    const move = next => {
+      const dx = next.clientX - origin.x;
+      const dy = next.clientY - origin.y;
+      if (!moved && Math.hypot(dx, dy) < 5) return;
+      moved = true;
+      suppressClick = true;
+      pet.classList.add('gp-dragging');
+      panel.hidden = true;
+      launch.setAttribute('aria-expanded', 'false');
+      pet.style.right = 'auto';
+      pet.style.bottom = 'auto';
+      pet.style.left = `${clamp(origin.left + dx, 4, innerWidth - pet.offsetWidth - 4)}px`;
+      pet.style.top = `${clamp(origin.top + dy, 4, innerHeight - pet.offsetHeight - 4)}px`;
+    };
+    const finish = () => {
+      launch.removeEventListener('pointermove', move);
+      launch.removeEventListener('pointerup', finish);
+      launch.removeEventListener('pointercancel', finish);
+      pet.classList.remove('gp-dragging');
+      if (moved) rememberPosition();
+    };
+    launch.addEventListener('pointermove', move);
+    launch.addEventListener('pointerup', finish);
+    launch.addEventListener('pointercancel', finish);
+  });
   pet.querySelector('.gp-close').addEventListener('click', () => toggle(false, true));
   pet.querySelector('.gp-rest').addEventListener('click', () => { rest(true); save('1'); toggle(false, true); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) toggle(false, true); });
@@ -89,4 +156,5 @@
     scheduled = true;
     requestAnimationFrame(() => { progress(); scheduled = false; });
   }, { passive:true });
+  window.addEventListener('resize', () => { if (savedPosition) applyPosition(savedPosition); });
 })();

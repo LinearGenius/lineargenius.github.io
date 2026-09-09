@@ -11,8 +11,6 @@
   <link rel="mask-icon" href="/images/iconfinder_horse_384872.png" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Sans TC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
@@ -113,7 +111,7 @@
   </style>
 </noscript>
 
-  <link rel="stylesheet" href="/css/guide-pet.css?v=1">
+  <link rel="stylesheet" href="/css/guide-pet.css?v=2">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -310,7 +308,7 @@
 <li>用 CSS 画各方向的三角型</li>
 </ul>
 <blockquote>
-<p>温馨提示：平常可以多累积自己的 mixin 数据库，设一个 mixin 文件夹把学过的一些 CSS 技巧记录成 .sass 档存放进去。有些面试官光看应征者的 mixin 库就能了解这个人处理过多少项目了。</p>
+<p>温馨提示：平常可以多累积自己的 mixin 数据库，设一个 mixin 文件夹把学过的一些 CSS 技巧记录成 .sass 文件存放进去。有些面试官光看应征者的 mixin 库就能了解这个人处理过多少项目了。</p>
 </blockquote>
 <h2 id="将-mixin-用于开发-RWD"><a href="#将-mixin-用于开发-RWD" class="headerlink" title="将 @mixin 用于开发 RWD"></a>将 <code>@mixin</code> 用于开发 RWD</h2><p>先用 <code>@mixin</code> 设置好断点，各断点可以取名为该装置的名字，例如 <code>pad</code>、<code>iPhone5</code> 等。<br>接着在 media query 里面只要加一个东西，那就是 <code>@content</code>。</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> iphone5&#123;</span><br><span class="line">  <span class="keyword">@media</span> (max-width: <span class="number">320px</span>) &#123;</span><br><span class="line">    <span class="keyword">@content</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -591,6 +589,6 @@
   });
 </script>
 
-  <script defer src="/js/guide-pet.js?v=1"></script>
+  <script defer src="/js/guide-pet.js?v=2"></script>
 </body>
 </html>

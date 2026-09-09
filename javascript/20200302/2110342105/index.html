@@ -11,8 +11,6 @@
   <link rel="mask-icon" href="/images/iconfinder_horse_384872.png" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Sans TC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
@@ -47,12 +45,12 @@
   };
 </script>
 
-  <meta name="description" content="本篇笔记来自 2020.2.26 六角学院在线研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师为大家复习了异步行为与 Queue 的概念，并接续介绍了使异步行为依序进行的四种方法。">
+  <meta name="description" content="本篇笔记来自 2020.2.26 六角学院在线研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师为大家复习了异步行为与 Queue 的概念，并接续介绍了使异步行为依次进行的四种方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[JS] 讲座笔记：JS Promise 实战教学">
 <meta property="og:url" content="http:&#x2F;&#x2F;lineargenius.github.io&#x2F;javascript&#x2F;20200302&#x2F;2110342105&#x2F;index.html">
 <meta property="og:site_name" content="前端日志">
-<meta property="og:description" content="本篇笔记来自 2020.2.26 六角学院在线研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师为大家复习了异步行为与 Queue 的概念，并接续介绍了使异步行为依序进行的四种方法。">
+<meta property="og:description" content="本篇笔记来自 2020.2.26 六角学院在线研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师为大家复习了异步行为与 Queue 的概念，并接续介绍了使异步行为依次进行的四种方法。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;flYXHnz.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;i.imgur.com&#x2F;a8Pnnxr.png">
@@ -130,7 +128,7 @@
   </style>
 </noscript>
 
-  <link rel="stylesheet" href="/css/guide-pet.css?v=1">
+  <link rel="stylesheet" href="/css/guide-pet.css?v=2">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -295,32 +293,32 @@
     <div class="post-body" itemprop="articleBody">
 
 
-        <p>本篇笔记来自 2020.2.26 六角学院在线研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师为大家复习了异步行为与 Queue 的概念，并接续介绍了使异步行为依序进行的四种方法。</p>
+        <p>本篇笔记来自 2020.2.26 六角学院在线研讨会，讲者为偷米骑巴哥的 Tommy。在这一次讲座中，Tommy 老师为大家复习了异步行为与 Queue 的概念，并接续介绍了使异步行为依次进行的四种方法。</p>
 <a id="more"></a>
 
 <p>当我们有 3 个 <code>setTimeout()</code> 时，我们可以使它们按照顺序执行；但是当我们有 3 个 AJAX 时，由于变因太多、无法确定各自返回的时间，因此不一定能照顺序执行。</p>
-<p>要解决异步无法依序执行的问题，第一个方法是使用 callback function。</p>
-<h2 id="让异步依序执行-解法一：callback"><a href="#让异步依序执行-解法一：callback" class="headerlink" title="让异步依序执行 解法一：callback"></a>让异步依序执行 解法一：callback</h2><p>三个 <code>setTimeout()</code> 个别用 function 包起来，且各个 function 都带入一个 callback 参数。</p>
+<p>要解决异步无法依次执行的问题，第一个方法是使用 callback function。</p>
+<h2 id="让异步依次执行-解法一：callback"><a href="#让异步依次执行-解法一：callback" class="headerlink" title="让异步依次执行 解法一：callback"></a>让异步依次执行 解法一：callback</h2><p>三个 <code>setTimeout()</code> 个别用 function 包起来，且各个 function 都带入一个 callback 参数。</p>
 <p><img src="https://i.imgur.com/flYXHnz.png" alt></p>
 <p>调用 function A 时，同时定义 callback 的任务内容，如此一来就可以先印出 <code>&#39;A&#39;</code> 再印出 <code>&#39;OK&#39;</code>。</p>
 <p><img src="https://i.imgur.com/a8Pnnxr.png" alt></p>
 <p>运用这个原理，就可以把 function B 当作 function A 的 callback，把 function C 当作 function B 的 callback。</p>
 <p><img src="https://i.imgur.com/rUBofui.png" alt></p>
-<p>但是这种做法一旦遇到<strong>太多函数要依序执行时</strong>，就会变成 <em>callback hell</em>，将会很难去分辨代码。</p>
-<h2 id="让异步依序执行-解法二：Generator"><a href="#让异步依序执行-解法二：Generator" class="headerlink" title="让异步依序执行 解法二：Generator"></a>让异步依序执行 解法二：Generator</h2><ul>
+<p>但是这种做法一旦遇到<strong>太多函数要依次执行时</strong>，就会变成 <em>callback hell</em>，将会很难去分辨代码。</p>
+<h2 id="让异步依次执行-解法二：Generator"><a href="#让异步依次执行-解法二：Generator" class="headerlink" title="让异步依次执行 解法二：Generator"></a>让异步依次执行 解法二：Generator</h2><ul>
 <li>在 function 后面加一个 <code>*</code>，执行时会得到一个 <code>generator</code> 对象。</li>
 <li>在 for 循环中使用 <code>yield</code> 关键字：代表<strong>暂停</strong>，先跳出 function，等之后在 function 外面用 <code>函数名称.next()</code> 调用时，才会再回到 function 内部继续执行。</li>
 <li><code>generator</code> 对象会带出 <code>done</code> 特性</li>
-<li><code>arguments</code> : 类数组对象，可取得所有传入 function 的参数</li>
+<li><code>arguments</code> : 类数组对象，可获取所有传入 function 的参数</li>
 <li>递回：在函数里调用函数本身</li>
 </ul>
 <p><img src="https://i.imgur.com/tIwffhZ.png" alt></p>
 <p><code>for</code> 循环跑到最后一次时，<code>done</code> 的值为 <code>true</code>：</p>
 <p><img src="https://i.imgur.com/PPGVq6s.png" alt></p>
-<p>在 <code>recursion()</code> 中使用 <code>.next()</code> 调用函数与递回，让 function A, function B, function C 依序执行：</p>
+<p>在 <code>recursion()</code> 中使用 <code>.next()</code> 调用函数与递回，让 function A, function B, function C 依次执行：</p>
 <p><img src="https://i.imgur.com/AXlstmC.png" alt></p>
-<p>小结：最后一行，在 <code>generator()</code> 带入多个函数作为参数，就能依序执行并避免 callback hell。</p>
-<h2 id="让异步依序执行-解法三：Promise"><a href="#让异步依序执行-解法三：Promise" class="headerlink" title="让异步依序执行 解法三：Promise"></a>让异步依序执行 解法三：Promise</h2><ul>
+<p>小结：最后一行，在 <code>generator()</code> 带入多个函数作为参数，就能依次执行并避免 callback hell。</p>
+<h2 id="让异步依次执行-解法三：Promise"><a href="#让异步依次执行-解法三：Promise" class="headerlink" title="让异步依次执行 解法三：Promise"></a>让异步依次执行 解法三：Promise</h2><ul>
 <li>一个封装 <code>Promise</code> 的函数</li>
 <li><code>Promise</code> 的 callback function 要带入两个参数：<code>resolve</code> (成功时调用)，以及 <code>reject</code> (失败时调用)。</li>
 </ul>
@@ -330,10 +328,10 @@
 <p>异步失败时，<code>Promise</code> 会执行 <code>reject</code>，<code>reject</code> 必须准备对应的函数，这个函数是针对单一的 <code>Promise</code>，在失败时执行的方案。</p>
 <p>在异步失败时执行对应的行为也能用 <code>catch</code> 达成，<code>catch</code> 的意思是，只要其中一个 <code>Promise</code> 没成功执行，就跳到 <code>catch</code>。</p>
 <p><img src="https://i.imgur.com/tkBRQMP.png" alt></p>
-<h2 id="让异步依序执行-解法四：async…await"><a href="#让异步依序执行-解法四：async…await" class="headerlink" title="让异步依序执行 解法四：async…await"></a>让异步依序执行 解法四：async…await</h2><ul>
+<h2 id="让异步依次执行-解法四：async…await"><a href="#让异步依次执行-解法四：async…await" class="headerlink" title="让异步依次执行 解法四：async…await"></a>让异步依次执行 解法四：async…await</h2><ul>
 <li>ES7 语法，要搭配 <code>Promise</code> 使用</li>
 <li><code>async</code> + function：声明这个函数是异步</li>
-<li><code>await</code> + <code>Promise</code>：依序执行函数</li>
+<li><code>await</code> + <code>Promise</code>：依次执行函数</li>
 <li>条件：<code>async</code> 跟 <code>await</code> 一定要搭配使用，不能只用 <code>await</code> 却不用 <code>async</code>。</li>
 </ul>
 <p><img src="https://i.imgur.com/0nEubbT.png" alt></p>
@@ -341,9 +339,9 @@
 <p><img src="https://i.imgur.com/6yejkHH.png" alt></p>
 <p>三个函数异步失败时想要不同的错误信息：</p>
 <p><img src="https://i.imgur.com/Yi3LpB1.png" alt></p>
-<p>实务上使用 <code>XMLHttpRequest</code> 时的写法：</p>
+<p>实际开发中使用 <code>XMLHttpRequest</code> 时的写法：</p>
 <p><img src="https://i.imgur.com/IBlkZKh.png" alt></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://slides.com/yi-tailin/deck-e329c0#/" target="_blank" rel="external nofollow noopener noreferrer">slides 简报</a><br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/function*" target="_blank" rel="external nofollow noopener noreferrer">function*</a><br><a href="https://developers.google.com/web/fundamentals/primers/promises?hl=zh-tw#top_of_page" target="_blank" rel="external nofollow noopener noreferrer">JavaScript Promise：简介</a><br><a href="https://wcc723.github.io/development/2020/02/16/all-new-promise/" target="_blank" rel="external nofollow noopener noreferrer">JavaScript Promise 全介绍</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://slides.com/yi-tailin/deck-e329c0#/" target="_blank" rel="external nofollow noopener noreferrer">slides 演示文稿</a><br><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/function*" target="_blank" rel="external nofollow noopener noreferrer">function*</a><br><a href="https://developers.google.com/web/fundamentals/primers/promises?hl=zh-tw#top_of_page" target="_blank" rel="external nofollow noopener noreferrer">JavaScript Promise：简介</a><br><a href="https://wcc723.github.io/development/2020/02/16/all-new-promise/" target="_blank" rel="external nofollow noopener noreferrer">JavaScript Promise 全介绍</a></p>
 
     </div>
 
@@ -442,7 +440,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#让异步依序执行-解法一：callback"><span class="nav-number">1.</span> <span class="nav-text">让异步依序执行 解法一：callback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让异步依序执行-解法二：Generator"><span class="nav-number">2.</span> <span class="nav-text">让异步依序执行 解法二：Generator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让异步依序执行-解法三：Promise"><span class="nav-number">3.</span> <span class="nav-text">让异步依序执行 解法三：Promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让异步依序执行-解法四：async…await"><span class="nav-number">4.</span> <span class="nav-text">让异步依序执行 解法四：async…await</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#让异步依次执行-解法一：callback"><span class="nav-number">1.</span> <span class="nav-text">让异步依次执行 解法一：callback</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让异步依次执行-解法二：Generator"><span class="nav-number">2.</span> <span class="nav-text">让异步依次执行 解法二：Generator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让异步依次执行-解法三：Promise"><span class="nav-number">3.</span> <span class="nav-text">让异步依次执行 解法三：Promise</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让异步依次执行-解法四：async…await"><span class="nav-number">4.</span> <span class="nav-text">让异步依次执行 解法四：async…await</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -615,6 +613,6 @@
   });
 </script>
 
-  <script defer src="/js/guide-pet.js?v=1"></script>
+  <script defer src="/js/guide-pet.js?v=2"></script>
 </body>
 </html>
