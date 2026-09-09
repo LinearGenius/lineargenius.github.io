@@ -1,0 +1,39 @@
+/* 小栈：与 NexT 黑白排版搭配的独立阅读向导。 */
+#guide-pet { position:fixed; right:28px; bottom:78px; z-index:1000; color:#333; font:14px/1.65 Lato,"PingFang SC","Microsoft YaHei",sans-serif; text-align:left; }
+#guide-pet *, #guide-pet *::before, #guide-pet *::after { box-sizing:border-box; }
+#guide-pet [hidden] { display:none !important; }
+#guide-pet button, #guide-pet a { font:inherit; color:inherit; cursor:pointer; }
+#guide-pet button { margin:0; border:0; background:none; }
+#guide-pet button:focus-visible, #guide-pet a:focus-visible { outline:2px solid #333; outline-offset:4px; }
+#guide-pet .gp-launch { display:flex; flex-direction:column; align-items:center; width:94px; padding:0; border-radius:12px; }
+#guide-pet .gp-cat { position:relative; display:block; width:76px; height:68px; transition:transform .2s; }
+#guide-pet .gp-launch:hover .gp-cat { transform:translateY(-4px) rotate(-3deg); }
+#guide-pet .gp-ear { position:absolute; top:4px; width:24px; height:30px; background:#353535; border-radius:4px 18px 0 0; transform:rotate(-12deg); left:9px; }
+#guide-pet .gp-ear.right { left:auto; right:9px; transform:rotate(12deg) scaleX(-1); }
+#guide-pet .gp-face { position:absolute; top:17px; left:4px; width:68px; height:46px; background:#353535; border-radius:24px 24px 19px 19px; box-shadow:0 3px 0 #ddd; }
+#guide-pet .gp-eye { position:absolute; top:16px; left:17px; width:5px; height:9px; background:#fafafa; border-radius:50%; animation:gp-blink 7s infinite; }
+#guide-pet .gp-eye.right { left:46px; }
+#guide-pet .gp-nose { position:absolute; top:28px; left:32px; width:5px; height:4px; background:#c6c6c6; border-radius:2px 2px 4px 4px; }
+#guide-pet .gp-paw { position:absolute; bottom:0; left:16px; width:15px; height:10px; background:#555; border:2px solid #353535; border-radius:6px; }
+#guide-pet .gp-paw.right { left:46px; }
+#guide-pet .gp-name { display:block; min-width:82px; margin-top:-1px; padding:2px 9px; border:1px solid #ddd; border-radius:4px; background:#fff; font-size:12px; letter-spacing:1px; box-shadow:0 3px 10px #00000008; }
+#guide-pet .gp-panel { position:absolute; right:0; bottom:104px; width:280px; max-width:calc(100vw - 32px); max-height:calc(100dvh - 220px); overflow:auto; padding:20px; background:#fff; border:1px solid #e5e5e5; border-top:3px solid #333; border-radius:3px; box-shadow:0 10px 35px #00000012; }
+#guide-pet .gp-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+#guide-pet .gp-heading strong { font-size:16px; letter-spacing:1px; }
+#guide-pet .gp-close { min-width:32px; min-height:32px; font-size:22px; }
+#guide-pet .gp-copy { margin:8px 0 16px; color:#666; font-size:14px; line-height:1.8; }
+#guide-pet .gp-actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+#guide-pet .gp-actions a, #guide-pet .gp-actions button { display:flex; min-height:44px; align-items:center; justify-content:center; border:1px solid #e7e7e7; border-radius:3px; padding:7px 4px; text-decoration:none; transition:background .15s; }
+#guide-pet .gp-actions a:hover, #guide-pet .gp-actions button:hover { background:#f3f3f3; border-color:#aaa; }
+#guide-pet .gp-actions .gp-primary { background:#333; color:#fff; border-color:#333; }
+#guide-pet .gp-actions .gp-primary:hover { background:#555; }
+#guide-pet .gp-foot { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:16px; padding-top:12px; border-top:1px dashed #ddd; color:#777; font-size:12px; }
+#guide-pet .gp-rest { min-height:32px; text-decoration:underline; text-underline-offset:3px; }
+#guide-pet .gp-progress { height:2px; background:#eee; margin-top:12px; }
+#guide-pet .gp-progress span { display:block; height:100%; background:#555; width:0; }
+#guide-pet.gp-sleep .gp-cat { display:none; }
+#guide-pet.gp-sleep .gp-name { padding:8px; }
+@keyframes gp-blink { 0%,43%,47%,100% { transform:scaleY(1); } 45% { transform:scaleY(.12); } }
+@media (max-width:767px) { #guide-pet { right:12px; bottom:calc(62px + env(safe-area-inset-bottom)); } #guide-pet .gp-launch { width:70px; } #guide-pet .gp-cat { transform:scale(.82); transform-origin:bottom center; margin-top:-10px; } #guide-pet .gp-name { min-width:68px; } #guide-pet .gp-panel { bottom:90px; max-height:calc(100dvh - 210px); } }
+@media (prefers-reduced-motion:reduce) { #guide-pet *, #guide-pet *::before, #guide-pet *::after { animation:none !important; transition:none !important; } }
+@media print { #guide-pet { display:none; } }
