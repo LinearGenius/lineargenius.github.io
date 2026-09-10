@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/iconfinder_horse_384872.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/iconfinder_horse_384872.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/iconfinder_horse_384872.png">
+  <link rel="mask-icon" href="/images/iconfinder_horse_384872.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=2">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://lineargenius.github.io').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="从 Slate 的节点与操作模型出发，封装工具栏、快捷键、自定义元素、序列化、粘贴处理和表单接入，形成可维护的编辑器组件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Slate.js] 封装一个可扩展的 React 富文本编辑器">
+<meta property="og:url" content="https:&#x2F;&#x2F;lineargenius.github.io&#x2F;Nodejs&#x2F;20221030&#x2F;22103002&#x2F;index.html">
+<meta property="og:site_name" content="前端日志">
+<meta property="og:description" content="从 Slate 的节点与操作模型出发，封装工具栏、快捷键、自定义元素、序列化、粘贴处理和表单接入，形成可维护的编辑器组件。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-22T05:30:00.000Z">
+<meta property="article:modified_time" content="2026-03-22T05:30:00.000Z">
+<meta property="article:author" content="Wyatt">
+<meta property="article:tag" content="Slate.js">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://lineargenius.github.io/React/20260322/26032202/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>[Slate.js] 封装一个可扩展的 React 富文本编辑器 | 前端日志</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154635603-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-154635603-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <link rel="stylesheet" href="/css/guide-pet.css?v=2">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端日志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="搜索..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+
+
+          <div class="content">
+
+
+  <div class="posts-expand">
+
+
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh">
+    <link itemprop="mainEntityOfPage" href="http://lineargenius.github.io/React/20260322/26032202/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Wyatt">
+      <meta itemprop="description" content="前端技术 Blog，收集学习路上的吉光片羽">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端日志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          [Slate.js] 封装一个可扩展的 React 富文本编辑器
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+
+              <time title="创建时间：2026-03-22 13:30:00" itemprop="dateCreated datePublished" datetime="2026-03-22T13:30:00+08:00">2026-03-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+            </span>
+
+
+
+  <span class="post-meta-item">
+
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+
+    <a title="disqus" href="/React/20260322/26032202/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="React/20260322/26032202" itemprop="commentCount"></span>
+    </a>
+  </span>
+
+
+
+        </div>
+      </header>
+
+
+
+
+    <div class="post-body" itemprop="articleBody">
+<p>从 Slate 的节点与操作模型出发，封装工具栏、快捷键、自定义元素、序列化、粘贴处理和表单接入，形成可维护的编辑器组件。</p><a id="more"></a>
+<h2 id="为什么选择-Slate"><a href="#为什么选择-Slate" class="headerlink" title="为什么选择 Slate"></a>为什么选择 Slate</h2><p>Slate 提供可组合的编辑器核心和 React 渲染层，不预设固定工具栏与文档结构。自由度适合业务编辑器，但意味着团队要自己定义 Schema、插件顺序、序列化协议和升级策略。官方文档仍将其标记为 beta，生产项目应锁定版本并覆盖关键回归测试。</p>
+<h2 id="文档模型先于界面"><a href="#文档模型先于界面" class="headerlink" title="文档模型先于界面"></a>文档模型先于界面</h2><p>编辑器 value 是 Descendant 节点树。元素节点包含 type 和 children，文本节点保存字符串与 bold 等 marks。先定义稳定的业务模型，再写渲染组件；不要把按钮样式或 DOM 结构直接当作持久化格式。</p><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">type Paragraph = { type: &#x27;paragraph&#x27;; children: CustomText[] };</span><br><span class="line">type Heading = { type: &#x27;heading&#x27;; level: 1 | 2; children: CustomText[] };</span><br><span class="line">type CustomElement = Paragraph | Heading;</span><br><span class="line">type CustomText = { text: string; bold?: boolean; code?: boolean };</span><br></pre></td></tr></table></figure>
+<h2 id="创建稳定的-Editor-实例"><a href="#创建稳定的-Editor-实例" class="headerlink" title="创建稳定的 Editor 实例"></a>创建稳定的 Editor 实例</h2><p>Editor 必须在组件生命周期中保持同一个引用。withReact 提供 DOM 映射，withHistory 提供撤销重做，自定义插件负责覆盖 normalizeNode、isInline 或 insertData。插件顺序要固定并写入测试。</p><figure class="highlight tsx"><table><tr><td class="code"><pre><span class="line">const [editor] = useState(() =&gt;</span><br><span class="line">  withLinks(withHistory(withReact(createEditor())))</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">return &lt;Slate editor={editor} initialValue={value} onChange={onChange}&gt;</span><br><span class="line">  &lt;Toolbar /&gt;</span><br><span class="line">  &lt;Editable renderElement={renderElement} renderLeaf={renderLeaf} /&gt;</span><br><span class="line">&lt;/Slate&gt;;</span><br></pre></td></tr></table></figure>
+<h2 id="命令层隔离工具栏"><a href="#命令层隔离工具栏" class="headerlink" title="命令层隔离工具栏"></a>命令层隔离工具栏</h2><p>工具栏不直接操作 DOM，而是调用 toggleBlock、toggleMark、insertLink 等命令。命令读取 selection，使用 Editor.nodes 判断当前状态，再通过 Transforms 修改节点。这样按钮、快捷键和斜杠菜单可以复用同一行为。</p>
+<h2 id="渲染、粘贴与链接安全"><a href="#渲染、粘贴与链接安全" class="headerlink" title="渲染、粘贴与链接安全"></a>渲染、粘贴与链接安全</h2><p>renderElement 必须把 attributes 和 children 传给对应元素；renderLeaf 组合文本 marks。粘贴 HTML 时只接受允许的标签和属性，链接协议限制为 http、https、mailto。图片上传先插入带本地 ID 的占位节点，完成后再用 Transforms 更新 URL。</p>
+<h2 id="保存与序列化"><a href="#保存与序列化" class="headerlink" title="保存与序列化"></a>保存与序列化</h2><p>保存 Slate JSON 能完整保留结构，适合再次编辑；展示端可以把经过版本迁移的 JSON 渲染为 React，而不是把编辑器 HTML 原样注入页面。文档记录 schemaVersion，模型变化时集中迁移旧数据。防抖保存只处理内容变化，不要因 selection 变化反复请求。</p>
+<h2 id="受控边界与表单集成"><a href="#受控边界与表单集成" class="headerlink" title="受控边界与表单集成"></a>受控边界与表单集成</h2><p>Slate 的 value 更接近 initialValue，直接用外部 props 覆盖内部节点会破坏历史记录。表单层保存最新文档引用，在明确的“载入另一篇文档”动作中重建 editor。校验规则应检查空段落、最大节点数、链接和图片状态。</p>
+<h2 id="测试最值得覆盖的路径"><a href="#测试最值得覆盖的路径" class="headerlink" title="测试最值得覆盖的路径"></a>测试最值得覆盖的路径</h2><p>测试命令对节点树的变换、normalize 规则的收敛、复制粘贴、中文输入法组合态、撤销重做、序列化往返和历史数据迁移。端到端测试要覆盖光标、选区和键盘快捷键，因为这些行为无法只靠快照证明。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="https://docs.slatejs.org/" target="_blank" rel="external nofollow noopener noreferrer">Slate：Introduction</a></li><li><a href="https://docs.slatejs.org/libraries/slate-react/editable" target="_blank" rel="external nofollow noopener noreferrer">Slate：Editable Component</a></li><li><a href="https://docs.slatejs.org/libraries/slate-react/react-editor" target="_blank" rel="external nofollow noopener noreferrer">Slate：ReactEditor</a></li></ul>
+    </div>
+
+
+
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Slate.js/" rel="tag"># Slate.js</a>
+              <a href="/tags/React/" rel="tag"># React</a>
+          </div>
+
+
+
+
+
+    <div class="post-nav">
+<div class="post-nav-item"><a href="/javascript/20260118/26011801/" rel="prev" title="[前端安全] 从 XSS、CSRF 到 CSP 的防护清单"><i class="fa fa-chevron-left"></i> [前端安全] 从 XSS、CSRF 到 CSP 的防护清单</a></div>
+<div class="post-nav-item"><a href="/React/20260614/26061403/" rel="next" title="[React-Konva] 结合图像分割实现自动抠图编辑器">[React-Konva] 结合图像分割实现自动抠图编辑器 <i class="fa fa-chevron-right"></i></a></div>
+</div>
+      </footer>
+
+  </article>
+
+
+
+
+  </div>
+
+
+          </div>
+
+	        <div style>
+
+
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+	        </div>
+        </div>
+
+
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么选择-Slate"><span class="nav-number">1.</span> <span class="nav-text">为什么选择 Slate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档模型先于界面"><span class="nav-number">2.</span> <span class="nav-text">文档模型先于界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建稳定的-Editor-实例"><span class="nav-number">3.</span> <span class="nav-text">创建稳定的 Editor 实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令层隔离工具栏"><span class="nav-number">4.</span> <span class="nav-text">命令层隔离工具栏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染、粘贴与链接安全"><span class="nav-number">5.</span> <span class="nav-text">渲染、粘贴与链接安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存与序列化"><span class="nav-number">6.</span> <span class="nav-text">保存与序列化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#受控边界与表单集成"><span class="nav-number">7.</span> <span class="nav-text">受控边界与表单集成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试最值得覆盖的路径"><span class="nav-number">8.</span> <span class="nav-text">测试最值得覆盖的路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">9.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Wyatt" src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Wyatt</p>
+  <div class="site-description" itemprop="description">前端技术 Blog，收集学习路上的吉光片羽</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lineargenius" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gretema" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:robinand77@hotmail.com" title="E-Mail → mailto:robinand77@hotmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友站链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="" title="" rel="external nofollow noopener noreferrer" target="_blank">Demo Link</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="" rel="external nofollow noopener noreferrer" target="_blank">Demo Link</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="" title="" rel="external nofollow noopener noreferrer" target="_blank">Demo Link</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+
+
+<div class="copyright">
+
+  &copy; 2019 –
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wyatt</span>
+</div>
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js?v=2"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://wyatt-blog.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "http://lineargenius.github.io/React/20260322/26032202/",
+            identifier: "React/20260322/26032202",
+            title: "[Slate.js] 封装一个可扩展的 React 富文本编辑器"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://wyatt-blog.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+  <script defer src="/js/guide-pet.js?v=2"></script>
+</body>
+</html>
