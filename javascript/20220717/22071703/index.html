@@ -45,22 +45,21 @@
   };
 </script>
 
-  <meta name="description" content="估狗估不到什么东西，还好自己有摸索成功，干脆来发一篇！">
+  <meta name="description" content="从当前博客的源码出发，拆解页面元素如何先隐藏、再由动画队列依次渐显，并实现一个不依赖框架的精简版本。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Hexo] 使用 NexT 主题如何在文章中内嵌 Codepen">
-<meta property="og:url" content="http:&#x2F;&#x2F;lineargenius.github.io&#x2F;hexo&#x2F;20191217&#x2F;2656253328&#x2F;index.html">
+<meta property="og:title" content="[前端动画] 博客页面渐显效果是怎么实现的">
+<meta property="og:url" content="https:&#x2F;&#x2F;lineargenius.github.io&#x2F;Nodejs&#x2F;20221030&#x2F;22103002&#x2F;index.html">
 <meta property="og:site_name" content="前端日志">
-<meta property="og:description" content="估狗估不到什么东西，还好自己有摸索成功，干脆来发一篇！">
+<meta property="og:description" content="从当前博客的源码出发，拆解页面元素如何先隐藏、再由动画队列依次渐显，并实现一个不依赖框架的精简版本。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-12-17T07:53:37.000Z">
-<meta property="article:modified_time" content="2019-12-21T06:47:26.747Z">
+<meta property="article:published_time" content="2022-07-17T06:30:00.000Z">
+<meta property="article:modified_time" content="2022-07-17T06:30:00.000Z">
 <meta property="article:author" content="Wyatt">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="next">
-<meta property="article:tag" content="codepen">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="Performance">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://lineargenius.github.io/hexo/20191217/2656253328/">
+<link rel="canonical" href="https://lineargenius.github.io/javascript/20220717/22071703/">
 
 
 <script id="page-configurations">
@@ -72,7 +71,7 @@
   };
 </script>
 
-  <title>[Hexo] 使用 NexT 主题如何在文章中内嵌 Codepen | 前端日志</title>
+  <title>[前端动画] 博客页面渐显效果是怎么实现的 | 前端日志</title>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154635603-1"></script>
     <script>
@@ -214,7 +213,7 @@
 
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://lineargenius.github.io/hexo/20191217/2656253328/">
+    <link itemprop="mainEntityOfPage" href="http://lineargenius.github.io/javascript/20220717/22071703/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -227,7 +226,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          [Hexo] 使用 NexT 主题如何在文章中内嵌 Codepen
+          [前端动画] 博客页面渐显效果是怎么实现的
         </h2>
 
         <div class="post-meta">
@@ -237,23 +236,17 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-12-17 15:53:37" itemprop="dateCreated datePublished" datetime="2019-12-17T15:53:37+08:00">2019-12-17</time>
+
+              <time title="创建时间：2022-07-17 14:30:00" itemprop="dateCreated datePublished" datetime="2022-07-17T14:30:00+08:00">2022-07-17</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-21 14:47:26" itemprop="dateModified" datetime="2019-12-21T14:47:26+08:00">2019-12-21</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
                   </a>
                 </span>
             </span>
@@ -267,8 +260,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
 
-    <a title="disqus" href="/hexo/20191217/2656253328/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="hexo/20191217/2656253328/" itemprop="commentCount"></span>
+    <a title="disqus" href="/javascript/20220717/22071703/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="javascript/20220717/22071703" itemprop="commentCount"></span>
     </a>
   </span>
 
@@ -282,26 +275,38 @@
 
     <div class="post-body" itemprop="articleBody">
 
-
-        <p>估狗估不到什么东西，还好自己有摸索成功，干脆来发一篇！</p>
-<a id="more"></a>
-<p>在搬运 Medium 文章过来的过程中遇到一个问题，就是我之前在 Medium 写文的时候超常 embed Codepen 的，毕竟有些效果真的有 Demo 辅助说明会比较好。<br>但在 hexo NexT 的环境下要怎么嵌入 Codepen 哩？</p>
-<h2 id="第一次踩雷"><a href="#第一次踩雷" class="headerlink" title="第一次踩雷"></a>第一次踩雷</h2><p>我首先找到这篇文章： <a href="https://www.jianshu.com/p/79e808bbf0a8" target="_blank" rel="external nofollow noopener noreferrer">Hexo NexT：在文章中嵌入 CodePen或 jsFiddle</a>，但是我下载完软件包后，按照文中的方式在文章里插入模板，却跑出一堆错误信息，整篇文章的内容都无法渲染。</p>
-<p>所以我只好舍弃这个方法，跑去翻翻 NexT 官方文件：<a href="https://hexo.io/zh-tw/docs/tag-plugins" target="_blank" rel="external nofollow noopener noreferrer">标签插件（Tag Plugins）</a>。<br>看到官方有提供插入 iframe 的语法，我就想说 Codepen 也有提供 iframe 代码，说不定行得通。</p>
-<h2 id="Next-与-Codepen-iframe-语法"><a href="#Next-与-Codepen-iframe-语法" class="headerlink" title="Next 与 Codepen iframe 语法"></a>Next 与 Codepen iframe 语法</h2><p>Next 官方提供的语法：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% iframe url [width] [height] %&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Codepen 提供的 iframe 代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">height</span>=<span class="string">"265"</span> <span class="attr">style</span>=<span class="string">"width: 100%;"</span> <span class="attr">scrolling</span>=<span class="string">"no"</span> <span class="attr">title</span>=<span class="string">"bs flex order"</span> <span class="attr">src</span>=<span class="string">"https://codepen.io/gretema/embed/eYOjPJx?height=265&amp;theme-id=default&amp;default-tab=html,result"</span> <span class="attr">frameborder</span>=<span class="string">"no"</span> <span class="attr">allowtransparency</span>=<span class="string">"true"</span> <span class="attr">allowfullscreen</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">  See the Pen <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'https://codepen.io/gretema/pen/eYOjPJx'</span>&gt;</span>bs flex order<span class="tag">&lt;/<span class="name">a</span>&gt;</span> by 马维君</span><br><span class="line">  (<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'https://codepen.io/gretema'</span>&gt;</span>@gretema<span class="tag">&lt;/<span class="name">a</span>&gt;</span>) on <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'https://codepen.io'</span>&gt;</span>CodePen<span class="tag">&lt;/<span class="name">a</span>&gt;</span>.</span><br><span class="line"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="第二次踩雷"><a href="#第二次踩雷" class="headerlink" title="第二次踩雷"></a>第二次踩雷</h2><p>我把 Next 语法中的 <code>url</code> 代换成 Codepen 链接网址 (<code>https://codepen.io/gretema/pen/eYOjPJx</code>)，<code>[width]</code> 代换成 <code>[100%]</code>，<code>[height]</code> 代换成 <code>[265]</code>。<br>宽度跟高度的数值都是从 Codepen 提供的代码中取出来的。<br>呈现出来是这样：</p>
-<iframe src="https://codepen.io/gretema/pen/eYOjPJx" width="[100%]" height="[265]" frameborder="0" loading="lazy" allowfullscreen></iframe>
-<p>嗯…… Codepen 画面是出来了，但尺寸很有问题。</p>
-<h2 id="终于成功啦"><a href="#终于成功啦" class="headerlink" title="终于成功啦"></a>终于成功啦</h2><p>最后，我尝试把 Codepen 提供的代码中，<code>&lt;iframe&gt;</code> 的 <code>src</code> 值取出来，放到 Next iframe 语法的 <code>url</code> 位置，而 <code>[width]</code> 跟 <code>[height]</code> 都去掉。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% iframe https://codepen.io/gretema/embed/eYOjPJx?height=265&amp;theme-id=default&amp;default-tab=html,result %&#125;</span><br></pre></td></tr></table></figure>
-
-<p>嵌入成功！</p>
-<iframe src="https://codepen.io/gretema/embed/eYOjPJx?height=265&theme-id=default&default-tab=html,result" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen></iframe>
+<p>进入这个博客时，标题、菜单和正文不会生硬地同时出现，而是按顺序滑入并渐显。这个效果并不是一条 CSS 动画完成的，而是由“初始隐藏、启动入口、任务队列、动画执行、无脚本兜底”五个部分共同完成。</p><a id="more"></a>
+<h2 id="先看完整执行链路"><a href="#先看完整执行链路" class="headerlink" title="先看完整执行链路"></a>先看完整执行链路</h2>
+<p>HTML 根容器带有 <code>use-motion</code> 类。CSS 根据这个类把准备参与动画的元素设为透明。DOM 构建完成后，<code>next-boot.js</code> 调用动画模块，模块再依次处理站点标识、菜单、文章内容和侧边栏。</p>
+<ol><li>浏览器解析 HTML，目标元素以 <code>opacity: 0</code> 开始。</li><li><code>DOMContentLoaded</code> 触发 <code>NexT.boot.motion()</code>。</li><li>integrator 将多个动画任务按顺序放入队列。</li><li>Velocity 执行动画；当前任务完成后调用 <code>integrator.next()</code>。</li><li>最后一个任务结束，页面保持正常可见状态。</li></ol>
+<h2 id="第一步：用-CSS-准备初始状态"><a href="#第一步：用-CSS-准备初始状态" class="headerlink" title="第一步：用 CSS 准备初始状态"></a>第一步：用 CSS 准备初始状态</h2>
+<p>渐显需要从透明状态过渡到不透明状态，因此主题先隐藏文章块、标题、正文和归档标题：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">.use-motion .post-block,</span><br><span class="line">.use-motion .pagination,</span><br><span class="line">.use-motion .comments,</span><br><span class="line">.use-motion .post-header,</span><br><span class="line">.use-motion .post-body,</span><br><span class="line">.use-motion .collection-header {</span><br><span class="line">  opacity: 0;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p><code>use-motion</code> 是一个开关。如果不希望启用动画，只需不添加这个类，正文便不会经历透明状态。把选择器限定在这个开关下面，也能避免动画样式污染其他页面。</p>
+<h2 id="第二步：在-DOM-就绪后启动"><a href="#第二步：在-DOM-就绪后启动" class="headerlink" title="第二步：在 DOM 就绪后启动"></a>第二步：在 DOM 就绪后启动</h2>
+<p><code>next-boot.js</code> 监听 <code>DOMContentLoaded</code>。此时页面结构已经可以查询，又不必等待图片等资源全部下载，动画能够更早开始。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">window.addEventListener('DOMContentLoaded', () =&gt; {</span><br><span class="line">  NexT.boot.registerEvents();</span><br><span class="line">  NexT.boot.refresh();</span><br><span class="line">  NexT.boot.motion();</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
+<p><code>NexT.boot.motion()</code> 会读取配置中的 <code>motion.enable</code>。只有动画开启时才组装并启动任务队列，因此配置层和执行层保持分离。</p>
+<h2 id="第三步：用-integrator-控制顺序"><a href="#第三步：用-integrator-控制顺序" class="headerlink" title="第三步：用 integrator 控制顺序"></a>第三步：用 integrator 控制顺序</h2>
+<p>页面不是靠多个 <code>setTimeout</code> 猜测执行时间，而是使用一个很小的队列控制器。每个中间任务在完成时主动通知队列继续：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">NexT.motion.integrator</span><br><span class="line">  .add(NexT.motion.middleWares.logo)</span><br><span class="line">  .add(NexT.motion.middleWares.menu)</span><br><span class="line">  .add(NexT.motion.middleWares.postList)</span><br><span class="line">  .add(NexT.motion.middleWares.sidebar)</span><br><span class="line">  .bootstrap();</span><br></pre></td></tr></table></figure>
+<p><code>bootstrap()</code> 执行第一个任务。任务拿到 <code>integrator</code> 后，在动画完成回调中调用 <code>integrator.next()</code>。这样即使设备性能和内容长度不同，下一个阶段也只会在上一个阶段真正结束后开始。</p>
+<h2 id="第四步：Velocity-负责渐显和滑入"><a href="#第四步：Velocity-负责渐显和滑入" class="headerlink" title="第四步：Velocity 负责渐显和滑入"></a>第四步：Velocity 负责渐显和滑入</h2>
+<p>配置中为不同区域指定了效果：文章块使用 <code>fadeIn</code>，文章头部和正文使用 <code>slideDownIn</code>，归档标题使用 <code>slideLeftIn</code>。<code>postList</code> 收集对应节点，然后交给 Velocity：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Velocity(postBody, 'transition.' + postBodyTransition, {</span><br><span class="line">  stagger: 100,</span><br><span class="line">  drag: true,</span><br><span class="line">  complete() {</span><br><span class="line">    integrator.next();</span><br><span class="line">  }</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
+<p><code>stagger: 100</code> 让一组元素错开 100 毫秒开始，形成层次感；<code>drag: true</code> 会调整同组动画的持续时间。真正的“渐显”来自透明度变化，滑动只是额外的位移反馈。</p>
+<h2 id="为什么还要-noscript-兜底"><a href="#为什么还要-noscript-兜底" class="headerlink" title="为什么还要 noscript 兜底"></a>为什么还要 noscript 兜底</h2>
+<p>如果 JavaScript 被禁用或资源加载失败，元素会永远停在 <code>opacity: 0</code>。因此页面在 <code>noscript</code> 中把透明度恢复为初始值。动画属于增强效果，不能成为阅读正文的前提。</p>
+<h2 id="用原生-JavaScript-实现精简版本"><a href="#用原生-JavaScript-实现精简版本" class="headerlink" title="用原生 JavaScript 实现精简版本"></a>用原生 JavaScript 实现精简版本</h2>
+<p>现代浏览器可以用 CSS transition 和少量 JavaScript 完成相同思路：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">.reveal {</span><br><span class="line">  opacity: 0;</span><br><span class="line">  transform: translateY(16px);</span><br><span class="line">  transition: opacity .45s ease, transform .45s ease;</span><br><span class="line">}</span><br><span class="line">.reveal.is-visible {</span><br><span class="line">  opacity: 1;</span><br><span class="line">  transform: translateY(0);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">document.querySelectorAll('.reveal').forEach((element, index) =&gt; {</span><br><span class="line">  element.style.transitionDelay = `${index * 80}ms`;</span><br><span class="line">  requestAnimationFrame(() =&gt; element.classList.add('is-visible'));</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
+<p><code>requestAnimationFrame</code> 让浏览器先提交初始样式，再在下一帧添加可见类。若在同一次样式计算中直接添加两个状态，浏览器可能合并更新，看不到过渡过程。</p>
+<h2 id="性能与可访问性"><a href="#性能与可访问性" class="headerlink" title="性能与可访问性"></a>性能与可访问性</h2>
+<ul><li>优先动画 <code>opacity</code> 和 <code>transform</code>，避免频繁触发布局。</li><li>首屏动画保持简短，正文不应长时间不可见。</li><li>监听 <code>prefers-reduced-motion</code>，为减少动态效果的用户直接显示内容。</li><li>不要在滚动事件中重复启动整页动画。</li><li>动画失败时必须恢复可见状态，避免用户面对空白页面。</li></ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@media (prefers-reduced-motion: reduce) {</span><br><span class="line">  .reveal {</span><br><span class="line">    opacity: 1;</span><br><span class="line">    transform: none;</span><br><span class="line">    transition: none;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h2 id="实现要点"><a href="#实现要点" class="headerlink" title="实现要点"></a>实现要点</h2>
+<p>这套实现把职责拆得很清楚：CSS 负责准备状态，启动模块选择时机，integrator 保证顺序，Velocity 执行具体过渡，<code>noscript</code> 保证内容始终可读。理解这条链路后，即使换掉动画库，也能保留清晰、可靠的页面进入体验。</p>
 
     </div>
 
@@ -311,9 +316,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
-              <a href="/tags/next/" rel="tag"># next</a>
-              <a href="/tags/codepen/" rel="tag"># codepen</a>
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/tags/Performance/" rel="tag"># Performance</a>
           </div>
 
 
@@ -321,12 +325,9 @@
 
 
     <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/htmlcss/20191217/214491870/" rel="prev" title="[CSS] CSS3 flex 属性">
-      <i class="fa fa-chevron-left"></i> [CSS] CSS3 flex 属性
-    </a></div>
-
-    </div>
+<div class="post-nav-item"><a href="/Nodejs/20220417/22041701/" rel="prev" title="[Node.js] 从零搭建一个可维护的 REST API"><i class="fa fa-chevron-left"></i> [Node.js] 从零搭建一个可维护的 REST API</a></div>
+<div class="post-nav-item"><a href="/Nodejs/20221030/22103002/" rel="next" title="[Node.js] 异步错误处理与优雅退出">[Node.js] 异步错误处理与优雅退出 <i class="fa fa-chevron-right"></i></a></div>
+</div>
       </footer>
 
   </article>
@@ -395,7 +396,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一次踩雷"><span class="nav-number">1.</span> <span class="nav-text">第一次踩雷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Next-与-Codepen-iframe-语法"><span class="nav-number">2.</span> <span class="nav-text">Next 与 Codepen iframe 语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二次踩雷"><span class="nav-number">3.</span> <span class="nav-text">第二次踩雷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#终于成功啦"><span class="nav-number">4.</span> <span class="nav-text">终于成功啦</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#先看完整执行链路"><span class="nav-number">1.</span> <span class="nav-text">先看完整执行链路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步：用-CSS-准备初始状态"><span class="nav-number">2.</span> <span class="nav-text">第一步：用 CSS 准备初始状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步：在-DOM-就绪后启动"><span class="nav-number">3.</span> <span class="nav-text">第二步：在 DOM 就绪后启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步：用-integrator-控制顺序"><span class="nav-number">4.</span> <span class="nav-text">第三步：用 integrator 控制顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四步：Velocity-负责渐显和滑入"><span class="nav-number">5.</span> <span class="nav-text">第四步：Velocity 负责渐显和滑入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么还要-noscript-兜底"><span class="nav-number">6.</span> <span class="nav-text">为什么还要 noscript 兜底</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用原生-JavaScript-实现精简版本"><span class="nav-number">7.</span> <span class="nav-text">用原生 JavaScript 实现精简版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能与可访问性"><span class="nav-number">8.</span> <span class="nav-text">性能与可访问性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现要点"><span class="nav-number">9.</span> <span class="nav-text">实现要点</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -553,9 +554,9 @@
       DISQUS.reset({
         reload: true,
         config: {page: {
-            url: "http://lineargenius.github.io/hexo/20191217/2656253328/",
-            identifier: "hexo/20191217/2656253328/",
-            title: "[Hexo] 使用 NexT 主题如何在文章中内嵌 Codepen"
+            url: "http://lineargenius.github.io/javascript/20220717/22071703/",
+            identifier: "javascript/20220717/22071703",
+            title: "[前端动画] 博客页面渐显效果是怎么实现的"
           }
         }
       });
