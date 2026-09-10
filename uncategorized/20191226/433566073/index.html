@@ -45,12 +45,12 @@
   };
 </script>
 
-  <meta name="description" content="在 SPA 的架构下，页面切换不是由后端操控，而是由前端模拟路由器来替换画面上的内容。而我们可以通过 Vue Router 来达成这件事。">
+  <meta name="description" content="在 SPA 的架构下，页面切换不是由后端控制，而是由前端模拟路由器来替换界面内容。而我们可以通过 Vue Router 实现页面切换。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Vue] Vue Router 配置与运作">
+<meta property="og:title" content="[Vue] Vue Router 配置与运行原理">
 <meta property="og:url" content="http:&#x2F;&#x2F;lineargenius.github.io&#x2F;uncategorized&#x2F;20191226&#x2F;433566073&#x2F;index.html">
 <meta property="og:site_name" content="前端日志">
-<meta property="og:description" content="在 SPA 的架构下，页面切换不是由后端操控，而是由前端模拟路由器来替换画面上的内容。而我们可以通过 Vue Router 来达成这件事。">
+<meta property="og:description" content="在 SPA 的架构下，页面切换不是由后端控制，而是由前端模拟路由器来替换界面内容。而我们可以通过 Vue Router 实现页面切换。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-26T15:06:11.000Z">
 <meta property="article:modified_time" content="2019-12-26T15:11:03.675Z">
@@ -69,7 +69,7 @@
   };
 </script>
 
-  <title>[Vue] Vue Router 配置与运作 | 前端日志</title>
+  <title>[Vue] Vue Router 配置与运行原理 | 前端日志</title>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154635603-1"></script>
     <script>
@@ -224,7 +224,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          [Vue] Vue Router 配置与运作
+          [Vue] Vue Router 配置与运行原理
         </h2>
 
         <div class="post-meta">
@@ -263,7 +263,7 @@
     <div class="post-body" itemprop="articleBody">
 
 
-        <p>在 SPA 的架构下，页面切换不是由后端操控，而是由前端模拟路由器来替换画面上的内容。<br>而我们可以通过 Vue Router 来达成这件事。</p>
+        <p>在 SPA 的架构下，页面切换不是由后端控制，而是由前端模拟路由器来替换界面内容。<br>而我们可以通过 Vue Router 实现页面切换。</p>
 <a id="more"></a>
 
 <h2 id="Router-是由前端所模拟的路由器"><a href="#Router-是由前端所模拟的路由器" class="headerlink" title="Router 是由前端所模拟的路由器"></a>Router 是由前端所模拟的路由器</h2><p>一个使用 Vue Router 的项目会包含三个元素：</p>
@@ -272,7 +272,7 @@
 <li>Router 配置文件（前端路由）：router/index.js</li>
 <li>分页内容：Vue Components (**.vue)</li>
 </ul>
-<h2 id="建置步骤"><a href="#建置步骤" class="headerlink" title="建置步骤"></a>建置步骤</h2><ol>
+<h2 id="构建步骤"><a href="#构建步骤" class="headerlink" title="构建步骤"></a>构建步骤</h2><ol>
 <li><p>下载 Vue Router：<code>npm install vue-router --save</code></p>
 </li>
 <li><p>在 <code>src</code> 文件夹里新建 <code>router</code> 文件夹：在里面添加一个 <code>index.js</code>，作为放置整个路由的配置文件</p>
@@ -289,7 +289,7 @@
 <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span>;</span><br><span class="line"><span class="comment">// 再到 new Vue 下面加上 router 这个单字</span></span><br></pre></td></tr></table></figure></li>
 <li><p>到 <code>App.vue</code>，在要<strong>呈现组件的地方</strong>用 <code>&lt;router-view&gt;&lt;/router-view&gt;</code> 替换</p>
 </li>
-<li><p>当网址 <code>/#</code> 后面接的是 <code>/index</code> 时，对应的组件就会呈现在画面上</p>
+<li><p>当地址 <code>/#</code> 后面接的是 <code>/index</code> 时，对应的组件就会显示在界面中</p>
 </li>
 </ol>
 <h2 id="添加路由路径及链接"><a href="#添加路由路径及链接" class="headerlink" title="添加路由路径及链接"></a>添加路由路径及链接</h2><ol>
@@ -302,18 +302,18 @@
 <li>在 router 数组里添加相关信息：<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  name: ‘分页’,</span><br><span class="line">  path: ‘/page’,</span><br><span class="line">  component: Page</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>在 App.vue 插入 BS navbar，制作分页导航栏，其中 a 链接的标签改为 <code>&lt;router-link&gt;</code>，并把 <code>href</code> 属性改为 <code>to=&quot;path值&quot;</code>，例如 <code>to=&quot;/page&quot;</code>；或是使用 <code>:to=&quot;{ name: &#39;分页&#39;}&quot;</code> 也有同样效果</li>
 </ol>
-<h2 id="巢状路由"><a href="#巢状路由" class="headerlink" title="巢状路由"></a>巢状路由</h2><p>刚刚在 page 分页中的卡片，如果希望卡片不变但是里面内容被抽换，要如何通过虚拟路由来达成呢？</p>
+<h2 id="嵌套路由"><a href="#嵌套路由" class="headerlink" title="嵌套路由"></a>嵌套路由</h2><p>刚刚在 page 分页中的卡片，如果希望卡片不变但是里面内容被替换，可以怎样通过虚拟路由实现呢？</p>
 <ol>
 <li>将 <code>page.vue</code> 另存成一个叫做 <code>child.vue</code> 的文件，<code>page.vue</code> 本身要把 <code>.card</code> 内层都删掉并改成 <code>&lt;router-view&gt;</code>（用来切换内容）</li>
 <li><code>child.vue</code> 去掉 <code>.card</code> 外层，但要留一个没加 <code>className</code> 的 <code>&lt;div&gt;</code> 外层，另存为 <code>child2</code>、<code>child3</code></li>
 <li>child 系列的文件要把卡片标题改一改</li>
 <li>到 router 的 <code>index.js</code>，将 child 系列 <code>import</code> 进来，并在 <code>page</code> 所属的对象中添加 <code>children</code> 特性，<code>children</code> 对应的值是一个<strong>数组</strong>，数组内的格式跟外层对象一样<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attribute">name</span>: <span class="string">'卡片 1'</span>, <span class="comment">// 组件呈现的名称</span></span><br><span class="line">  <span class="attribute">path</span>: <span class="string">''</span>, <span class="comment">// 这里空白代表 /page 显示的内容就是这个子组件</span></span><br><span class="line">  <span class="attribute">component</span>: child, <span class="comment">// 对应的组件</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attribute">name</span>: <span class="string">'卡片 2'</span>, <span class="comment">// 组件呈现的名称</span></span><br><span class="line">  <span class="attribute">path</span>: <span class="string">'child2'</span>,</span><br><span class="line">  <span class="attribute">component</span>: child2, <span class="comment">// 对应的组件</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attribute">name</span>: <span class="string">'卡片 3'</span>, <span class="comment">// 组件呈现的名称</span></span><br><span class="line">  <span class="attribute">path</span>: <span class="string">'child3'</span>,</span><br><span class="line">  <span class="attribute">component</span>: child3, <span class="comment">// 对应的组件</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
 <li>在 <code>page.vue</code> 使用 <code>&lt;router-link&gt;</code> 切换子分页<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/page/"</span>&gt;</span>卡片 1<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/page/child2"</span>&gt;</span>卡片 2<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/page/child3"</span>&gt;</span>卡片 3<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="使用动态路由切换页面-AJAX-结果"><a href="#使用动态路由切换页面-AJAX-结果" class="headerlink" title="使用动态路由切换页面 AJAX 结果"></a>使用动态路由切换页面 AJAX 结果</h2>在同样的版型下，用网址后面的 id 决定带入的内容。<br>让我们把上一段的卡片 3 改成动态路由试试看！</li>
+<h2 id="使用动态路由切换页面-AJAX-结果"><a href="#使用动态路由切换页面-AJAX-结果" class="headerlink" title="使用动态路由切换页面 AJAX 结果"></a>使用动态路由切换页面 AJAX 结果</h2>在相同布局下，用地址后面的 id 决定加载的内容。<br>让我们把上一段的卡片 3 改成动态路由进行验证！</li>
 <li>把上一段的 <code>path: &#39;child3&#39;</code> 改成 <code>path: &#39;child/:id&#39;</code>，<code>id</code> 是一个可自定义名称的参数，这时 <code>:id</code> 就成为动态路由。</li>
 <li>到卡片 3 的组件文件（<code>child3.vue</code>），在 <code>export default</code> 的大括号内增加一个 <code>created()</code>，这个方法会在组件生成时执行。</li>
-<li>访问 API 中固定的一笔数据（以 <a href="https://randomuser.me/" target="_blank" rel="external nofollow noopener noreferrer">randomuser</a> 为例）：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> id = <span class="keyword">this</span>.$route.params.id;</span><br><span class="line"><span class="comment">// route 已被挂载到 Vue 上，所以可以用 $ 调用</span></span><br><span class="line"><span class="comment">// params 是 router 的方法，可以读取 router 里的参数</span></span><br><span class="line"><span class="comment">// id 是我们自定义的参数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// AJAX</span></span><br><span class="line"><span class="comment">// get() 中的网址参考 reandomuser 文件中的 Seeds 一节</span></span><br><span class="line"><span class="comment">// ?seed=$&#123;网址参数&#125;，且 API 网址整串要用反引号包住</span></span><br><span class="line"><span class="keyword">this</span>.$http.get(<span class="string">`https://randomuser.me/api/?seed=<span class="subst">$&#123;id&#125;</span>`</span>).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(response);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-<li>在网址列随意打几个英文字，就能从 API 中抓取到特定数据。正式开发时，id 是由后端定义的，添加产品数据后会自动产生这个产品的 id ，前端要做的只是抓到这个 id ，并把数据显示出来。</li>
+<li>访问 API 中固定的一条数据（以 <a href="https://randomuser.me/" target="_blank" rel="external nofollow noopener noreferrer">randomuser</a> 为例）：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> id = <span class="keyword">this</span>.$route.params.id;</span><br><span class="line"><span class="comment">// route 已被挂载到 Vue 上，所以可以用 $ 调用</span></span><br><span class="line"><span class="comment">// params 是 router 的方法，可以读取 router 里的参数</span></span><br><span class="line"><span class="comment">// id 是我们自定义的参数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// AJAX</span></span><br><span class="line"><span class="comment">// get() 中的地址参考 reandomuser 文件中的 Seeds 一节</span></span><br><span class="line"><span class="comment">// ?seed=$&#123;地址参数&#125;，且 完整 API 地址要用反引号包住</span></span><br><span class="line"><span class="keyword">this</span>.$http.get(<span class="string">`https://randomuser.me/api/?seed=<span class="subst">$&#123;id&#125;</span>`</span>).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(response);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li>在地址栏随意打几个英文字，就能从 API 中获取特定数据。正式开发时，id 是由后端定义的，添加产品数据后会自动生成这个产品的 id ，前端要做的只是抓到这个 id ，并把数据显示出来。</li>
 </ol>
 <h2 id="命名路由，同一个路径加载两个组件"><a href="#命名路由，同一个路径加载两个组件" class="headerlink" title="命名路由，同一个路径加载两个组件"></a>命名路由，同一个路径加载两个组件</h2><p>为卡片多做一个导航栏。</p>
 <ol>
@@ -321,19 +321,19 @@
 <li><code>page.vue</code> 另存为为 <code>menu.vue</code>，<code>page.vue</code> 只留 <code>.card</code> 其余的 <code>&lt;router-link&gt;</code> 删掉，<code>menu.vue</code> 只留 <code>&lt;router-link&gt;</code> 其余删掉。</li>
 <li>使用 BS nav 美化 menu，把 nav 代码贴进来，用 <code>&lt;router-link&gt;</code> 取代 nav 里面的 <code>&lt;a&gt;</code>，记得补上 <code>.nav-link</code>。</li>
 <li>到 router 文件夹的 <code>index.js</code> 中将 <code>menu.vue</code> <code>import</code> 进来，并到下方的路由设置改写代码：<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原本使用 component 特性，改用 components 设置单一路由但多个组件</span></span><br><span class="line"><span class="symbol">components:</span> &#123;</span><br><span class="line"><span class="symbol">  default:</span> Page, <span class="comment">// 在 router-view 没有设置 name 时默认显示哪个组件</span></span><br><span class="line"><span class="symbol">  menu:</span> Menu <span class="comment">// 第一个 menu 是 router-view 的 name，第二个 Menu 是组件名</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<h2 id="Vue-Router-参数设置"><a href="#Vue-Router-参数设置" class="headerlink" title="Vue Router 参数设置"></a>Vue Router 参数设置</h2>请搭配 Vue Router 官方文件。<br>Vue Router 的 API 分为 Router 构造配置及 Router 实例，这篇只介绍常用的 Router 配置。</li>
+<h2 id="Vue-Router-参数设置"><a href="#Vue-Router-参数设置" class="headerlink" title="Vue Router 参数设置"></a>Vue Router 参数设置</h2>请参照 Vue Router 官方文档。<br>Vue Router 的 API 分为 Router 构造配置及 Router 实例，这篇只介绍常用的 Router 配置。</li>
 </ol>
 <h3 id="Router-构造配置"><a href="#Router-构造配置" class="headerlink" title="Router 构造配置"></a>Router 构造配置</h3><p>构造配置用于 <code>index.js</code> 这个文件中，官方文件有介绍更多更详细的方法跟属性可用。</p>
 <ul>
 <li>routes 对象：官方文件有列出总共有哪些特性可以调整。</li>
-<li>mode 字符串：决定网址的 <code>#</code> 是否要保留，或是做其他的设置。如果使用 <code>history</code> 模式，可以去除网址中的 <code>#</code>，但是必须配合后端使用。所以基本上还是以默认模式为主即可。</li>
+<li>mode 字符串：决定地址的 <code>#</code> 是否要保留，或是做其他的设置。如果使用 <code>history</code> 模式，可以去除地址中的 <code>#</code>，但是必须配合后端使用。所以基本上还是以默认模式为主即可。</li>
 <li>base 字符串：根路径设置的地方。</li>
 <li>linkActiveClass 字符串：当某个路径被启用时会被加上特定的启用 <code>class</code>，在这个特性里可以设置路径启用的 className。</li>
 <li>linkExactActiveClass 字符串：跟上一个差不多。</li>
 </ul>
-<h2 id="自定义切换路由方法"><a href="#自定义切换路由方法" class="headerlink" title="自定义切换路由方法"></a>自定义切换路由方法</h2><p>有些行为必须在 AJAX 结束后才去切换画面，此时 <code>router-link</code> 就不一定适用。</p>
+<h2 id="自定义切换路由方法"><a href="#自定义切换路由方法" class="headerlink" title="自定义切换路由方法"></a>自定义切换路由方法</h2><p>有些行为必须在 AJAX 结束后才去切换界面，此时 <code>router-link</code> 就不一定适用。</p>
 <p>举例来说，当我们在电商网站买完东西、结帐送出后，需要进行一些 AJAX 的行为，得到数据后使用一些方法，使网页切换。</p>
-<p>此时，我们应该运用组件 <code>methods</code> + Vue Router 的实例方法，来切换画面。</p>
+<p>此时，我们应该使用组件 <code>methods</code> + Vue Router 的实例方法，来切换界面。</p>
 <p>在官方文件的 API / Router 实例方法中，有许多我们能运用的方法，其中较常用的有：</p>
 <ul>
 <li><code>router.push()</code>：括号里放入<code>&#39;路径&#39;</code>。</li>
@@ -361,9 +361,9 @@
 
 
     <div class="post-nav">
-
-      <div class="post-nav-item"></div>
-    </div>
+<div class="post-nav-item"><a href="/SASS/20191217/3307620580/" rel="prev" title="[SASS] SASS 基础概念 2"><i class="fa fa-chevron-left"></i> [SASS] SASS 基础概念 2</a></div>
+<div class="post-nav-item"><a href="/React/20210314/21031401/" rel="next" title="[React] 用 Hooks 整理组件状态与副作用">[React] 用 Hooks 整理组件状态与副作用 <i class="fa fa-chevron-right"></i></a></div>
+</div>
       </footer>
 
   </article>
@@ -432,7 +432,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Router-是由前端所模拟的路由器"><span class="nav-number">1.</span> <span class="nav-text">Router 是由前端所模拟的路由器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建置步骤"><span class="nav-number">2.</span> <span class="nav-text">建置步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加路由路径及链接"><span class="nav-number">3.</span> <span class="nav-text">添加路由路径及链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#巢状路由"><span class="nav-number">4.</span> <span class="nav-text">巢状路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用动态路由切换页面-AJAX-结果"><span class="nav-number">5.</span> <span class="nav-text">使用动态路由切换页面 AJAX 结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名路由，同一个路径加载两个组件"><span class="nav-number">6.</span> <span class="nav-text">命名路由，同一个路径加载两个组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-Router-参数设置"><span class="nav-number">7.</span> <span class="nav-text">Vue Router 参数设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Router-构造配置"><span class="nav-number">7.1.</span> <span class="nav-text">Router 构造配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义切换路由方法"><span class="nav-number">8.</span> <span class="nav-text">自定义切换路由方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用方式"><span class="nav-number">8.1.</span> <span class="nav-text">应用方式</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Router-是由前端所模拟的路由器"><span class="nav-number">1.</span> <span class="nav-text">Router 是由前端所模拟的路由器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建步骤"><span class="nav-number">2.</span> <span class="nav-text">构建步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加路由路径及链接"><span class="nav-number">3.</span> <span class="nav-text">添加路由路径及链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套路由"><span class="nav-number">4.</span> <span class="nav-text">嵌套路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用动态路由切换页面-AJAX-结果"><span class="nav-number">5.</span> <span class="nav-text">使用动态路由切换页面 AJAX 结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名路由，同一个路径加载两个组件"><span class="nav-number">6.</span> <span class="nav-text">命名路由，同一个路径加载两个组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-Router-参数设置"><span class="nav-number">7.</span> <span class="nav-text">Vue Router 参数设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Router-构造配置"><span class="nav-number">7.1.</span> <span class="nav-text">Router 构造配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义切换路由方法"><span class="nav-number">8.</span> <span class="nav-text">自定义切换路由方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用方式"><span class="nav-number">8.1.</span> <span class="nav-text">应用方式</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -447,27 +447,27 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
 
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
 
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
 
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/lineargenius" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gretema" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/lineargenius" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lineargenius" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
         <a href="mailto:robinand77@hotmail.com" title="E-Mail → mailto:robinand77@hotmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
@@ -592,7 +592,7 @@
         config: {page: {
             url: "http://lineargenius.github.io/uncategorized/20191226/433566073/",
             identifier: "uncategorized/20191226/433566073/",
-            title: "[Vue] Vue Router 配置与运作"
+            title: "[Vue] Vue Router 配置与运行原理"
           }
         }
       });

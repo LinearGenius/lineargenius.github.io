@@ -287,7 +287,7 @@
 
 <h2 id="化简知识库：-mixin-设置常用语法，-include-召唤出来"><a href="#化简知识库：-mixin-设置常用语法，-include-召唤出来" class="headerlink" title="化简知识库：@mixin 设置常用语法，@include 召唤出来"></a>化简知识库：<code>@mixin</code> 设置常用语法，<code>@include</code> 召唤出来</h2><p>这个语法可以省去一直回想原理跟技巧的时间。</p>
 <h3 id="基本用法：复制"><a href="#基本用法：复制" class="headerlink" title="基本用法：复制"></a>基本用法：复制</h3><ol>
-<li>写在文件起始处，<code>@mixin</code> 后面取一个<strong>变量名</strong>接中括号，里面写该变量所欲达成的效果。</li>
+<li>写在文件起始处，<code>@mixin</code> 后面取一个<strong>变量名</strong>接中括号，里面编写希望通过该变量实现的效果。</li>
 <li>后面需要调用该效果时，先写选择器加中刮弧，里面先写 <code>@include</code>，后面加变量名称。</li>
 <li><code>@mixin</code> 里面写的常用语法，会用「&amp;」来表示所在的选择器。例如：<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&amp;<span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -310,7 +310,7 @@
 <blockquote>
 <p>温馨提示：平常可以多累积自己的 mixin 数据库，设一个 mixin 文件夹把学过的一些 CSS 技巧记录成 .sass 文件存放进去。有些面试官光看应征者的 mixin 库就能了解这个人处理过多少项目了。</p>
 </blockquote>
-<h2 id="将-mixin-用于开发-RWD"><a href="#将-mixin-用于开发-RWD" class="headerlink" title="将 @mixin 用于开发 RWD"></a>将 <code>@mixin</code> 用于开发 RWD</h2><p>先用 <code>@mixin</code> 设置好断点，各断点可以取名为该装置的名字，例如 <code>pad</code>、<code>iPhone5</code> 等。<br>接着在 media query 里面只要加一个东西，那就是 <code>@content</code>。</p>
+<h2 id="将-mixin-用于开发-RWD"><a href="#将-mixin-用于开发-RWD" class="headerlink" title="将 @mixin 用于开发 RWD"></a>将 <code>@mixin</code> 用于开发 RWD</h2><p>先用 <code>@mixin</code> 设置好断点，各断点可以按设备类型命名，例如 <code>pad</code>、<code>iPhone5</code> 等。<br>接着在 media query 里面只要加一个东西，那就是 <code>@content</code>。</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> iphone5&#123;</span><br><span class="line">  <span class="keyword">@media</span> (max-width: <span class="number">320px</span>) &#123;</span><br><span class="line">    <span class="keyword">@content</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>之后就先写 PC 版的样式，但在需要 RWD 的项目里面，可以用 <code>@include</code> 调用断点，然后直接写 RWD 的样式在里面。</p>
@@ -339,15 +339,9 @@
 
 
     <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/SASS/20191217/1546590558/" rel="prev" title="[SASS] SASS 基础概念 1">
-      <i class="fa fa-chevron-left"></i> [SASS] SASS 基础概念 1
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/htmlcss/20191217/214491870/" rel="next" title="[CSS] CSS3 flex 属性">
-      [CSS] CSS3 flex 属性 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
+<div class="post-nav-item"><a href="/SASS/20191217/1546590558/" rel="prev" title="[SASS] SASS 基础概念 1"><i class="fa fa-chevron-left"></i> [SASS] SASS 基础概念 1</a></div>
+<div class="post-nav-item"><a href="/uncategorized/20191226/433566073/" rel="next" title="[Vue] Vue Router 配置与运行原理">[Vue] Vue Router 配置与运行原理 <i class="fa fa-chevron-right"></i></a></div>
+</div>
       </footer>
 
   </article>
@@ -431,27 +425,27 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
 
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
 
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
 
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/lineargenius" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gretema" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/lineargenius" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lineargenius" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
         <a href="mailto:robinand77@hotmail.com" title="E-Mail → mailto:robinand77@hotmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
