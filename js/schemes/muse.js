@@ -116,13 +116,4 @@ window.addEventListener('DOMContentLoaded', () => {
   };
   sidebarToggleMotion.init();
 
-  function updateFooterPosition() {
-    var footer = document.querySelector('.footer');
-    var containerHeight = document.querySelector('.header').offsetHeight + document.querySelector('.main').offsetHeight + footer.offsetHeight;
-    footer.classList.toggle('footer-fixed', containerHeight <= window.innerHeight);
-  }
-
-  updateFooterPosition();
-  window.addEventListener('resize', updateFooterPosition);
-  window.addEventListener('scroll', updateFooterPosition);
 });

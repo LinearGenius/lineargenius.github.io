@@ -1415,9 +1415,6 @@ pre .javascript .function {
   font-size: 0.875em;
   padding: 20px 0;
 }
-.footer.footer-fixed {
-  position: static;
-}
 .footer-inner {
   box-sizing: border-box;
   margin: 0 auto;
